@@ -1,10 +1,10 @@
 
-  <!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html >
 <head>
   <meta charset="UTF-8">
   
-    <title>归档: 2017 | Sjming</title>
+    <title>tags | Sjming</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="John Doe">
@@ -12,11 +12,12 @@
 
     
     <meta property="og:type" content="website">
-<meta property="og:title" content="Sjming">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="Sjming">
+<meta property="og:updated_time" content="2017-02-26T14:11:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sjming">
+<meta name="twitter:title" content="tags">
 
     
     <link rel="alternative" href="/atom.xml" title="Sjming" type="application/atom+xml">
@@ -70,48 +71,17 @@
 </div>
       </header>
       <div id="container">
-        
-
+          
 <div class="archive-title" >
-  <h2 class="archive-icon">2017</h2>
-  
-  <div class="archiveslist archive-float clearfix">
-   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017 年 02 月</a><span class="archive-list-count">2</span></li></ul>
- </div>
-  
+<h2 class="tag-icon">标签</h2>
+
 </div>
-<div id="main" class="archive-part clearfix">
-  <div id="archive-page">
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/02/26/hello-world/" title="Hello World" itemprop="url">
-  
-
-    <time datetime="2017-02-26T14:12:58.187Z" itemprop="datePublished">2017-02-26</time>
-
-
-    <h1 itemprop="name">Hello World</h1>
-
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/02/26/test/" title="" itemprop="url">
-  
-
-    <time datetime="2017-02-26T14:12:58.183Z" itemprop="datePublished">2017-02-26</time>
-
-
-    <h1 itemprop="name">&nbsp;</h1>
-
-  </a>
-</section>
-
-
-  </div>
+<div id="main" class="archive-part">
+<div class="all-list-box"></div>
 </div>
+
+
+
 
       </div>
       <footer><div id="footer" >
@@ -210,6 +180,24 @@ $(document).ready(function(){
 
 
 
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var list    = $('.archive-title a'),
+      box     = $('.all-list-box'),
+      first   = $('.archive-title a:first-of-type');
+      box.load(first.attr('data-src').toString()+' #archive-page');
+      first.addClass('current');
+  list.each(function(){
+    $(this).click(function(){
+      var listSrc=$(this).attr('data-src').toString()+' #archive-page';
+      box.load(listSrc);
+      list.removeClass('current');
+      $(this).addClass('current');
+     });  
+    });
+  }); 
+</script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
