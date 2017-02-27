@@ -1635,29 +1635,47 @@ section.comment {
   -ms-transition: color 0.5s;
   transition: color 0.5s;
 }
-@media only screen and (min-width: 768px) {
-  .categorieslist {
-    width: 45%;
-    float: left;
-    margin: 0 5% 0 0;
-  }
+.category-list {
+  font-size: 0.9em;
+  padding: 15px 20px;
 }
-@media only screen and (min-width: 1024px) {
-  .categorieslist {
-    width: 100%;
-    float: none;
-    margin: 1em 0 0;
-  }
+.category-list .category-list-count {
+  margin-left: 8px;
+  font-size: 0.8em;
+  color: #808080;
 }
-.categorieslist li {
-  border-bottom: 1px solid #ccc;
+.category-list .category-list-count:before {
+  content: '(';
 }
-.categorieslist li a {
-  display: block;
-  padding: 0.5em 5%;
+.category-list .category-list-count:after {
+  content: ')';
 }
-.categorieslist li a:hover {
-  color: #2ca6cb;
+.category-list ul,
+.category-list ol,
+.category-list dl {
+  list-style: none;
+}
+.category-list ul ul,
+.category-list ol ul,
+.category-list dl ul,
+.category-list ul ol,
+.category-list ol ol,
+.category-list dl ol,
+.category-list ul dl,
+.category-list ol dl,
+.category-list dl dl {
+  margin-left: 20px;
+}
+.category-list ul ul li:before,
+.category-list ol ul li:before,
+.category-list dl ul li:before,
+.category-list ul ol li:before,
+.category-list ol ol li:before,
+.category-list dl ol li:before,
+.category-list ul dl li:before,
+.category-list ol dl li:before,
+.category-list dl dl li:before {
+  content: '> ';
 }
 .tagslist {
   margin: 1em 0 0;
