@@ -1650,255 +1650,107 @@ section.comment {
 .category-list .category-list-count:after {
   content: ')';
 }
-.category-list li:before {
-  content: '> ';
-}
-ul,
-ol,
-dl {
+.category-list ul,
+.category-list ol,
+.category-list dl {
   list-style: none;
 }
-ul ul,
-ol ul,
-dl ul,
-ul ol,
-ol ol,
-dl ol,
-ul dl,
-ol dl,
-dl dl {
+.category-list ul,
+.category-list ol,
+.category-list dl {
   margin-left: 20px;
 }
-ul ul .tagslist,
-ol ul .tagslist,
-dl ul .tagslist,
-ul ol .tagslist,
-ol ol .tagslist,
-dl ol .tagslist,
-ul dl .tagslist,
-ol dl .tagslist,
-dl dl .tagslist {
+.category-list ul li:before,
+.category-list ol li:before,
+.category-list dl li:before {
+  content: '> ';
+}
+.tagslist {
   margin: 1em 0 0;
 }
 @media only screen and (min-width: 768px) {
-  ul ul .tagslist,
-  ol ul .tagslist,
-  dl ul .tagslist,
-  ul ol .tagslist,
-  ol ol .tagslist,
-  dl ol .tagslist,
-  ul dl .tagslist,
-  ol dl .tagslist,
-  dl dl .tagslist {
+  .tagslist {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
 @media only screen and (min-width: 1024px) {
-  ul ul .tagslist,
-  ol ul .tagslist,
-  dl ul .tagslist,
-  ul ol .tagslist,
-  ol ol .tagslist,
-  dl ol .tagslist,
-  ul dl .tagslist,
-  ol dl .tagslist,
-  dl dl .tagslist {
+  .tagslist {
     width: 100%;
     float: none;
     margin: 1em 0 0;
   }
 }
-ul ul .tagslist ul,
-ol ul .tagslist ul,
-dl ul .tagslist ul,
-ul ol .tagslist ul,
-ol ol .tagslist ul,
-dl ol .tagslist ul,
-ul dl .tagslist ul,
-ol dl .tagslist ul,
-dl dl .tagslist ul {
+.tagslist ul {
   padding: 0.5em 0;
 }
-ul ul .tagslist ul li,
-ol ul .tagslist ul li,
-dl ul .tagslist ul li,
-ul ol .tagslist ul li,
-ol ol .tagslist ul li,
-dl ol .tagslist ul li,
-ul dl .tagslist ul li,
-ol dl .tagslist ul li,
-dl dl .tagslist ul li {
+.tagslist ul li {
   float: left;
 }
-ul ul .tagslist ul li a,
-ol ul .tagslist ul li a,
-dl ul .tagslist ul li a,
-ul ol .tagslist ul li a,
-ol ol .tagslist ul li a,
-dl ol .tagslist ul li a,
-ul dl .tagslist ul li a,
-ol dl .tagslist ul li a,
-dl dl .tagslist ul li a {
+.tagslist ul li a {
   display: block;
   margin: 0.3125em;
   padding: 0.125em 0.3125em;
   background: #dbdbdb;
 }
-ul ul .tagslist ul li a:hover,
-ol ul .tagslist ul li a:hover,
-dl ul .tagslist ul li a:hover,
-ul ol .tagslist ul li a:hover,
-ol ol .tagslist ul li a:hover,
-dl ol .tagslist ul li a:hover,
-ul dl .tagslist ul li a:hover,
-ol dl .tagslist ul li a:hover,
-dl dl .tagslist ul li a:hover {
+.tagslist ul li a:hover {
   color: #2ca6cb;
   background: #e6e6e6;
 }
-ul ul .rsspart,
-ol ul .rsspart,
-dl ul .rsspart,
-ul ol .rsspart,
-ol ol .rsspart,
-dl ol .rsspart,
-ul dl .rsspart,
-ol dl .rsspart,
-dl dl .rsspart {
+.rsspart {
   background: #2ca6cb;
   width: 100%;
 }
 @media only screen and (min-width: 768px) {
-  ul ul .rsspart,
-  ol ul .rsspart,
-  dl ul .rsspart,
-  ul ol .rsspart,
-  ol ol .rsspart,
-  dl ol .rsspart,
-  ul dl .rsspart,
-  ol dl .rsspart,
-  dl dl .rsspart {
+  .rsspart {
     float: left;
     width: 45%;
     margin: 0 5% 0 0;
   }
 }
 @media only screen and (min-width: 1024px) {
-  ul ul .rsspart,
-  ol ul .rsspart,
-  dl ul .rsspart,
-  ul ol .rsspart,
-  ol ol .rsspart,
-  dl ol .rsspart,
-  ul dl .rsspart,
-  ol dl .rsspart,
-  dl dl .rsspart {
+  .rsspart {
     width: 100%;
     float: none;
     margin: 1em 0 0;
   }
 }
-ul ul .rsspart a,
-ol ul .rsspart a,
-dl ul .rsspart a,
-ul ol .rsspart a,
-ol ol .rsspart a,
-dl ol .rsspart a,
-ul dl .rsspart a,
-ol dl .rsspart a,
-dl dl .rsspart a {
+.rsspart a {
   color: #fff;
   display: block;
   padding: 0.625em 0;
   text-align: center;
 }
-ul ul .rsspart a:hover,
-ol ul .rsspart a:hover,
-dl ul .rsspart a:hover,
-ul ol .rsspart a:hover,
-ol ol .rsspart a:hover,
-dl ol .rsspart a:hover,
-ul dl .rsspart a:hover,
-ol dl .rsspart a:hover,
-dl dl .rsspart a:hover {
+.rsspart a:hover {
   color: #2ca6cb;
   background: #fafafa;
 }
-ul ul .rsspart a::before,
-ol ul .rsspart a::before,
-dl ul .rsspart a::before,
-ul ol .rsspart a::before,
-ol ol .rsspart a::before,
-dl ol .rsspart a::before,
-ul dl .rsspart a::before,
-ol dl .rsspart a::before,
-dl dl .rsspart a::before {
+.rsspart a::before {
   font-family: "FontAwesome";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-right: 0.5em;
   content: "\f09e";
 }
-ul ul .archiveslist,
-ol ul .archiveslist,
-dl ul .archiveslist,
-ul ol .archiveslist,
-ol ol .archiveslist,
-dl ol .archiveslist,
-ul dl .archiveslist,
-ol dl .archiveslist,
-dl dl .archiveslist {
+.archiveslist {
   padding-right: 1em;
 }
 @media only screen and (min-width: 1024px) {
-  ul ul .archiveslist,
-  ol ul .archiveslist,
-  dl ul .archiveslist,
-  ul ol .archiveslist,
-  ol ol .archiveslist,
-  dl ol .archiveslist,
-  ul dl .archiveslist,
-  ol dl .archiveslist,
-  dl dl .archiveslist {
+  .archiveslist {
     width: 100%;
     float: none;
     margin: 1em 0 0;
   }
 }
-ul ul .archiveslist li,
-ol ul .archiveslist li,
-dl ul .archiveslist li,
-ul ol .archiveslist li,
-ol ol .archiveslist li,
-dl ol .archiveslist li,
-ul dl .archiveslist li,
-ol dl .archiveslist li,
-dl dl .archiveslist li {
+.archiveslist li {
   font-size: 0.8em;
   line-height: 2em;
 }
-ul ul .archiveslist li a,
-ol ul .archiveslist li a,
-dl ul .archiveslist li a,
-ul ol .archiveslist li a,
-ol ol .archiveslist li a,
-dl ol .archiveslist li a,
-ul dl .archiveslist li a,
-ol dl .archiveslist li a,
-dl dl .archiveslist li a {
+.archiveslist li a {
   padding: 0.5em;
 }
-ul ul .archiveslist li a:hover,
-ol ul .archiveslist li a:hover,
-dl ul .archiveslist li a:hover,
-ul ol .archiveslist li a:hover,
-ol ol .archiveslist li a:hover,
-dl ol .archiveslist li a:hover,
-ul dl .archiveslist li a:hover,
-ol dl .archiveslist li a:hover,
-dl dl .archiveslist li a:hover {
+.archiveslist li a:hover {
   color: #2ca6cb;
   -webkit-transition: color 0.25s;
   -moz-transition: color 0.25s;
@@ -1906,127 +1758,47 @@ dl dl .archiveslist li a:hover {
   -ms-transition: color 0.25s;
   transition: color 0.25s;
 }
-ul ul .archiveslist .archive-list-count:before,
-ol ul .archiveslist .archive-list-count:before,
-dl ul .archiveslist .archive-list-count:before,
-ul ol .archiveslist .archive-list-count:before,
-ol ol .archiveslist .archive-list-count:before,
-dl ol .archiveslist .archive-list-count:before,
-ul dl .archiveslist .archive-list-count:before,
-ol dl .archiveslist .archive-list-count:before,
-dl dl .archiveslist .archive-list-count:before {
+.archiveslist .archive-list-count:before {
   content: "(";
 }
-ul ul .archiveslist .archive-list-count:after,
-ol ul .archiveslist .archive-list-count:after,
-dl ul .archiveslist .archive-list-count:after,
-ul ol .archiveslist .archive-list-count:after,
-ol ol .archiveslist .archive-list-count:after,
-dl ol .archiveslist .archive-list-count:after,
-ul dl .archiveslist .archive-list-count:after,
-ol dl .archiveslist .archive-list-count:after,
-dl dl .archiveslist .archive-list-count:after {
+.archiveslist .archive-list-count:after {
   content: ")";
 }
-ul ul .archive-list,
-ol ul .archive-list,
-dl ul .archive-list,
-ul ol .archive-list,
-ol ol .archive-list,
-dl ol .archive-list,
-ul dl .archive-list,
-ol dl .archive-list,
-dl dl .archive-list {
+.archive-list {
   padding: 0.5em 0;
 }
-ul ul .archive-float ul,
-ol ul .archive-float ul,
-dl ul .archive-float ul,
-ul ol .archive-float ul,
-ol ol .archive-float ul,
-dl ol .archive-float ul,
-ul dl .archive-float ul,
-ol dl .archive-float ul,
-dl dl .archive-float ul {
+.archive-float ul {
   padding: 0;
 }
-ul ul .archive-float li,
-ol ul .archive-float li,
-dl ul .archive-float li,
-ul ol .archive-float li,
-ol ol .archive-float li,
-dl ol .archive-float li,
-ul dl .archive-float li,
-ol dl .archive-float li,
-dl dl .archive-float li {
+.archive-float li {
   float: left;
   margin: 0.3em;
 }
 @media only screen and (min-width: 1024px) {
-  ul ul .archive-float li,
-  ol ul .archive-float li,
-  dl ul .archive-float li,
-  ul ol .archive-float li,
-  ol ol .archive-float li,
-  dl ol .archive-float li,
-  ul dl .archive-float li,
-  ol dl .archive-float li,
-  dl dl .archive-float li {
+  .archive-float li {
     float: none;
   }
 }
 @media only screen and (min-width: 768px) {
-  ul ul .tagcloudlist,
-  ol ul .tagcloudlist,
-  dl ul .tagcloudlist,
-  ul ol .tagcloudlist,
-  ol ol .tagcloudlist,
-  dl ol .tagcloudlist,
-  ul dl .tagcloudlist,
-  ol dl .tagcloudlist,
-  dl dl .tagcloudlist {
+  .tagcloudlist {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
 @media only screen and (min-width: 1024px) {
-  ul ul .tagcloudlist,
-  ol ul .tagcloudlist,
-  dl ul .tagcloudlist,
-  ul ol .tagcloudlist,
-  ol ol .tagcloudlist,
-  dl ol .tagcloudlist,
-  ul dl .tagcloudlist,
-  ol dl .tagcloudlist,
-  dl dl .tagcloudlist {
+  .tagcloudlist {
     width: 100%;
     float: none;
     margin: 1em 0 0;
   }
 }
-ul ul .tagcloudlist .tagcloudlist a,
-ol ul .tagcloudlist .tagcloudlist a,
-dl ul .tagcloudlist .tagcloudlist a,
-ul ol .tagcloudlist .tagcloudlist a,
-ol ol .tagcloudlist .tagcloudlist a,
-dl ol .tagcloudlist .tagcloudlist a,
-ul dl .tagcloudlist .tagcloudlist a,
-ol dl .tagcloudlist .tagcloudlist a,
-dl dl .tagcloudlist .tagcloudlist a {
+.tagcloudlist .tagcloudlist a {
   padding: 0.2em;
   display: block;
   float: left;
 }
-ul ul .tagcloudlist .tagcloudlist a:hover,
-ol ul .tagcloudlist .tagcloudlist a:hover,
-dl ul .tagcloudlist .tagcloudlist a:hover,
-ul ol .tagcloudlist .tagcloudlist a:hover,
-ol ol .tagcloudlist .tagcloudlist a:hover,
-dl ol .tagcloudlist .tagcloudlist a:hover,
-ul dl .tagcloudlist .tagcloudlist a:hover,
-ol dl .tagcloudlist .tagcloudlist a:hover,
-dl dl .tagcloudlist .tagcloudlist a:hover {
+.tagcloudlist .tagcloudlist a:hover {
   color: #2ca6cb;
   -webkit-transition: color 0.25s;
   -moz-transition: color 0.25s;
@@ -2034,81 +1806,33 @@ dl dl .tagcloudlist .tagcloudlist a:hover {
   -ms-transition: color 0.25s;
   transition: color 0.25s;
 }
-ul ul .linkslist,
-ol ul .linkslist,
-dl ul .linkslist,
-ul ol .linkslist,
-ol ol .linkslist,
-dl ol .linkslist,
-ul dl .linkslist,
-ol dl .linkslist,
-dl dl .linkslist {
+.linkslist {
   margin-top: 0.5em;
 }
 @media only screen and (min-width: 768px) {
-  ul ul .linkslist,
-  ol ul .linkslist,
-  dl ul .linkslist,
-  ul ol .linkslist,
-  ol ol .linkslist,
-  dl ol .linkslist,
-  ul dl .linkslist,
-  ol dl .linkslist,
-  dl dl .linkslist {
+  .linkslist {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
 @media only screen and (min-width: 1024px) {
-  ul ul .linkslist,
-  ol ul .linkslist,
-  dl ul .linkslist,
-  ul ol .linkslist,
-  ol ol .linkslist,
-  dl ol .linkslist,
-  ul dl .linkslist,
-  ol dl .linkslist,
-  dl dl .linkslist {
+  .linkslist {
     width: 100%;
     float: none;
     margin: 1em 0 0;
   }
 }
-ul ul .linkslist ul,
-ol ul .linkslist ul,
-dl ul .linkslist ul,
-ul ol .linkslist ul,
-ol ol .linkslist ul,
-dl ol .linkslist ul,
-ul dl .linkslist ul,
-ol dl .linkslist ul,
-dl dl .linkslist ul {
+.linkslist ul {
   padding: 0.5em 0;
 }
-ul ul .linkslist ul a,
-ol ul .linkslist ul a,
-dl ul .linkslist ul a,
-ul ol .linkslist ul a,
-ol ol .linkslist ul a,
-dl ol .linkslist ul a,
-ul dl .linkslist ul a,
-ol dl .linkslist ul a,
-dl dl .linkslist ul a {
+.linkslist ul a {
   font-size: 1em;
   line-height: 1.5;
   display: block;
   padding: 0 3%;
 }
-ul ul .linkslist ul a:hover,
-ol ul .linkslist ul a:hover,
-dl ul .linkslist ul a:hover,
-ul ol .linkslist ul a:hover,
-ol ol .linkslist ul a:hover,
-dl ol .linkslist ul a:hover,
-ul dl .linkslist ul a:hover,
-ol dl .linkslist ul a:hover,
-dl dl .linkslist ul a:hover {
+.linkslist ul a:hover {
   color: #2ca6cb;
   -webkit-transition: color 0.25s;
   -moz-transition: color 0.25s;
@@ -2116,160 +1840,64 @@ dl dl .linkslist ul a:hover {
   -ms-transition: color 0.25s;
   transition: color 0.25s;
 }
-ul ul .weiboshow,
-ol ul .weiboshow,
-dl ul .weiboshow,
-ul ol .weiboshow,
-ol ol .weiboshow,
-dl ol .weiboshow,
-ul dl .weiboshow,
-ol dl .weiboshow,
-dl dl .weiboshow {
+.weiboshow {
   margin-top: 0.5em;
 }
 @media only screen and (min-width: 768px) {
-  ul ul .weiboshow,
-  ol ul .weiboshow,
-  dl ul .weiboshow,
-  ul ol .weiboshow,
-  ol ol .weiboshow,
-  dl ol .weiboshow,
-  ul dl .weiboshow,
-  ol dl .weiboshow,
-  dl dl .weiboshow {
+  .weiboshow {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
 @media only screen and (min-width: 1024px) {
-  ul ul .weiboshow,
-  ol ul .weiboshow,
-  dl ul .weiboshow,
-  ul ol .weiboshow,
-  ol ol .weiboshow,
-  dl ol .weiboshow,
-  ul dl .weiboshow,
-  ol dl .weiboshow,
-  dl dl .weiboshow {
+  .weiboshow {
     width: 100%;
     float: none;
     margin: 1em 0 0;
   }
 }
-ul ul .weiboshow iframe,
-ol ul .weiboshow iframe,
-dl ul .weiboshow iframe,
-ul ol .weiboshow iframe,
-ol ol .weiboshow iframe,
-dl ol .weiboshow iframe,
-ul dl .weiboshow iframe,
-ol dl .weiboshow iframe,
-dl dl .weiboshow iframe {
+.weiboshow iframe {
   padding: 0.5em 0;
 }
-ul ul .doubanshow,
-ol ul .doubanshow,
-dl ul .doubanshow,
-ul ol .doubanshow,
-ol ol .doubanshow,
-dl ol .doubanshow,
-ul dl .doubanshow,
-ol dl .doubanshow,
-dl dl .doubanshow {
+.doubanshow {
   margin-top: 0.5em;
 }
 @media only screen and (min-width: 768px) {
-  ul ul .doubanshow,
-  ol ul .doubanshow,
-  dl ul .doubanshow,
-  ul ol .doubanshow,
-  ol ol .doubanshow,
-  dl ol .doubanshow,
-  ul dl .doubanshow,
-  ol dl .doubanshow,
-  dl dl .doubanshow {
+  .doubanshow {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
 @media only screen and (min-width: 1024px) {
-  ul ul .doubanshow,
-  ol ul .doubanshow,
-  dl ul .doubanshow,
-  ul ol .doubanshow,
-  ol ol .doubanshow,
-  dl ol .doubanshow,
-  ul dl .doubanshow,
-  ol dl .doubanshow,
-  dl dl .doubanshow {
+  .doubanshow {
     width: 100%;
     float: none;
     margin: 1em 0 0;
   }
 }
-ul ul .doubanshow div,
-ol ul .doubanshow div,
-dl ul .doubanshow div,
-ul ol .doubanshow div,
-ol ol .doubanshow div,
-dl ol .doubanshow div,
-ul dl .doubanshow div,
-ol dl .doubanshow div,
-dl dl .doubanshow div {
+.doubanshow div {
   padding: 0.5em 0;
 }
-ul ul .github-card,
-ol ul .github-card,
-dl ul .github-card,
-ul ol .github-card,
-ol ol .github-card,
-dl ol .github-card,
-ul dl .github-card,
-ol dl .github-card,
-dl dl .github-card {
+.github-card {
   margin-top: 1.5em;
 }
 @media only screen and (min-width: 768px) {
-  ul ul .github-card,
-  ol ul .github-card,
-  dl ul .github-card,
-  ul ol .github-card,
-  ol ol .github-card,
-  dl ol .github-card,
-  ul dl .github-card,
-  ol dl .github-card,
-  dl dl .github-card {
+  .github-card {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
 @media only screen and (min-width: 1024px) {
-  ul ul .github-card,
-  ol ul .github-card,
-  dl ul .github-card,
-  ul ol .github-card,
-  ol ol .github-card,
-  dl ol .github-card,
-  ul dl .github-card,
-  ol dl .github-card,
-  dl dl .github-card {
+  .github-card {
     width: 100%;
     float: none;
     margin: 1em 0 0;
   }
 }
-ul ul .github-card div,
-ol ul .github-card div,
-dl ul .github-card div,
-ul ol .github-card div,
-ol ol .github-card div,
-dl ol .github-card div,
-ul dl .github-card div,
-ol dl .github-card div,
-dl dl .github-card div {
+.github-card div {
   padding: 0.5em 0;
 }
 footer {
