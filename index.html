@@ -82,7 +82,7 @@
       <p itemprop="description" >test hah hah</p>
       
     
-    <time datetime="2017-02-28T05:49:19.272Z" itemprop="datePublished">2017-02-28</time>
+    <time datetime="2017-02-28T05:52:02.964Z" itemprop="datePublished">2017-02-28</time>
   </a>
 </section>
 
@@ -102,7 +102,7 @@
            <p itemprop="description" >Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the </p>
         
     
-    <time datetime="2017-02-28T05:49:19.265Z" itemprop="datePublished">2017-02-28</time>
+    <time datetime="2017-02-28T05:52:02.956Z" itemprop="datePublished">2017-02-28</time>
   </a>
 </section>
 
@@ -129,13 +129,18 @@
 
 
 
-  
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cat1/">cat1</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cat1/cat2/">cat2</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cat1/cat2/cat4/">cat4</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/cat1/cat3/">cat3</a><span class="category-list-count">1</span></li></ul></li></ul> 
+  <% if (site.categories.length){ %>
+<div class="categorieslist">
+	<p class="asidetitle"><%= __('categories') %></p>
+		<ul>
+		<% site.categories.sort('name').each(function(item){ %>
+		  <% if(item.posts.length){ %>
+			<li><a href="<%- config.root %><%- item.path %>" title="<%= item.name %>"><%= item.name %><sup><%= item.posts.length %></sup></a></li>
+		  <% } %>
+		<% }); %>
+		</ul>
 </div>
- 
-
+<% } %>
 
   
 
