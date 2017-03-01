@@ -4,26 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | Sjming&#39;s Blog</title>
+    <title>简单的深度学习入门方法 | Sjming&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Sjming">
     
 
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+    <meta name="description" content="我的Deep Learning的入门过程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://www.sjming.net/2017/02/28/hello-world/index.html">
+<meta property="og:title" content="简单的深度学习入门方法">
+<meta property="og:url" content="http://www.sjming.net/2017/03/01/简单的深度学习入门方法/index.html">
 <meta property="og:site_name" content="Sjming's Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2017-02-26T16:54:18.000Z">
+<meta property="og:description" content="我的Deep Learning的入门过程">
+<meta property="og:updated_time" content="2017-03-01T14:59:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="简单的深度学习入门方法">
+<meta name="twitter:description" content="我的Deep Learning的入门过程">
 
     
     <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
@@ -79,14 +76,14 @@ Quick">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/02/28/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2017/03/01/简单的深度学习入门方法/" title="简单的深度学习入门方法" itemprop="url">简单的深度学习入门方法</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
 		
   <p class="article-time">
-    <time datetime="2017-02-28T09:05:46.888Z" itemprop="datePublished"> 发表于 2017-02-28</time>
+    <time datetime="2017-03-01T14:04:41.000Z" itemprop="datePublished"> 发表于 2017-03-01</time>
     
   </p>
 </header>
@@ -95,19 +92,46 @@ Quick">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#起源"><span class="toc-number">1.</span> <span class="toc-text">起源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程"><span class="toc-number">2.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我的资源"><span class="toc-number">3.</span> <span class="toc-text">我的资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
 		
 		</div>
 		
-		<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<blockquote>
+<p>这里开始，我准备写一个深度学习(deep learning, 下文简称dl)的简单的入门教程.<br>  其实就是我的dl入门（逃。。。）的过程，学习了一段时间之后，回过头来进行整理.</p>
+</blockquote>
+<h3 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h3><ul>
+<li>之所以搞深度学习是因为读研的方向是计算机视觉(CV)，需要使用dl作为工具进行实现.</li>
+<li>同时，大四毕业设计的题目也是通过使用dl实现语义分割.</li>
+</ul>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><ul>
+<li>首先是计算机视觉（computer vision， 下文简称cv）的入门，这个参考<a href="https://www.zhihu.com/question/26836846/answer/34322576" target="_blank" rel="external">知乎上@方杰</a>. 我仔细浏览了一遍stanford cs131的课程，对cv有了一个整体的认识,可以看<a href="https://github.com/su526664687/Articles/blob/master/deep_learning/Computer%20Vision:%20Foundations%20and%20Applications_summary.md" target="_blank" rel="external">我的总结</a>.这个课程讲解的都是一些经典的cv处理方法，并没有涉及dl.</li>
+<li>很快，师兄推荐了论文fully convolutional network for semantic segmentation.fully xxx这篇paper是dl应用与图像分割的开山之作.第一次读这样的文章难免会很多不懂的地方，可以结合这一篇imagenet classification with deep cnn, 这篇是dl的开山之作.</li>
+<li>读论文的同时，我也在学习stanford的cs231n课程(资源可以在xx云课堂上找到)，这个课程令我对神经网络和CNN的大部分概念有了深入的理解，并了解了RNN等，这是<a href="https://github.com/su526664687/Articles/blob/master/deep_learning/%20Convolutional%20Neural%20Networks%20for%20Visual%20Recognition_summary.md" target="_blank" rel="external">我的笔记</a>.其实之前师兄推荐的论文并没有读的很懂,在学习cs231n的过程中，了解到了几个经典的machine learning的算法，通过matlab进行了实现:<ul>
+<li><a href="https://github.com/su526664687/Articles/blob/master/deep_learning/matlab%E5%AE%9E%E7%8E%B0:%20knn.md" target="_blank" rel="external">knn</a></li>
+<li><a href="https://github.com/su526664687/Articles/blob/master/deep_learning/matlab%E5%AE%9E%E7%8E%B0:%20svm.md" target="_blank" rel="external">svm</a></li>
+<li><a href="https://github.com/su526664687/Articles/blob/master/deep_learning/*matlab%E5%AE%9E%E7%8E%B0:%20%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%B8%8Elogistic.md" target="_blank" rel="external">线性回归和logistic(待续)</a></li>
+</ul>
+</li>
+<li>下一步就开始正经的进入到dl的学习与实践当中了.<ul>
+<li>git caffe,如果不会git，可以去学习<a href="">廖雪峰git</a></li>
+<li>安装caffe并尝试训练了例程mnist和cifar10.<a href="https://github.com/su526664687/Articles/blob/master/deep_learning/caffe/ubuntu%E6%97%A0cuda%E5%AE%89%E8%A3%85caffe.md" target="_blank" rel="external">安装教程</a>.刚开始测试mnist，虽然能跑通结果，可是完全不懂是做什么，这里我谢了一个代码，可以把<a href="https://github.com/su526664687/Articles/blob/master/deep_learning/caffe/matlab%E5%AE%9E%E4%BE%8B:%20mnist%E4%B8%ADidx3-ubyte%E8%BD%AC%E5%8C%96%E4%B8%BA%E5%9B%BE%E7%89%87.md" target="_blank" rel="external">mnist中idx3-ubyte转化为图片</a>.这样就可以直观看到，mnist例程是测试一些手写图片.</li>
+<li>根据官方文档<a href="https://github.com/su526664687/Articles/blob/master/deep_learning/caffe/matcaffe%E5%85%A5%E9%97%A8.md" target="_blank" rel="external">安装和使用matcaffe</a></li>
+<li><a href="https://github.com/su526664687/Articles/blob/master/deep_learning/caffe/%E3%80%90%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B%E3%80%91%E7%94%A8LeNet%E8%B7%91%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB%E6%95%B0%E6%8D%AE.md" target="_blank" rel="external">自己训练和测试数据</a></li>
+<li><a href="http://blog.csdn.net/gybheroin/article/category/6665870" target="_blank" rel="external">跟着博客学习，深入理解</a></li>
+<li>完成到这一步，基本已经十分了解alexnet，以及lenet, caffenet等.<br><font color="red"><b>指的是</b></font>: 可以自己从0开始在caffe上实现一个alexnet，进行训练并测试，了解每一层和每一个数据块的含义.并使用matlab进行过对alexnet等的单步调试.</li>
+</ul>
+</li>
+<li>下一步，开始玩fcn,进行图像语义分割(待续)<ul>
+<li>先对<a href="https://github.com/su526664687/Articles/blob/master/deep_learning/caffe/*FCN%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%AE%AD%E7%BB%83.md" target="_blank" rel="external">fcn进行测试和训练</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="我的资源"><a href="#我的资源" class="headerlink" title="我的资源"></a>我的资源</h3><ul>
+<li><a href="https://gist.github.com/su526664687/7e3c40909e2a80243441bb0acb0928a4" target="_blank" rel="external">本科毕业设计进度</a></li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://www.ipcv.org/category/conf-jour/cvpr/" target="_blank" rel="external">师兄推荐的下载论文的地方</a></li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -115,9 +139,14 @@ Quick">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/cat1/">cat1</a>►<a class="article-category-link" href="/categories/cat1/cat3/">cat3</a>
+  <a class="article-category-link" href="/categories/Deep-Learning/">Deep Learning</a>
 </div>
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/cnn/">cnn</a><a href="/tags/deep-learning/">deep_learning</a>
+  </div>
 
 </div>
 
@@ -125,7 +154,7 @@ Quick">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://www.sjming.net/2017/02/28/hello-world/" data-title="Hello World | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://www.sjming.net/2017/03/01/简单的深度学习入门方法/" data-title="简单的深度学习入门方法 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -136,22 +165,9 @@ Quick">
    	       
 	</article>
 	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2017/02/28/test/" title="test">
-  <strong>上一篇：</strong><br/>
-  <span>
-  test</span>
-</a>
-</div>
-
-
-</nav>
-
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/02/28/hello-world/" data-title="Hello World" data-url="http://www.sjming.net/2017/02/28/hello-world/"></div>
+	<div class="ds-thread" data-thread-key="2017/03/01/简单的深度学习入门方法/" data-title="简单的深度学习入门方法" data-url="http://www.sjming.net/2017/03/01/简单的深度学习入门方法/"></div>
 </section>
 
 
@@ -161,7 +177,7 @@ Quick">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#起源"><span class="toc-number">1.</span> <span class="toc-text">起源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程"><span class="toc-number">2.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我的资源"><span class="toc-number">3.</span> <span class="toc-text">我的资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
  
   </div>
 
@@ -182,12 +198,27 @@ Quick">
   
 <div class="widget tag">
   <h3 class="title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cat1/">cat1</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cat1/cat2/">cat2</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cat1/cat2/cat4/">cat4</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/cat1/cat3/">cat3</a><span class="category-list-count">1</span></li></ul></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep Learning</a><span class="category-list-count">1</span></li></ul> 
 </div>
  
 
 
   
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/cnn/" title="cnn">cnn<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/deep-learning/" title="deep_learning">deep_learning<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
 
   <div class="linkslist">
   <p class="asidetitle">友情链接</p>
