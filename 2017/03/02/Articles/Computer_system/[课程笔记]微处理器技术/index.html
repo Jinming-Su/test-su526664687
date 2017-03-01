@@ -4,25 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>blog迁移：从csdn到emlog | Sjming&#39;s Blog</title>
+    <title>\[课程笔记\]微处理器技术 | Sjming&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Sjming">
     
 
     
-    <meta name="description" content="博客迁移声明">
+    <meta name="description" content="学校开设的《微处理器技术》课程笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="blog迁移：从csdn到emlog">
-<meta property="og:url" content="http://www.sjming.net/2017/03/02/Articles/Daily_Record/blog迁移：从csdn到emlog/index.html">
+<meta property="og:title" content="\[课程笔记\]微处理器技术">
+<meta property="og:url" content="http://www.sjming.net/2017/03/02/Articles/Computer_system/[课程笔记]微处理器技术/index.html">
 <meta property="og:site_name" content="Sjming's Blog">
-<meta property="og:description" content="博客迁移声明">
-<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/19876503/b4e294a8-a011-11e6-998b-f09b9bd12b26.png">
-<meta property="og:updated_time" content="2017-03-01T19:31:28.000Z">
+<meta property="og:description" content="学校开设的《微处理器技术》课程笔记">
+<meta property="og:updated_time" content="2017-03-01T20:24:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="blog迁移：从csdn到emlog">
-<meta name="twitter:description" content="博客迁移声明">
-<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/16068384/19876503/b4e294a8-a011-11e6-998b-f09b9bd12b26.png">
+<meta name="twitter:title" content="\[课程笔记\]微处理器技术">
+<meta name="twitter:description" content="学校开设的《微处理器技术》课程笔记">
 
     
     <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
@@ -78,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/03/02/Articles/Daily_Record/blog迁移：从csdn到emlog/" title="blog迁移：从csdn到emlog" itemprop="url">blog迁移：从csdn到emlog</a>
+      <a href="/2017/03/02/Articles/Computer_system/[课程笔记]微处理器技术/" title="\[课程笔记\]微处理器技术" itemprop="url">\[课程笔记\]微处理器技术</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
 		
   <p class="article-time">
-    <time datetime="2017-03-01T16:02:01.000Z" itemprop="datePublished"> 发表于 2017-03-02</time>
+    <time datetime="2017-03-01T16:01:01.000Z" itemprop="datePublished"> 发表于 2017-03-02</time>
     
   </p>
 </header>
@@ -94,20 +92,104 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#blog迁移：从csdn到emlog"><span class="toc-number">1.</span> <span class="toc-text">blog迁移：从csdn到emlog</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础知识说明"><span class="toc-number">1.</span> <span class="toc-text">基础知识说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pentium结构概述"><span class="toc-number">2.</span> <span class="toc-text">Pentium结构概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#超标量流水线"><span class="toc-number">3.</span> <span class="toc-text">超标量流水线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高速缓冲寄存器"><span class="toc-number">4.</span> <span class="toc-text">高速缓冲寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作模式"><span class="toc-number">5.</span> <span class="toc-text">操作模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分页管理"><span class="toc-number">6.</span> <span class="toc-text">分页管理</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="blog迁移：从csdn到emlog"><a href="#blog迁移：从csdn到emlog" class="headerlink" title="blog迁移：从csdn到emlog"></a>blog迁移：从csdn到emlog</h2><hr>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很早就决定重新构建自己的博客，可是一直没有机会，趁着这几天还比较清闲，重新搭建了一个新的博客。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前一直使用的是csdn <a href="http://blog.csdn.net/u014451076" target="_blank" rel="external">http://blog.csdn.net/u014451076</a>. 从2014年5月到2016年10月，也有两年多的时间了。在使用过程中，一直让我诟病的主要是它的两个功能的缺陷：（１）目录功能实在是不好用，每次新增加一个目录都需要多次调整才能到达预期的位置（２）markdown编辑器语法并不标准。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次换到了emlog <a href="http://www.sjming.net，" target="_blank" rel="external">http://www.sjming.net，</a> 如果不了解emlog的可以自行官网查看。它体积很小，只有几百kb，使用php写的（所以apache+php+mysql），安装过程非常快，跟着官网介绍，五分钟就能搭建起来了。重要的是，目录管理还不错，与我之前在生产实习过程中实现的那个blog在目录实现上的方式不谋而合。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这个新的blog上，我通常把文章在本地用.md编辑完之后，上传到github,同时使用Marxico生成一份html，上传到emlog。github上的一份是博客的备份文件。主题采用的是一个比较精简的主题，<br><br><br><img src="https://cloud.githubusercontent.com/assets/16068384/19876503/b4e294a8-a011-11e6-998b-f09b9bd12b26.png" alt="图片"><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在有几个问题如果解决了，博客就能更加完美了:</p>
-<ul>
-<li>github文章自动获取，这个见有人写过这样的插件，原理可能是直接把github上的html文件截取下来。[未解决]</li>
-<li>博客文章的自动推送功能，现在可以通过手动扫每篇文章底部的二维码分享到微信朋友圈，可是每次都需要自己手动同步，如果能够自动同步就好了。[未解决]</li>
+		<h2 id="基础知识说明"><a href="#基础知识说明" class="headerlink" title="基础知识说明"></a>基础知识说明</h2><ul>
+<li><font color="red">Pentium以后的Intel 80x86微处理器的数据线设计为64位，为的是与存储器交换数据具有更快的速度；但是其内部寄存器等结构是32位的，所以Pentium仍然是字长为32位的微处理器.</font>通常处理器的位数是指通用寄存器的位宽，不是总线.64位指令集就是运行64位数据的指令，也就是说处理器一次可以运行64bit数据.</li>
+<li>王安，著名的美籍华人科学家、发明家和企业家. 电脑公司创始人.但是到83，84年还认为大型机才是正义，所以灭亡了.</li>
+<li>CPU与微处理器的区别：微处理器是微型处理器的统称！比如CPU、显卡的GPU、手机的处理器，以及一些智能家电的处理器。所谓处理器就是一个执行所有计算功能的部件.CPU全称是中央处理器，指整个电脑的计算中心！</li>
+<li>cache是将每个主存页只能复制到某一固定的Cache页.分为直接映像、全相联映像、组相联映像.</li>
+<li>tle是一种cache, 数据结构是多行页表项（每行格式: 虚拟页–&gt;物理页框）</li>
+<li>在实模式下，内存寻址方式和8086相同</li>
 </ul>
-<blockquote>
-<p>正式声明一下，csdn博客<a href="http://blog.csdn.net/u014451076" target="_blank" rel="external">http://blog.csdn.net/u014451076</a>  从2016年10.31日正式迁移到<a href="http://www.sjming.net，" target="_blank" rel="external">http://www.sjming.net，</a> csdn不再进行文章的更新。谢谢大家的支持。</p>
-</blockquote>
-<p><br><br><br><br>By Sjming<br>10.31 2016<br>At NEU  </p>
+<h2 id="Pentium结构概述"><a href="#Pentium结构概述" class="headerlink" title="Pentium结构概述"></a>Pentium结构概述</h2><ul>
+<li>与80486相比，性能有所提高，突出增强点<ul>
+<li>同为32位微处理器,486一条流水线，Pentium具有U、V两条流水线,是超标量为2的首款Intel处理器;U、V为五级流水线,U流水线可执行全部指令,V流水线只能执行简单指令,两者可并行操作.</li>
+<li>486片内有8KB Cache;Pentium指令Cache和数据Cache各为8KB,且每组Cache有各自的TLB(Translation Look-Aside Buffers).避免了指令预取与数据操作之间的冲突.</li>
+<li>浮点部件彻底改进,有8级流水,前面5级与U流水线交迭共享,后面3级有自己独立的浮点流水线.每个周期可执行一条浮点指令.</li>
+<li>分支转移的动态预测:分支预测逻辑能够存储转移指令中分支的目标地址和当前分支的转移次数等统计信息,据此可较可靠预测分支走向,提高预取和流水线效率,加速程序执行.</li>
+<li>外部数据总线从486的32位扩展到64位,并与内部Cache连接,有效克服了外部总线上的瓶颈效应.</li>
+</ul>
+</li>
+<li><p>寄存器</p>
+<ul>
+<li><p>整数部件中的寄存器</p>
+<pre><code>* 通用寄存器
+* 段寄存器
+* 状态寄存器
+* 控制寄存器
+  * CR0机器状态字(MSW), CR1保留, CR2页故障线性地址寄存器, CR3高位字用作页目录基址寄存器,低位使用了2位,用于控制Cache, CR4Pentium新增的控制寄存器
+
+|名称|标志|
+|---|---|
+|指令指针|EIP|
+|标志寄存器|Eflag|
+|通用寄存器|EAX(累加器), EBX(基址寄存器), ECX(计数器), EDX(数据寄存器), ESI(源变址寄存器), EDI(目的变址寄存器), EBP(基址指针寄存器), ESP(堆栈指针寄存器)|
+|段寄存器|CS, DS, ES(附加段寄存器), FS(附加段寄存器), GS(附加段寄存器), SS|
+|存储器管理寄存器|TR(任务寄存器)/TSS选择器, LDTR(局部描述表寄存器)/LDT选择器, IDTR(中断描述表寄存器), GDIR(全局描述表寄存器)|
+|控制寄存器|CR4~CR0|
+|调试寄存器|DR7~DR0|
+|专用模式寄存器|机器检测地址寄存器, 机器检测类型寄存器, 测试寄存器TR12~TR1|
+</code></pre></li>
+<li>浮点部件寄存器<ul>
+<li>一个寄存器堆R1-R8:80位</li>
+<li>32位指令指针寄存器、数据指针寄存器各一个</li>
+<li>16位控制寄存器、状态寄存器、目标寄存器各一个 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="超标量流水线"><a href="#超标量流水线" class="headerlink" title="超标量流水线"></a>超标量流水线</h2><ul>
+<li>Pentium有U、V两条流水线,具有每个时钟周期执行两条配对整形指令的能力,是基于顺序执行的超标量为2的微处理器.</li>
+<li>每条由5级组成:预取(IF)、译码1 (D1) 、译码2(D2) 、累加器中执行(EX) 、Cache访问或寄存器回写(WB).</li>
+<li>动态执行就是无序执行指令或称为乱序执行指令, 在奔腾系列CPU中从高能奔腾开始采用此技术.</li>
+<li>分支预测是当遇到跳转指令(JMP,CALL,RET,INTn等)时,指令预取单元能够较准确地判定是否转移取指(PC值).</li>
+</ul>
+<h2 id="高速缓冲寄存器"><a href="#高速缓冲寄存器" class="headerlink" title="高速缓冲寄存器"></a>高速缓冲寄存器</h2><ul>
+<li>读策略<ul>
+<li>当CPU所需数据不在Cache中(不命中)时,就必须访问下一级Cache或主存,此时CPU需要插入等待周期等待数据到来,数据到来后送给CPU同时拷贝到Cache(不是所有地址内容都可以写入Cache)</li>
+</ul>
+</li>
+<li>替换策略<ul>
+<li>直接映像、全相联映像、组相联映像</li>
+</ul>
+</li>
+<li>写策略<ul>
+<li>透写命中: 每当Cache命中时,不仅更新Cache的内容,同时也要将相关内容写入主存中</li>
+<li>透写不命中</li>
+<li>回写命中: 只写Cache,不写主存</li>
+<li>回写不命中</li>
+</ul>
+</li>
+</ul>
+<h2 id="操作模式"><a href="#操作模式" class="headerlink" title="操作模式"></a>操作模式</h2><ul>
+<li>Pentium的实模式<ul>
+<li>奔腾有多种不同的操作模式,开机或复位后先进入实模式, 只能运行传统的DOS之类的操作系统.可方便的从实模式切换到保护模式或虚拟8086模式.</li>
+<li>虚拟8086模式并不是一种严格意义上的独立操作模式,它仍然处在保护模式下,只是虚拟8086的环境来多任务运行实模式的程序.</li>
+</ul>
+</li>
+<li>中断与异常<ul>
+<li>同80X86一样,奔腾的中断分为硬件中断与软件中断</li>
+<li>软中断又分为异常中断与INTn指令中断两类</li>
+<li>传统的硬件中断由非屏蔽中断NMI和可屏蔽中断INTR产生,奔腾则增加了R/ S 、/FLASH、/SMI、INIT 4个中断输入脚</li>
+</ul>
+</li>
+<li>奔腾系列的保护模式<ul>
+<li>保护模式起源于80286,并不断得到发展完善</li>
+<li>微处理器的保护包括存储器的保护与特权级的保护等</li>
+<li>实模式使用的是逻辑地址,保护模式使用的是虚拟地址</li>
+</ul>
+</li>
+</ul>
+<h2 id="分页管理"><a href="#分页管理" class="headerlink" title="分页管理"></a>分页管理</h2><ul>
+<li>奔腾系列在保护模式下通常采用段页式管理操作方式</li>
+<li>在奔腾中支持4KB、4MB两种大小的页</li>
+<li>通过段管理部件,由32位段基址加32位偏移地址得到对应虚拟逻辑地址的线性地址,段基址存放在段描述符中,描述符表可通过GDT和LDT的查找获得</li>
+<li>页管理部件采用分层结构将线性地址变换为物理地址,将32位地址分割成目录、页表与偏移量3段</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -115,7 +197,7 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Daily-Record/">Daily_Record</a>
+  <a class="article-category-link" href="/categories/Computer-system/">Computer_system</a>
 </div>
 
 
@@ -125,7 +207,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://www.sjming.net/2017/03/02/Articles/Daily_Record/blog迁移：从csdn到emlog/" data-title="blog迁移：从csdn到emlog | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/[课程笔记]微处理器技术/" data-title="\[课程笔记\]微处理器技术 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -139,18 +221,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/03/02/Articles/Graphic_Design/动画与设计之flash入门/" title="动画与设计之flash入门">
+ <a href="/2017/03/02/Articles/Computer_system/计算机的一些基本概念/" title="计算机的一些基本概念">
   <strong>上一篇：</strong><br/>
   <span>
-  动画与设计之flash入门</span>
+  计算机的一些基本概念</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/03/02/Articles/Engineering_Project/NEUOJ源码若干问题/"  title="NEUOJ源码若干问题">
+<a href="/2017/03/02/Articles/Computer_system/LinuxC编程一站式学习:x86汇编程序基础/"  title="LinuxC编程一站式学习:x86汇编程序基础">
  <strong>下一篇：</strong><br/> 
- <span>NEUOJ源码若干问题
+ <span>LinuxC编程一站式学习:x86汇编程序基础
 </span>
 </a>
 </div>
@@ -159,7 +241,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/03/02/Articles/Daily_Record/blog迁移：从csdn到emlog/" data-title="blog迁移：从csdn到emlog" data-url="http://www.sjming.net/2017/03/02/Articles/Daily_Record/blog迁移：从csdn到emlog/"></div>
+	<div class="ds-thread" data-thread-key="2017/03/02/Articles/Computer_system/[课程笔记]微处理器技术/" data-title="\[课程笔记\]微处理器技术" data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/[课程笔记]微处理器技术/"></div>
 </section>
 
 
@@ -169,7 +251,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#blog迁移：从csdn到emlog"><span class="toc-number">1.</span> <span class="toc-text">blog迁移：从csdn到emlog</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础知识说明"><span class="toc-number">1.</span> <span class="toc-text">基础知识说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pentium结构概述"><span class="toc-number">2.</span> <span class="toc-text">Pentium结构概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#超标量流水线"><span class="toc-number">3.</span> <span class="toc-text">超标量流水线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高速缓冲寄存器"><span class="toc-number">4.</span> <span class="toc-text">高速缓冲寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作模式"><span class="toc-number">5.</span> <span class="toc-text">操作模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分页管理"><span class="toc-number">6.</span> <span class="toc-text">分页管理</span></a></li></ol>
  
   </div>
 
