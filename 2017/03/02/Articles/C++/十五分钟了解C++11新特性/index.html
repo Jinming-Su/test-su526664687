@@ -1,0 +1,751 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>十五分钟了解C++11新特性 | Sjming&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Sjming">
+    
+
+    
+    <meta name="description" content="...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="十五分钟了解C++11新特性">
+<meta property="og:url" content="http://www.sjming.net/2017/03/02/Articles/C++/十五分钟了解C++11新特性/index.html">
+<meta property="og:site_name" content="Sjming's Blog">
+<meta property="og:description" content="...">
+<meta property="og:updated_time" content="2017-03-01T19:19:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="十五分钟了解C++11新特性">
+<meta name="twitter:description" content="...">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Sjming&#39;s Blog">Sjming&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Try doing and try to do</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.sjming.net">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/02/Articles/C++/十五分钟了解C++11新特性/" title="十五分钟了解C++11新特性" itemprop="url">十五分钟了解C++11新特性</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-01T16:00:01.000Z" itemprop="datePublished"> 发表于 2017-03-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#无序容器"><span class="toc-number">1.</span> <span class="toc-text">无序容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#智能指针"><span class="toc-number">2.</span> <span class="toc-text">智能指针</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>早就想系统了解一下C++11的新特性了，这次结合《C++ Primer》详细地学习一下</p>
+</blockquote>
+<ul>
+<li><strong>long long类型</strong><br>  C++11新增: 数据类型long long。</li>
+<li><p><strong>列表初始化</strong><br>  C++新增：<code>int units_sold{0}</code>, 用花括号来初始化变量得到了全面引用，在C++11之前，这种初始化的形式只能在某些受限的场合下使用，这种初始化形式被称为列表初始化。<br>  定义一个变量并初始化为0，一下4条语句都可以实现：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int a = 0;  </div><div class="line">int b = &#123;0&#125;;  </div><div class="line">int c&#123;0&#125;;  </div><div class="line">int d(0);</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>nullptr常量</strong><br>  C++11新增：得到空指针组最常用的方法就是使用字面值nullptr来初始化指针。nullptr是一种特殊类型的字面值，她可以被转化成任意其他的指针类型。NULL是一个预处理变量（使用方法参阅：<a href="http://blog.csdn.net/u014451076/article/details/52927632" target="_blank" rel="external">http://blog.csdn.net/u014451076/article/details/52927632</a> ），包含在头文件cstdlib中，他的值本身就是0，使用NULL会在编译阶段被替换成0，C++提倡使用nullptr，少使用NULL。<br>  空指针不指向任何对象，生成空指针的方法有：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int * pt1 = nullptr; //等价于int * pt1 = 0;  </div><div class="line">int * pt2 = 0;  </div><div class="line">int * pt3 = NULL; //等价于int * pt3 = 0;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>constexpr变量</strong>  </p>
+<ul>
+<li>常量表达式<br>指值不会改变并且在编译过程就能得到计算结果的表达式。显然，字面值属于常量表达式，用常量表达式初始化的const对象也是常量表达式。</li>
+<li><p>constexpr变量<br>C++11新标准规定，允许将变量声明为constexpr类型以便由编译器来验证变量的值是否是一个常量表达式。<br>举个例子：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">int i; // not constant  </div><div class="line">const int size = i; // fine!  </div><div class="line">int arr[size]; // Error!  </div><div class="line"></div><div class="line">int i; // not constant  </div><div class="line">constexpr int size = i; // Error!</div></pre></td></tr></table></figure>
+<p>如果使用constexpr定义一个函数，在执行此函数的任何操作的时候，编译器会把constexpr函数的调用替换为它的结果值。为了能在编译阶段随时展开，constexpr函数被隐式指定为内联函数。</p>
+</li>
+<li>字面值类型<br>常量表达式的值需要在编译时就得到计算，因此对声明constexpr时用到的类型必须有所限制。因为这些类型一般比较简单，值也显而易见、容易得到，就把它们称为”字面值类型”（literal type） 。</li>
+</ul>
+</li>
+<li><strong>类型别名声明</strong><br>  在标准中，可以使用typedef进行定义类型别名，C++11新增了一种方法，使用<strong>别名声明</strong>（alias declaration）来定义类型的别名:<code>using SI = Sales_item</code>。<br>using和typedef的区别是：定义模板的别名时，只能使用using。</li>
+<li><strong>auto类型指示符</strong><br>  在编程过程中，有的时候明确指出表达式类型比较困难，于是C++11引入了auto类型说明符，用它能让编译器替我们去分析表达式的类型。<strong>auto定义的变量，必须在定义时有初始值</strong>。<br>  举例: <code>auto item = val1 + val2;</code><br>  注意：编译器推断出来的auto类型有时候和初始值的类型并不是完全相同，编译器会适当地改变结果类型来更符合初始化规则。</li>
+<li><strong>decltype类型指示符</strong><br>  选择并返回操作数的数据类型。在这个过程中，编译器分析表达式并得到它的类型，却不实际计算表达式的值：<code>decltype(f()) sum = x; //sum的类型就是函数f的返回类型，编译器并不执行f，只是使用其返回值</code>。</li>
+<li><strong>类内初始化</strong><br>  创建对象时，类内初始值将用于初始化数据成员，没有初始值的成员将被默认初始化。</li>
+<li><p><strong>范围for语句</strong><br>  遍历给定序列中的每个元素，并对序列中的每个值执行某种操作。<br>  举例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">string str(&quot;sjming&quot;);  </div><div class="line">for(auto c : str)  </div><div class="line">    cout &lt;&lt; c &lt;&lt; endl;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>定义vector对象的vector</strong><br>  旧版需要在外层vector对象的右尖括号和其元素类型之间添加一个空格，应写成<code>vector&lt;vector&lt;int&gt; [有个空格]&gt;</code>，而C++11不需要。这里只是在一个空格上做了微小的改动。</p>
+</li>
+<li><strong>容器的cbegin和cend函数</strong><br>  在原标准中，如果对象是常量，则begin/end返回const_iterator；如果对象不是常量，返回iterator。C++11引进两个新的函数用于直接获得const_iterator。<strong>如果对象只需读操作而无需写操作，最好使用常量类型const_iterator</strong>。</li>
+<li><p><strong>标准库函数</strong><br>  尽管计算能够得到尾指针，但是容易出错。为了让指针使用简单、安全，C++11引入了两个名为begin和end的函数。功能与容器的同名函数类似。<br>  举例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int arr = &#123;1, 2, 3, 4&#125;;  </div><div class="line">int *beg = begin(arr); //指向arr首元素的指针  </div><div class="line">int *last = end(arr); //指向arr尾元素的下一个位置的指针</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>除法的摄入规则</strong><br>  C++语言的早期版本允许结果为负值的商向上或向下取整，C++11新标准则规定商一律向0取整，即正负均直接切除小数部分。</p>
+</li>
+<li><p><strong>窄化转换</strong><br>  举例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int k = 0;  </div><div class="line">k = 3.14; // fine, k = 3  </div><div class="line">k = &#123;3.14&#125;; //error,窄化转换</div></pre></td></tr></table></figure>
+<p>  第一个是赋值语句，相当于强制转化；第二个是列表初始化，使得转换更加严格，报错。</p>
+</li>
+<li><strong>sizeof用于类成员</strong><br>  C++11允许使用作用域运算符sizeof来获取类成员大小，无需提供一个对象。其中，对引用类型执行sizeof运算得到被引用对象所占空间的大小；对指针执行得到指针本身所占空间的大小。</li>
+<li><p><strong>标准库initializer_list类</strong><br>  为了编写能处理不同数量实参的函数，C++11提供了两种主要的方法：如果所有的实参类型相同，可以传递一个名为initializer_list的标准库类型；如果实参类型不同，可以编写一种特殊的函数，也就是所谓的可变参数模板。其实C++还有一种特殊的形参类型（即省略号），可以用来传递可变数量的参数，这种功能一般只用于与C函数交互的接口程序。<br>  举例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">void error_msg(initializer_list&lt;string&gt; il) &#123;  </div><div class="line">    for(auto beg = il.begin(); beg != il.end(); ++ beg) &#123;  </div><div class="line">        cout &lt;&lt; *beg &lt;&lt; endl;  </div><div class="line">    &#125;  </div><div class="line">    return 0;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>列表初始化返回值</strong><br>  C++11规定，函数可以返回花括号包围的值的列表。</p>
+</li>
+<li><strong>定义尾置返回类型</strong><br>  C++11规定，任何函数的定义都能用尾置返回，但是这种形式对于返回类型比较复杂的函数最有效，比如返回数组的指针或者数组的引用。举例：<code>auto func(int i)-&gt;int (*)[10]</code>。</li>
+<li><strong>使用 =default 生成默认构造函数</strong><br>  在C++11中，如果我们需要默认的行为，那么可以通过在参数列表后边加上=default来要求编译器生成构造函数。其中，=default既可以和声明一起出现在类的内部（内联函数），也可以作为定义出现在类的外部（非内联）。举例：<code>struct Sales_data {Sales_data() = default;};</code>。</li>
+<li><p><strong>委托构造函数</strong><br>  C++11中扩展了构造函数初始值的功能，出现了委托构造函数(delegating constructor)。一个委托构造函数使用它所属类的其他构造函数执行它自己的初始化过程，或者说把它自己的一些或全部职责委托给其他构造函数。<br>  举例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Sales_data &#123;  </div><div class="line">public:  </div><div class="line">    //给委托构造函数  </div><div class="line">    Sales_data(std::string s, unsigned cnt, double price): bookNo(s), units_sole(cnt), revenue(cnt*price) &#123;&#125;  </div><div class="line">    //三个委托构造函数  </div><div class="line">    Sales_data():Sales_data(&quot;&quot;, 0, ) &#123;&#125;  </div><div class="line">    Sales_data(std::string s): Sales_data(s, 0, 0) &#123;&#125;  </div><div class="line">    Sales_data(std::istream &amp;is): Sales_data() &#123;read(is, *this);&#125;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>constexpr构造函数</strong><br>  构造函数不能是const，但是可以是constexpr的。constexpr构造函数，既符合构造函数要求（无返回语句），又符号ct函数要求（可包含的唯一可执行语句是返回语句），如此说来，ct构造函数函数体是空的。ct构造函数必须初始化所有的数据成员，初始值使用ct函数或者一条常量表达式。</p>
+</li>
+<li><strong>用string对象处理文件名</strong><br>  在C++11中，文件名可以是string对象或者C风格字符数组，旧版只能是C风格字符数组。</li>
+<li><strong>array和forward_list容器</strong><br>  C++11新增：array是固定大小数组，支持快速随机访问，不能添加和删除元素。forward_list是单向链表，只支持单向顺序访问，在链表中任何位置进行插入删除操作都很快，无size操作（原因是size操作有额外开销，没有手写链表快）。</li>
+<li><strong>容器的非成员函数swap</strong><br>  在<a href="http://sjming.net/?post=22" target="_blank" rel="external">http://sjming.net/?post=22</a> 一文中，提到了容器的成员函数swap，C++11新增了非成员函数swap。非成员版本的swap在泛型编程中非常重要，推荐统一使用非成员版本的swap。</li>
+<li><strong>容器insert成员的返回类型</strong><br>  在旧版本的标准库中，容器的insert返回值为void；在C++11新标准下，接受元素个数或者范围的insert版本返回指向第一个新加入元素的迭代器，如果范围为空，不插入任何元素，insert会将第一个参数返回。</li>
+<li><strong>容器的emplace成员</strong><br>  在C++11中，引入了三个新成员——emplace_front、emplace、emplace_back，这些操作构造而不是拷贝元素。这些操作分别对应push_front、insert和push_back，允许我们将元素放在容器的头部、某个指定位置和尾部。<br>  注意, <font color="red">调用push或者insert成员函数时，是把元素的对象传递给这些函数，对象被拷贝到容器中。而emplace是将参数传递给元素类型的构造函数，emplace成员使用这些函数在容器管理的内存空间中直接构造元素。</font></li>
+<li><strong>shrink_to_fit</strong><br>  新标准中,shrink_to_fit要求deque、vector、string退回不需要的内存空间。但并不保证一定退回内存空间。</li>
+<li><p><strong>string的数值转换函数</strong>  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">to_string(val) //一组重载函数，val是任何数值类型，返回string类型  </div><div class="line">stoi(s, p, b)  //s包含数值的string，p保存第一个非数值字符的下标（需要实现声明size_type类型的变量，并传入引用），默认为0，即不保存，b表示进制，默认为10  </div><div class="line"></div><div class="line">stol(s, p, b)  </div><div class="line">stoul(s, p, b)   　</div><div class="line">stoll(s, p, b)  </div><div class="line">stoull(s, p, b)  </div><div class="line"></div><div class="line">stof(s, p, b)  </div><div class="line">stod(s, p, b)  </div><div class="line">stold(s, p, b)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>标准库bind函数</strong>  </p>
+</li>
+<li><p><strong>向map中添加元素</strong><br>  对一个map进行操作时，必须记住元素类型是pair。在insert的参数列表中创建pair：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//向word_count插入word的4中方法  </div><div class="line">word_count.insert(&#123;word, 1&#125;);  </div><div class="line">word_count.insert(make_pair(word, 1));  </div><div class="line">word_count.insert(pair&lt;string, size_t&gt;(word, 1));  </div><div class="line">word_count.insert(map&lt;string, size_t&gt;::value_type(word, 1));</div></pre></td></tr></table></figure>
+<p>  在新标准下，创建pair的最简单的方法是在参数列表中使用花括号初始化。也可以调用make_pair或显式构造pair。</p>
+</li>
+<li><strong>auto不能分配动态数组</strong>  </li>
+<li><p><strong>=default和=delete</strong>  </p>
+<ul>
+<li><p>通过将拷贝控制函数定义为=default来显式地要求编译器生成合成的版本。如果不希望合成的函数声明为内联函数，需要把=default写在类外</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Sales_data &#123;  </div><div class="line">public:  </div><div class="line">    Sales_data() = default;  </div><div class="line">    //三大拷贝控制函数  </div><div class="line">    Sales_data(const Sales_data&amp;) = default;  </div><div class="line">    Sales_data &amp; operator = (const Sales_data &amp;);  </div><div class="line">    ~Sales_data() = default;  </div><div class="line">&#125;;  </div><div class="line">Sales_data &amp; Sales_data::operator = (const Sales_data &amp;) = default;</div></pre></td></tr></table></figure>
+</li>
+<li><p>要阻止拷贝构造函数和拷贝复制运算符，通过不定义的方法显然是不行的（编译器会为他们生成合成的版本），这时候就需要使用=delete来阻止拷贝。</p>
+</li>
+<li><font color="red">析构函数不能是删除(=delete)的函数。</font></li>
+</ul>
+</li>
+<li><strong>对象移动</strong>  <ul>
+<li>用移动类对象代替拷贝类对象</li>
+<li>右键引用</li>
+<li>标准库move函数</li>
+<li>移动构造函数和移动赋值</li>
+<li>移动构造函数通常应该是noexcept。noexcept是我们承诺一个函数不抛出异常的一种方法。</li>
+<li>移动迭代器</li>
+<li>引用限定符与引用限定成员函数</li>
+</ul>
+</li>
+<li><p><strong>function类模板</strong>  </p>
+<ul>
+<li><p>举个例子</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//构造从运算符到函数指针的映射关系，其中函数  </div><div class="line">map&lt;string, int(*)(int, int)&gt; binops;  </div><div class="line">//正确: add 是一个指向正确类型函数的指针</div><div class="line">binops.insert(&#123;&quot;+&quot;, add&#125;);  </div><div class="line">//错误：mod是一个lambda表达式，每个lambda都有自己的类类型，与存储在binops中的值类型不匹配。  </div><div class="line">binops.insert(&#123;&quot;%&quot;, mod&#125;);</div></pre></td></tr></table></figure>
+<p>为了解决上述问题，引入了function这个标准库类型，定义在<code>&lt;functional&gt;</code>头文件中。正确的代码:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">map&lt;string, function&lt;int(int, int)&gt;&gt; binops = &#123;  </div><div class="line">    &#123;&quot;+&quot;, add&#125;,  //函数指针  </div><div class="line">    &#123;&quot;-&quot;, std::minus&lt;int&gt;()&#125;,  //标准库函数对象  </div><div class="line">    &#123;&quot;/&quot;, divide()&#125;,　　//用户定义的函数对象  </div><div class="line">    &#123;&quot;*&quot;, [](int i, int j) &#123;return i*j;&#125;&#125;,  //未命名的lambda  </div><div class="line">    &#123;&quot;%&quot;, mod&#125;  //命名了的lambda对象  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>显式的类型转换运算符explicit</strong>,举例（此例子转自<a href="http://blog.csdn.net/huang_xw/article/details/7908917）" target="_blank" rel="external">http://blog.csdn.net/huang_xw/article/details/7908917）</a> :</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;  </div><div class="line">#include &lt;string&gt;  </div><div class="line"></div><div class="line">class mystring &#123;  </div><div class="line">public:  </div><div class="line">    explicit mystring(const char* p);  </div><div class="line">    explicit mystring(int n);  </div><div class="line">&#125;;  </div><div class="line">mystring::mystring( const char* p )  </div><div class="line">&#123;  </div><div class="line">    std::cout &lt;&lt; p &lt;&lt; std::endl;  </div><div class="line">&#125;  </div><div class="line">mystring::mystring( int n )  </div><div class="line">&#123;  </div><div class="line">    std::cout &lt;&lt; n &lt;&lt; std::endl;  </div><div class="line">&#125;  </div><div class="line">int main(int argc, char *argv[], char *env[])  </div><div class="line">&#123;  </div><div class="line">    const char *c = &quot;Hello World!!!&quot;;  </div><div class="line">    int i = 4;  </div><div class="line">    mystring mystr1 = mystring(c);  </div><div class="line">    mystring mystr2 = mystring(i);  </div><div class="line">  </div><div class="line">    // 构造函数加上关键字explicit，下面两句编译都过不去  </div><div class="line">    // 因为此时这种隐式转换不允许  </div><div class="line">    // 所以为了避免二意义性，单参数的构造函数建议要加上explicit  </div><div class="line">    mystring mystr3 = c;    // 编译不通过，不允许隐式的转换  </div><div class="line">    mystring mystr4 = i;    // 编译不通过，不允许隐式的转换  </div><div class="line">    return 0;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>虚函数的override指示符</strong><br>  C++11允许派生类显式的标注它使用某个成员函数覆盖了它集成的虚函数。具体做法是在形参列表后、const成员函数的const关键字后、或者在引用成员函数的引用限定符后面添加关键字override。</p>
+</li>
+<li><strong>通过定义final来阻止继承</strong><br>  C++11新增：在类名后跟关键字final。</li>
+<li><strong>删除的拷贝控制和继承</strong>  <ul>
+<li>如果基类中的默认构造函数、拷贝控制函数=delete，那么在派生类中对应的成员将是被删除的，不能使用派生的。</li>
+<li>如果基类中的析构函数=delete(<font color="red">这个地方析构函数可以被delete吗？前边说了不能delete析构函数啊</font>),则派生类的默认构造和拷贝构造函数被删除，原因是编译器无法销毁派生类对象的基类部分。</li>
+</ul>
+</li>
+<li><strong>继承的构造函数</strong><br>  一个类只初始化它的基类，处于这样的原因，一个类也只能继承其直接基类的构造函数。类不能继承默认、拷贝和移动构造函数。</li>
+<li><p><strong>声明模板类型形参为友元</strong><br>  C++11中，可以将模板类型声明为友元:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">template&lt;typename Type&gt;  </div><div class="line">class Bar &#123;  </div><div class="line">    friend Type;  //将访问权限授予用来实例化Bar的类型  </div><div class="line">&#125;  </div><div class="line">//对于某个类型Foo，Foo将称为Bar&lt;Foo&gt;的友元。</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>模板类型别名</strong>  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">typedef&lt;typename T&gt; using twin = pair&lt;T, T&gt;;  </div><div class="line">twin&lt;string&gt; authors;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>模板函数的默认模板参数</strong>  </p>
+</li>
+<li><strong>实例化的显式控制extern</strong>  </li>
+<li><strong>引用折叠规则</strong>  <ul>
+<li>用static_cast将左值转换为右值</li>
+<li>标准库forward函数</li>
+</ul>
+</li>
+<li><p><strong>可变参数模板</strong><br>  可变数目的参数被称为参数包。存在两种参数包：模板参数包，函数参数包。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template&lt;typename T, typename... Args&gt;</div><div class="line">void foo(const T &amp;t, const Args&amp;... rest);</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>sizeof…运算符</strong><br>  <code>sizeof...(Args)</code>可以知道参数包中有多少元素。</p>
+</li>
+<li><strong>可变参数模板与转发</strong>  </li>
+<li><strong>标准库tuple类模板</strong><br>  tuple是类似pair的模板。每个成员类型都可以不同，每个tuple可以有任意数量的成员。当我们希望将一些数据组合成单一对象，但又不想麻烦地定义一个新的数据结构的时候，可以使用tuple。tuple类型和它的伴随类型和函数都定义在<code>&lt;tuple&gt;</code>头文件中。</li>
+<li><strong>正则表达式库RE</strong><br>  C++11中，新增了新的正则表达式库，定义在头文件<code>&lt;regex&gt;</code>中。</li>
+<li><strong>随机数库</strong><br>  定义在头文件<code>&lt;random&gt;</code>中的随机数库有一组协作的类：随机数引擎类和随机数分布类。一个引擎类可以生成unsigned的随机数序列，一个分布类可以使用一个引擎类生成制定类型的、在给定范围内的、服从特定概率分布的随机数。</li>
+<li><strong>浮点格式控制</strong><br>  都是对流进行操作，hexfloat强制浮点数使用十六进制，defaultfloat将流恢复到默认状态（即根据要打印的值选择计数法）。</li>
+<li><strong>noexcept运算符</strong>  </li>
+<li><strong>内联命名空间</strong>  </li>
+<li><strong>有作用域的enum</strong><br>  C++11中，新增了限定作用域的枚举类型。举例：<code>enum class open_modes {input, output, append};</code>。访问的时候需要添加限定域。默认成员类型是int。</li>
+<li><strong>标准库mem_fn类模板</strong><br>  在C++11之前，调用一个成员函数指针做为容器的回调算法时，可以根据其容器内存储的内容是对象还是指针调用相关的mem_fun和_mem_fun_ref函数来与算法等进行适配，搭配使用。在c++11中加入mem_fn来对成员函数的调用进行相关的封装，不过也需要对方法指针定义为成员函数的形式。</li>
+<li><strong>类类型的union成员</strong><br>  C++11新规定，union中可以含有定义了构造函数和拷贝控制函数的类类型成员。</li>
+</ul>
+<p>###使用哪种顺序容器</p>
+<ul>
+<li>除非有很好的理由选择其他容器，否则应使用vector。</li>
+<li>如果程序要求在容器的中间插入或删除元素，应使用list或者forward_list。</li>
+</ul>
+<p>###lambda表达式</p>
+<ul>
+<li>调用对象：对于一个对象或表达式，如果可以对其使用调用运算符<code>()</code>，就可称其为调用对象。</li>
+<li>目前，调用对象有：函数、函数指针、重载了函数调用运算符的类，最后一个就是这里要说的lambda表达式。</li>
+<li>一个lambda表达式表示一个可调用的代码单元，可理解为一个未命名的内联函数。与函数类似，lambda表达式具有一个返回类型、一个参数列表和一个函数体。与函数不同的是，lambda可能定义在函数内部。</li>
+<li><p>定义</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[capture_list] (parameter_list) -&gt; return_type &#123;function_body&#125;  </div><div class="line"></div><div class="line">//capture_list（捕获列表）:lambda表达式所在函数中定义的一些局部变量的列表，通常为空  </div><div class="line">//其他三部分与普通函数类似  </div><div class="line">//lambda必须用尾置返回来制定返回类型  </div><div class="line">//可以忽略参数列表和返回类型，但是不许有捕获列表和函数体</div></pre></td></tr></table></figure>
+</li>
+<li><p>举个栗子</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">auto f = [] &#123;return 40;&#125;;  </div><div class="line">cout &lt;&lt; f() &lt;&lt; endl;  //print 40</div></pre></td></tr></table></figure>
+</li>
+<li><p>注意<br>  如果一个lambda体包含了return之外的任何语句，则编译器假定此lambda返回void，提示错误。如果需要正常返回，需要指明返回类型。</p>
+</li>
+</ul>
+<h3 id="无序容器"><a href="#无序容器" class="headerlink" title="无序容器"></a>无序容器</h3><ul>
+<li>新标准定义了4个无序容器：unordered_map/multimap, unordered_set/multiset,　这些容器不是使用比较运算符组织的，而是使用一个哈希函数和关键字类型的==运算符。</li>
+<li>无序容器除了哈希管理操作之外，还提供了与有序容器相同的操作。</li>
+<li><strong>管理桶</strong>。无序容器在存储上组织为一组桶，使用一个哈希函数将元素映射到桶。无序容器的性能依赖于哈希函数的质量和桶的数量和大小。</li>
+</ul>
+<h3 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h3><ul>
+<li>为了更容易、更安全地使用动态内存，新的标准库提供了两种智能指针（smart pointer）类型来管理动态对象。智能指针与普通指针的区别在于它负责自动释放所指向的对象。新标准库提供的两种智能指针的区别在于管理底层指针的方式：shared_ptr允许多个指针指向同一个对象；unique_ptr独占所指向的对象。标准库还定义了一个名为weak_ptr的伴随类，它是一种弱引用，指向shared_ptr所管理的对象。这三种类型都定义在<code>&lt;memory&gt;</code>头文件中。</li>
+<li><p>类似vector，智能指针也是模板，实例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">shared_ptr&lt;string&gt; p1;   </div><div class="line">if(p1 &amp;&amp; p1-&gt;empty())  </div><div class="line">    *p1 = &quot;hi&quot;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>最安全的分配和使用动态内存的方法是调用一个名为make_shared的函数。此函数在动态内存中分配一个对象并初始化它，返回指向此对象的shared_ptr。ms也包含在<code>&lt;memory&gt;</code>中。实例：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">shared_ptr&lt;int&gt; p3 = make_shared&lt;int&gt; (42);  </div><div class="line">//通常使用auto定义一个对象来保存ms的结果  </div><div class="line">auto p4 = make_shared&lt;vector&lt;string&gt;&gt;();</div></pre></td></tr></table></figure>
+</li>
+<li><p>当进行拷贝和赋值的时候，每个shared_ptr都会记录有对少个sp指向相同的对象。每个sp有一个关联的计数器，通常称为引用计数。</p>
+</li>
+<li>weak_ptr是一种不控制所指向对象生存期的智能指针，它指向一个shared_ptr管理的对象。不改变sp的引用指数，一旦最后一个指向对象的sp被销毁，对象就会释放，即使还有weak_ptr存在。weak_ptr使用sp进行初始化<code>weak_ptr&lt;int&gt; wp(sp)</code>　。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/C/">C++</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C-11/">C++11</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.sjming.net/2017/03/02/Articles/C++/十五分钟了解C++11新特性/" data-title="十五分钟了解C++11新特性 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/02/Articles/Computer_system/Linux/Linux命令进阶/" title="Linux命令进阶">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Linux命令进阶</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/02/Articles/C++/泛型编程/"  title="泛型编程">
+ <strong>下一篇：</strong><br/> 
+ <span>泛型编程
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/02/Articles/C++/十五分钟了解C++11新特性/" data-title="十五分钟了解C++11新特性" data-url="http://www.sjming.net/2017/03/02/Articles/C++/十五分钟了解C++11新特性/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#无序容器"><span class="toc-number">1.</span> <span class="toc-text">无序容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#智能指针"><span class="toc-number">2.</span> <span class="toc-text">智能指针</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="su526664687" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/recursion/" title="recursion">recursion<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php-email/" title="php email">php email<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/go/" title="go">go<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/segment-tree/" title="segment_tree">segment_tree<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sort/" title="sort">sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/neuoj/" title="neuoj">neuoj<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flash/" title="flash">flash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/determinant/" title="determinant">determinant<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/template/" title="template">template<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WEB-security/" title="WEB security">WEB security<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/union-set/" title="union_set">union_set<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/stack/" title="stack">stack<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/heap/" title="heap">heap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/priority-queure/" title="priority_queure">priority_queure<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/binary-index-tree/" title="binary_index_tree">binary_index_tree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/deep-learning/" title="deep_learning">deep_learning<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u014451076/" target="_blank" title="My CSDN">My CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Sjming in NEU. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/su526664687" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/sjming" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:sujinming0125@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Sjming">Sjming</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"su526664687"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

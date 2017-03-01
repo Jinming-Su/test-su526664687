@@ -1,0 +1,1061 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Linux命令进阶 | Sjming&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Sjming">
+    
+
+    
+    <meta name="description" content="...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux命令进阶">
+<meta property="og:url" content="http://www.sjming.net/2017/03/02/Articles/Computer_system/Linux/Linux命令进阶/index.html">
+<meta property="og:site_name" content="Sjming's Blog">
+<meta property="og:description" content="...">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20956807/344dbad8-bc87-11e6-8752-cbadc066cc6d.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20957189/3787e3ac-bc89-11e6-8cc7-a6e7fa33908f.png">
+<meta property="og:updated_time" content="2017-03-01T19:19:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux命令进阶">
+<meta name="twitter:description" content="...">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/16068384/20956807/344dbad8-bc87-11e6-8752-cbadc066cc6d.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Sjming&#39;s Blog">Sjming&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Try doing and try to do</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.sjming.net">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/02/Articles/Computer_system/Linux/Linux命令进阶/" title="Linux命令进阶" itemprop="url">Linux命令进阶</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-01T16:00:01.000Z" itemprop="datePublished"> 发表于 2017-03-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置文件"><span class="toc-number"></span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#系统管理员对用户和用户组管理文件"><span class="toc-number"></span> <span class="toc-text">系统管理员对用户和用户组管理文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件目录操作"><span class="toc-number"></span> <span class="toc-text">文件目录操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cat"><span class="toc-number">1.</span> <span class="toc-text">cat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head-tail"><span class="toc-number">2.</span> <span class="toc-text">head/tail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#more-less"><span class="toc-number">3.</span> <span class="toc-text">more / less</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mv"><span class="toc-number">4.</span> <span class="toc-text">mv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nl"><span class="toc-number">5.</span> <span class="toc-text">nl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm"><span class="toc-number">6.</span> <span class="toc-text">rm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#touch"><span class="toc-number">7.</span> <span class="toc-text">touch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#od"><span class="toc-number">8.</span> <span class="toc-text">od</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看文件类型-file"><span class="toc-number">9.</span> <span class="toc-text">查看文件类型: file</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件权限设置"><span class="toc-number"></span> <span class="toc-text">文件权限设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chgrp"><span class="toc-number">1.</span> <span class="toc-text">chgrp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chown命令"><span class="toc-number">2.</span> <span class="toc-text">chown命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件默认权限-umask"><span class="toc-number">3.</span> <span class="toc-text">文件默认权限: umask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件隐藏属性-chattr-lsattr"><span class="toc-number">4.</span> <span class="toc-text">文件隐藏属性: chattr,lsattr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件特殊权限-SUID-SGID-SBIT"><span class="toc-number">5.</span> <span class="toc-text">文件特殊权限: SUID,SGID,SBIT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件查找"><span class="toc-number"></span> <span class="toc-text">文件查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#which"><span class="toc-number">1.</span> <span class="toc-text">which</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locate"><span class="toc-number">2.</span> <span class="toc-text">locate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#whereis"><span class="toc-number">3.</span> <span class="toc-text">whereis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find"><span class="toc-number">4.</span> <span class="toc-text">find</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件与文件系统的压缩与打包"><span class="toc-number"></span> <span class="toc-text">文件与文件系统的压缩与打包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用SecureCRT来上传和下载文件"><span class="toc-number">1.</span> <span class="toc-text">用SecureCRT来上传和下载文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tar"><span class="toc-number">2.</span> <span class="toc-text">tar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进阶命令"><span class="toc-number">3.</span> <span class="toc-text">进阶命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件系统和磁盘"><span class="toc-number"></span> <span class="toc-text">文件系统和磁盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#df"><span class="toc-number">1.</span> <span class="toc-text">df</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#du"><span class="toc-number">2.</span> <span class="toc-text">du</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ln"><span class="toc-number">3.</span> <span class="toc-text">ln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进阶命令-1"><span class="toc-number">4.</span> <span class="toc-text">进阶命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#性能监控与优化"><span class="toc-number"></span> <span class="toc-text">性能监控与优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#top"><span class="toc-number">1.</span> <span class="toc-text">top</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#free"><span class="toc-number">2.</span> <span class="toc-text">free</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vmstat-iostat命令-lsof命令"><span class="toc-number">3.</span> <span class="toc-text">vmstat/iostat命令/lsof命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网络命令"><span class="toc-number"></span> <span class="toc-text">网络命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ifconfig"><span class="toc-number">1.</span> <span class="toc-text">ifconfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rcp-remote-file-copy"><span class="toc-number">2.</span> <span class="toc-text">rcp(remote file copy)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scp-secure-copy"><span class="toc-number">3.</span> <span class="toc-text">scp(secure copy)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#route-traceroute-netstat-ss"><span class="toc-number">4.</span> <span class="toc-text">route/traceroute/netstat/ss</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他常用命令"><span class="toc-number"></span> <span class="toc-text">其他常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#diff"><span class="toc-number">1.</span> <span class="toc-text">diff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cal"><span class="toc-number">2.</span> <span class="toc-text">cal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#crontab"><span class="toc-number">3.</span> <span class="toc-text">crontab</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#watch-at"><span class="toc-number">4.</span> <span class="toc-text">watch/at</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li><a href="#conf_file" target="_self">配置文件</a></li>
+<li><a href="#user" target="_self">系统管理员对用户和用户组管理文件</a></li>
+<li><a href="#file_dir" target="_self">文件目录操作</a></li>
+<li><a href="#file_right" target="_self">文件权限设置</a></li>
+<li><a href="#file_find" target="_self">文件查找</a></li>
+<li><a href="#file_tar" target="_self">文件与文件系统的压缩与打包</a></li>
+<li><a href="#file_and_disk" target="_self">文件系统和磁盘</a></li>
+<li>性能监控与优化</li>
+</ul>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a><a id="conf_file" href="#">配置文件</a></h1><ul>
+<li>.bashrc/.zshrc<br>保存个人的一些个性化设置，如命令别名、路径等。一般会在.bash_profile文件中显式调用.bashrc。登陆linux启动bash时首先会去读取~/.bash_profile文件，这样~/.bashrc也就得到执行了，你的个性化设置也就生效了</li>
+</ul>
+<h1 id="系统管理员对用户和用户组管理文件"><a href="#系统管理员对用户和用户组管理文件" class="headerlink" title="系统管理员对用户和用户组管理文件"></a><a id="user" href="#">系统管理员对用户和用户组管理文件</a></h1><ul>
+<li>/etc/passwd</li>
+<li>/etc/shadow</li>
+<li>/etc/group </li>
+<li>/etc/gshadow</li>
+</ul>
+<h1 id="文件目录操作"><a href="#文件目录操作" class="headerlink" title="文件目录操作"></a><a id="file_dir" href="#">文件目录操作</a></h1><hr>
+<h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><ul>
+<li>三大主要功能<ul>
+<li>1.一次显示整个文件:cat filename</li>
+<li>2.从键盘创建一个文件:cat &gt; filename 只能创建新文件,不能编辑已有文件.</li>
+<li>3.将几个文件合并为一个文件:cat file1 file2 &gt; file</li>
+</ul>
+</li>
+<li><p>参数</p>
+<ul>
+<li>-b, –number-nonblank    对非空输出行编号</li>
+<li><p>-n, –number     对输出的所有行编号,由1开始对所有输出的行数编号</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat -n log2012.log &gt; log2013.log</div></pre></td></tr></table></figure>
+</code></pre></li>
+</ul>
+</li>
+<li><p>tac log.txt 反向列示</p>
+</li>
+</ul>
+<h3 id="head-tail"><a href="#head-tail" class="headerlink" title="head/tail"></a>head/tail</h3><ul>
+<li>实例<ul>
+<li>head -n 5 log2014.log 显示文件的前n行</li>
+<li>head -c 20 log2014.log 显示文件前n个字节</li>
+<li>head -c -32 log2014.log 文件的除了最后n个字节以外的内容</li>
+<li>head -n -6 log2014.log 输出文件除了最后n行的全部内容</li>
+</ul>
+</li>
+</ul>
+<h3 id="more-less"><a href="#more-less" class="headerlink" title="more / less"></a>more / less</h3><ul>
+<li>实例<ul>
+<li>more +3 log2012.log 显示文件中从第3行起的内容</li>
+<li>more +/day3 log2012.log 从文件中查找第一个出现”day3”字符串的行，并从该处前两行开始显示输出 </li>
+<li>more -5 log2012.log 设定每屏显示行数</li>
+<li>ls -l  | more -5</li>
+</ul>
+</li>
+</ul>
+<h3 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h3><ul>
+<li>实例<ul>
+<li>-f ：force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖；</li>
+<li>-t  ： –target-directory=DIRECTORY move all SOURCE arguments into DIRECTORY，即指定mv的目标目录，该选项适用于移动多个源文件到一个目录的情况，此时目标目录在前，源文件在后。</li>
+</ul>
+</li>
+</ul>
+<h3 id="nl"><a href="#nl" class="headerlink" title="nl"></a>nl</h3><ul>
+<li>nl命令在linux系统中用来计算文件中行号。nl 可以将输出的文件内容自动的加上行号！其默认的结果与 cat -n 有点不太一样， nl 可以将行号做比较多的显示设计，包括位数与是否自动补齐 0 等等的功能</li>
+</ul>
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><ul>
+<li><p>实例：自定义回收站<br>打开.bashrc或者.zshrc文件，在后边添加如下命令：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">myrm()&#123; D=/tmp/$(date +%Y%m%d%H%M%S); mkdir -p $D; 	mv &quot;$@&quot; $D &amp;&amp; echo &quot;moved to $D ok&quot;; &#125;</div><div class="line">alias myrm=&apos;myrm&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>source .zshrc进行生效，就可以使用myrm命令了</p>
+<h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><ul>
+<li>Linux中每个文件的三个时间<ul>
+<li>modification time(mtime): 文件内容数据改变的时间</li>
+<li>status time(stime): 比如权限或属性被改变的时间</li>
+<li>access time(atime): 该文件被取用的时间</li>
+</ul>
+</li>
+<li><p>参数</p>
+<ul>
+<li><p>-r 　把指定文档或目录的日期时间，统统设成和参考文档或目录的日期时间相同</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch -r log.log log2012.log</div></pre></td></tr></table></figure>
+</li>
+<li><p>-d 类似-t，但是时间格式更加自由</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch -d &quot;2 days ago abc.txt&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>-t 　使用指定的日期时间，而非现在的时间,time的格式[[CC]YY]MMDDhhmm[.SS]</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch -t 201211142234.50 log.log</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="od"><a href="#od" class="headerlink" title="od"></a>od</h3><ul>
+<li>查阅非文本文件，例如二进制文件.</li>
+<li>参数<ul>
+<li>-t 后面可添加各种类型type的输出，如<pre><code>* a: 默认字符
+* c: ascii字符
+* d[size]: 十进制(decimal), 每个整数占用size bytes
+* f[size]: 浮点数(floating)
+* o[size]: 八进制(ocatal)
+* x[size]: 十六进制(hexadeciaml)
+</code></pre></li>
+</ul>
+</li>
+<li>实例  <ul>
+<li>执行<code>od -t oCc test.o</code><br><img src="https://cloud.githubusercontent.com/assets/16068384/20956807/344dbad8-bc87-11e6-8752-cbadc066cc6d.png" alt="1"></li>
+</ul>
+</li>
+</ul>
+<h3 id="查看文件类型-file"><a href="#查看文件类型-file" class="headerlink" title="查看文件类型: file"></a>查看文件类型: file</h3><ul>
+<li>如果知道某个文件的基本文件类型，例如属于ASCII或者data或者binary，以及文件中使用的动态函数库信息等.</li>
+<li><p>实例</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">➜  c++ file test.cpp </div><div class="line">test.cpp: C source, ASCII text</div><div class="line">➜  c++ file test</div><div class="line">test: ELF 64-bit LSB  executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, BuildID[sha1]=88744b1fe53bb47b28cb75b83d7572ddecb7d6e7, not stripped</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="文件权限设置"><a href="#文件权限设置" class="headerlink" title="文件权限设置"></a><a id="file_right" href="#">文件权限设置</a></h1><h3 id="chgrp"><a href="#chgrp" class="headerlink" title="chgrp"></a>chgrp</h3><ul>
+<li>使用chgrp指令去变更文件与目录所属群组</li>
+<li>群组和群组识别码可以去/etc/group文件中查看</li>
+<li>参数<ul>
+<li>-v 运行时显示详细的处理信息</li>
+<li>–dereference 作用于符号链接的指向，而不是符号链接本身</li>
+</ul>
+</li>
+<li><p>实例    </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">改变文件的群组属性 </div><div class="line">chgrp -v bin log2012.log</div><div class="line">根据指定文件改变文件的群组属性 </div><div class="line">chgrp --reference=log2012.log log2013.log</div><div class="line">改变指定目录以及其子目录下的所有文件的群组属性 </div><div class="line">chgrp -R bin test6</div><div class="line">通过群组识别码改变文件群组属性</div><div class="line">chgrp -R 100 test6</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="chown命令"><a href="#chown命令" class="headerlink" title="chown命令"></a>chown命令</h3><ul>
+<li>通过chown改变文件的拥有者和群组。在更改文件的所有者或所属群组时，可以使用用户名称和用户识别码设置。普通用户不能将自己的文件改变成其他的拥有者。其操作权限一般为管理员。</li>
+<li>参数<ul>
+<li>-R 处理指定目录以及其子目录下的所有文件</li>
+<li>-v 显示详细的处理信息</li>
+</ul>
+</li>
+<li><p>实例</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">改变拥有者和群组</div><div class="line">chown mail:mail log2012.log </div><div class="line">改变文件拥有者和群组</div><div class="line">chown root: log2012.log</div><div class="line">改变文件群组</div><div class="line">chown :mail log2012.log</div><div class="line">改变指定目录以及其子目录下的所有文件的拥有者和群组 </div><div class="line">chown -R -v root:mail test6</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="文件默认权限-umask"><a href="#文件默认权限-umask" class="headerlink" title="文件默认权限: umask"></a>文件默认权限: umask</h3><ul>
+<li>指定用户在新建文件或目录时候的默认权限值(反码)</li>
+<li>默认情况下(不设置umask的时候)，新建文件的权限是<code>-rw-rw-rw-</code>，新建目录的权限是<code>drwxrwxrwx</code>.</li>
+<li>设置umask之后，新建文件的权限是默认权限减去umask的值</li>
+<li>设置umask <code>umask xxx</code></li>
+</ul>
+<h3 id="文件隐藏属性-chattr-lsattr"><a href="#文件隐藏属性-chattr-lsattr" class="headerlink" title="文件隐藏属性: chattr,lsattr"></a>文件隐藏属性: chattr,lsattr</h3><ul>
+<li>chattr [+-=] [ASacdistu] 文件或目录名称</li>
+<li>chattr参数<ul>
+<li>+: 增加某个参数,类似的有-/=</li>
+<li>a: 设置后，改文件只能增加数据，不能删除和修改数据</li>
+<li>i: 设置后，使文件不能被删除、改名、设置链接，也无法写入或添加数据.</li>
+</ul>
+</li>
+<li>lsatttr [-adR] 文件或目录名称</li>
+</ul>
+<h3 id="文件特殊权限-SUID-SGID-SBIT"><a href="#文件特殊权限-SUID-SGID-SBIT" class="headerlink" title="文件特殊权限: SUID,SGID,SBIT"></a>文件特殊权限: SUID,SGID,SBIT</h3><ul>
+<li>Set UID<ul>
+<li>s权限放在所有者的x权限的位置上，例如<code>/usr/bin/passwd</code> </li>
+<li>功能<ul>
+<li>SUID权限仅对二进制程序有效</li>
+<li>执行者对于改程序具有x的权限</li>
+<li>本权限仅在执行改程序的过程中有效</li>
+<li>执行者将具有改程序所有者的权限</li>
+</ul>
+</li>
+<li>比如使用passwd可以修改本用户密码(实际是修改/etc/shadow)，但是通过cat命令是无法查看/etc/shadow的，原因是/usr/bin/passwd具有s权限</li>
+<li>SUID对目录无效</li>
+</ul>
+</li>
+<li>Set GID<ul>
+<li>s权限放在用户组的x权限的位置上，例如<code>/usr/bin/locate</code></li>
+<li>SGID对目录和文件都有效</li>
+</ul>
+</li>
+<li>Sticky Bit<ul>
+<li>t权限放在其他用户组的x权限的位置上，例如<code>/tmp</code></li>
+<li>SBIT只堆目录有效，t</li>
+</ul>
+</li>
+<li>特殊权限设置<ul>
+<li>加一个数字在普通权限之前</li>
+<li>SUID–4</li>
+<li>SGID–2</li>
+<li>SBIT–1</li>
+</ul>
+</li>
+<li>S,T表示空的SUID/SGID/SBIT权限，即没有这个权限</li>
+</ul>
+<h1 id="文件查找"><a href="#文件查找" class="headerlink" title="文件查找"></a><a id="file_find" href="#">文件查找</a></h1><hr>
+<h3 id="which"><a href="#which" class="headerlink" title="which"></a>which</h3><ul>
+<li>which命令的作用是，在PATH变量指定的路径中，搜索某个系统命令的位置，并且返回第一个搜索结果 </li>
+<li>参数：-a 将所有知道找到的命令均列出</li>
+</ul>
+<h3 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h3><ul>
+<li>locate 让使用者可以很快速的搜寻档案系统内是否有指定的档案。其方法是先建立一个包括系统内所有档案名称及路径的数据库<code>/var/lib/mlocate</code>，之后当寻找时就只需查询这个数据库，而不必实际深入档案系统之中了。在一般的 distribution 之中，数据库的建立都被放在 crontab 中自动执行<font color="red">PS: 有时候电脑上可能没有locate命令，这个时候需要先安装mlocate,然后使用updatedb进行更新就可以了</font></li>
+<li><code>/var/lib/mloacate</code>下的数据库每天更新一次，手动更新的方法是命令<code>updatedb</code>.</li>
+<li>参数<ul>
+<li>-i 忽略大小写的差异</li>
+<li>-r 后面可接正则表达式的显示方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h3><ul>
+<li>whereis同样也是查找数据库</li>
+<li>whereis命令是定位可执行文件、源代码文件、帮助文件在文件系统中的位置</li>
+<li>参数<ul>
+<li>-b   定位可执行文件，二进制文件</li>
+<li>-m   定位帮助文件,即manual陆金霞的</li>
+<li>-s   定位源代码文件</li>
+<li>-u 查找不在上述三个选项中的其他特殊文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><ul>
+<li>find [PATH] [option] [action]</li>
+<li>参数<ul>
+<li>与时间有关的参数<ul>
+<li>-atime/mtime/stime n/+n/-n</li>
+<li>-newer filename   </li>
+</ul>
+</li>
+<li>与用户或用户组有关的参数</li>
+<li>与文件权限及名称有关的参数</li>
+<li>其他操作</li>
+</ul>
+</li>
+<li>find . -size +1000c -print 查找当前目录大于1K的文件 </li>
+</ul>
+<h1 id="文件与文件系统的压缩与打包"><a href="#文件与文件系统的压缩与打包" class="headerlink" title="文件与文件系统的压缩与打包"></a><a id="file_tar" href="#">文件与文件系统的压缩与打包</a></h1><ul>
+<li>区分打包和压缩<ul>
+<li>打包是指将一大堆文件或目录变成一个总的文件；压缩则是将一个大的文件通过一些压缩算法变成一个小文件。Linux中很多压缩程序只能针对一个文件进行压缩，这样当你想要压缩一大堆文件时，你得先将这一大堆文件先打成一个包（tar命令），然后再用压缩程序进行压缩（gzip bzip2命令）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="用SecureCRT来上传和下载文件"><a href="#用SecureCRT来上传和下载文件" class="headerlink" title="用SecureCRT来上传和下载文件"></a>用SecureCRT来上传和下载文件</h3><h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><ul>
+<li>用来压缩和解压文件。tar本身不具有压缩功能。他是调用压缩功能实现的 </li>
+<li>参数<ul>
+<li>-x 从压缩的文件中提取文件</li>
+<li>-z 支持gzip解压文件</li>
+<li>-c 建立新的压缩文件</li>
+<li>-v 显示操作过程</li>
+<li>-f 指定压缩文件</li>
+<li>-d 记录文件的差别</li>
+</ul>
+</li>
+<li><p>实例    </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tar</div><div class="line">解包：tar xvf FileName.tar</div><div class="line">打包：tar cvf FileName.tar DirName</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.gz</div><div class="line">解压1：gunzip FileName.gz</div><div class="line">解压2：gzip -d FileName.gz</div><div class="line">压缩：gzip FileName</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.tar.gz 和 .tgz</div><div class="line">解压：tar zxvf FileName.tar.gz</div><div class="line">压缩：tar zcvf FileName.tar.gz DirName</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.bz2</div><div class="line">解压1：bzip2 -d FileName.bz2</div><div class="line">解压2：bunzip2 FileName.bz2</div><div class="line">压缩： bzip2 -z FileName</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.tar.bz2</div><div class="line">解压：tar jxvf FileName.tar.bz2</div><div class="line">压缩：tar jcvf FileName.tar.bz2 DirName</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.bz</div><div class="line">解压1：bzip2 -d FileName.bz</div><div class="line">解压2：bunzip2 FileName.bz</div><div class="line">压缩：未知</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.tar.bz</div><div class="line">解压：tar jxvf FileName.tar.bz</div><div class="line">压缩：未知</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.Z</div><div class="line">解压：uncompress FileName.Z</div><div class="line">压缩：compress FileName</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.tar.Z</div><div class="line">解压：tar Zxvf FileName.tar.Z</div><div class="line">压缩：tar Zcvf FileName.tar.Z DirName</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.zip</div><div class="line">解压：unzip FileName.zip</div><div class="line">压缩：zip FileName.zip DirName</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.rar</div><div class="line">解压：rar x FileName.rar</div><div class="line">压缩：rar a FileName.rar DirName</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="进阶命令"><a href="#进阶命令" class="headerlink" title="进阶命令"></a>进阶命令</h3><ul>
+<li>完整备份工具: dump, restore</li>
+<li>光盘写入工具<ul>
+<li>刻录iso镜像: mkisofs</li>
+<li>将iso刻录成光盘或DVD: cdrecord</li>
+</ul>
+</li>
+<li>其他常见压缩与备份工具<ul>
+<li>dd</li>
+<li>cpio</li>
+</ul>
+</li>
+</ul>
+<h1 id="文件系统和磁盘"><a href="#文件系统和磁盘" class="headerlink" title="文件系统和磁盘"></a><a name="file_and_disk" id="file_and_disk">文件系统和磁盘</a></h1><h3 id="df"><a href="#df" class="headerlink" title="df"></a>df</h3><ul>
+<li>列出文件系统的整体磁盘使用量</li>
+<li>必要参数<ul>
+<li>-a 全部文件系统列表</li>
+<li><b>-h 方便阅读方式显示</b></li>
+<li>-H 等于“-h”，但是计算式，1K=1000，而不是1K=1024</li>
+<li><b>-i 显示inode信息</b></li>
+<li>-k 区块为1024字节</li>
+<li>-l 只显示本地文件系统</li>
+<li>-m 区块为1048576字节</li>
+<li>–no-sync 忽略 sync 命令</li>
+<li>-P 输出格式为POSIX</li>
+<li>–sync 在取得磁盘信息前，先执行sync命令</li>
+<li>-T 文件系统类型</li>
+</ul>
+</li>
+<li>选择参数<ul>
+<li>–block-size=&lt;区块大小&gt; 指定区块大小</li>
+<li>-t&lt;文件系统类型&gt; 只显示选定文件系统的磁盘信息</li>
+<li>-x&lt;文件系统类型&gt; 不显示选定文件系统的磁盘信息</li>
+<li>–help 显示帮助信息</li>
+<li>–version 显示版本信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="du"><a href="#du" class="headerlink" title="du"></a>du</h3><pre><code>暂时使用的较少，不详述
+</code></pre><h3 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h3><ul>
+<li>Linux文件系统中，有所谓的链接(link)，我们可以将其视为档案的别名，而链接又可分为两种 : 硬链接(hard link)与软链接(symbolic link)，硬链接的意思是一个档案可以有多个名称，而软链接的方式则是产生一个特殊的档案，该档案的内容是指向另一个档案的位置。硬链接是存在同一个文件系统中，而软链接却可以跨越不同的文件系统。</li>
+<li>软链接(symbolic)<ul>
+<li>1.软链接，以路径的形式存在。类似于Windows操作系统中的快捷方式</li>
+<li>2.软链接可以 跨文件系统 ，硬链接不可以</li>
+<li>3.软链接可以对一个不存在的文件名进行链接</li>
+<li>4.软链接可以对目录进行链接</li>
+<li>5.软链接就是<code>ln –s 源文件 目标文件</code>，它只会在你选定的位置上生成一个文件的镜像，不会占用磁盘空间</li>
+</ul>
+</li>
+<li>硬链接(通过文件系统的inode连接来产生新文件名，而不是新文件)<ul>
+<li>1.硬链接，以文件副本的形式存在。但不占用实际空间。</li>
+<li>2.不允许给目录创建硬链接</li>
+<li>3.硬链接只有在同一个文件系统中才能创建</li>
+<li>4.硬链接 <code>ln 源文件 目标文件</code>，没有参数-s， 它会在你选定的位置上生成一个和源文件大小相同的文件，无论是软链接还是硬链接，文件都保持同步变化.</li>
+</ul>
+</li>
+<li>必要参数<ul>
+<li>-b 删除，覆盖以前建立的链接</li>
+<li>-d 允许超级用户制作目录的硬链接</li>
+<li>-f 强制执行</li>
+<li>-i 交互模式，文件存在则提示用户是否覆盖</li>
+<li>-n 把符号链接视为一般目录</li>
+<li>-s 软链接(符号链接)</li>
+<li>-v 显示详细的处理过程  </li>
+</ul>
+</li>
+<li>选择参数<ul>
+<li>-S “-S&lt;字尾备份字符串&gt; ”或 “–suffix=&lt;字尾备份字符串&gt;”</li>
+<li>-V “-V&lt;备份方式&gt;”或“–version-control=&lt;备份方式&gt;”</li>
+<li>–help 显示帮助信息</li>
+<li>–version 显示版本信息 </li>
+</ul>
+</li>
+<li>实例<ul>
+<li>源文件被删除后，并没有影响硬链接文件；软链接文件在centos系统下不断的闪烁，提示源文件已经不存在</li>
+<li>关于目录链接的说明<ul>
+<li>目录只能创建软链接</li>
+<li>目录创建链接必须用绝对路径，相对路径创建会不成功，会提示：符号连接的层数过多 这样的错误</li>
+<li>在链接目标目录中修改文件都会在源文件目录中同步变化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="进阶命令-1"><a href="#进阶命令-1" class="headerlink" title="进阶命令"></a>进阶命令</h3><ul>
+<li>磁盘分区: fdisk</li>
+<li>如果遇到对高于2TB的磁盘进行分区，使用: parted</li>
+<li>磁盘格式化: mkfs</li>
+<li>磁盘检验: fsck, badblocks</li>
+<li>磁盘挂载与卸载: mount, umount</li>
+<li>磁盘参数修改: mknod, e2label, tune2fs</li>
+<li>设置开机挂载: /etc/fstab, /etc/mtab</li>
+</ul>
+<h1 id="性能监控与优化"><a href="#性能监控与优化" class="headerlink" title="性能监控与优化"></a>性能监控与优化</h1><h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><ul>
+<li>显示当前系统正在执行的进程的相关信息，包括进程ID、内存占用率、CPU占用率等</li>
+<li>常用参数<ul>
+<li>-b 批处理</li>
+<li>-c 显示完整的治命令</li>
+<li>-I 忽略失效过程</li>
+<li>-s 保密模式</li>
+<li>-S 累积模式</li>
+<li>-i&lt;时间&gt; 设置间隔时间</li>
+<li>-u&lt;用户名&gt; 指定用户名</li>
+<li>-p&lt;进程号&gt; 指定进程</li>
+<li>-n&lt;次数&gt; 循环显示的次数 </li>
+</ul>
+</li>
+<li><p>举例<br>  <img src="https://cloud.githubusercontent.com/assets/16068384/20957189/3787e3ac-bc89-11e6-8cc7-a6e7fa33908f.png" alt="1"></p>
+<ul>
+<li>第一行：当前系统时间；up xxx 运行了多久；当前1个用户登录；load average后面的三个数分别是1分钟、5分钟、15分钟的负载情况。如果这个数除以逻辑CPU的数量，结果高于5的时候就表明系统在超负荷运转了</li>
+<li>第二行：总的进程数量，zombie是僵死的</li>
+<li>PID行：进程ID；进程所有者；进程优先级（PR）;nice值，负值表示高优先级，正值表示低优先级；VIRT，进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES；RES,进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA; </li>
+</ul>
+</li>
+</ul>
+<h3 id="free"><a href="#free" class="headerlink" title="free"></a>free</h3><ul>
+<li>free 命令显示系统使用和空闲的内存情况，包括物理内存、交互区内存(swap)和内核缓冲区内存。共享内存将被忽略</li>
+<li>命令参数<ul>
+<li>-b 　以Byte为单位显示内存使用情况。 </li>
+<li>-k 　以KB为单位显示内存使用情况。 </li>
+<li>-m 　以MB为单位显示内存使用情况。</li>
+<li>-g   以GB为单位显示内存使用情况。 </li>
+<li>-o 　不显示缓冲区调节列。 </li>
+<li>-s&lt;间隔秒数&gt; 　持续观察内存使用状况。 </li>
+<li>-t 　显示内存总和列。 </li>
+<li>-V 　显示版本信息。   </li>
+</ul>
+</li>
+<li>内存额定值文件：cat /proc/meminfo</li>
+<li><p>实例</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">free</div><div class="line">free -g</div><div class="line">free -m</div><div class="line">free -s 1 //每秒执行一次</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="vmstat-iostat命令-lsof命令"><a href="#vmstat-iostat命令-lsof命令" class="headerlink" title="vmstat/iostat命令/lsof命令"></a>vmstat/iostat命令/lsof命令</h3><p>还没接触到，先不做解释<br><a href="http://www.cnblogs.com/peida/archive/2012/12/25/2833108.html" target="_blank" rel="external">http://www.cnblogs.com/peida/archive/2012/12/25/2833108.html</a></p>
+<h1 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h1><h3 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h3><ul>
+<li>用ifconfig命令配置的网卡信息，在网卡重启后机器重启后，配置就不存在。要想将上述的配置信息永远的存的电脑里，那就要修改网卡的配置文件了。</li>
+<li>命令参数<ul>
+<li>up 启动指定网络设备/网卡。</li>
+<li>down 关闭指定网络设备/网卡。</li>
+<li>arp 设置指定网卡是否支持ARP协议</li>
+</ul>
+</li>
+<li><p>实例</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">启动和关闭网卡</div><div class="line">ifconfig eth0 up</div><div class="line">ifconfig eth0 down</div><div class="line">为网卡配置ipv6地址</div><div class="line">ifconfig eth0 add 33ffe:3240:800:1005::2/64</div><div class="line">用ifconfig修改MAC地址</div><div class="line">ifconfig eth0 hw ether 00:AA:BB:CC:DD:EE</div><div class="line">配置IP地址</div><div class="line">ifconfig eth0 192.168.120.56 netmask 255.255.255.0 broadcast 192.168.120.255</div><div class="line">启用和关闭ARP协议</div><div class="line">ifconfig eth0 arp</div><div class="line">ifconfig eth0 -arp</div><div class="line">设置最大传输单元</div><div class="line">ifconfig eth0 mtu 1500</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="rcp-remote-file-copy"><a href="#rcp-remote-file-copy" class="headerlink" title="rcp(remote file copy)"></a>rcp(remote file copy)</h3><ul>
+<li>rcp命令用在远端复制文件或目录，如同时指定两个以上的文件或目录，且最后的目的地是一个已经存在的目录，则它会把前面指定的所有文件或目录复制到该目录中。</li>
+<li>命令参数<ul>
+<li>-r 递归地把源目录中的所有内容拷贝到目的目录中。要使用这个选项，目的必须是一个目录。</li>
+<li>-p 试图保留源文件的修改时间和模式，忽略umask。</li>
+<li>-k 请求rcp获得在指定区域内的远程主机的Kerberos 许可，而不是获得由krb_relmofhost⑶确定的远程主机区域内的远程主机的Kerberos许可。</li>
+<li>-x 为传送的所有数据打开DES加密。这会影响响应时间和CPU利用率，但是可以提高安全性。如果在文件名中指定的路径不是完整的路径名，那么这个路径被解释为相对远程机上同名用户的主目录。如果没有给出远程用户名，就使用当前用户名。如果远程机上的路径包含特殊shell字符，需要用反斜线（\）、双引号（”）或单引号（’）括起来，使所有的shell元字符都能被远程地解释。需要说明的是，rcp不提示输入口令，它通过rsh命令来执行拷贝。</li>
+<li>directory 每个文件或目录参数既可以是远程文件名也可以是本地文件名。远程文件名具有如下形式：rname@rhost：path，其中rname是远程用户名，rhost是远程计算机名，path是这个文件的路径 </li>
+</ul>
+</li>
+<li><p>实例</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rcp local_file remote_hostname:remote_fileEnter</div><div class="line">rcp remote_hostname:remote_file local_fileEnter</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="scp-secure-copy"><a href="#scp-secure-copy" class="headerlink" title="scp(secure copy)"></a>scp(secure copy)</h3><ul>
+<li>scp传输是加密的</li>
+<li>命令格式： scp [参数] [原路径] [目标路径] </li>
+<li>命令参数<ul>
+<li>-1  强制scp命令使用协议ssh1  </li>
+<li>-2  强制scp命令使用协议ssh2  </li>
+<li>-4  强制scp命令只使用IPv4寻址  </li>
+<li>-6  强制scp命令只使用IPv6寻址  </li>
+<li>-B  使用批处理模式（传输过程中不询问传输口令或短语）  </li>
+<li>-C  允许压缩。（将-C标志传递给ssh，从而打开压缩功能）  </li>
+<li>-p 保留原文件的修改时间，访问时间和访问权限。  </li>
+<li>-q  不显示传输进度条。  </li>
+<li>-r  递归复制整个目录。  <ul>
+<li>-v 详细方式显示输出。scp和ssh(1)会显示出整个过程的调试信息。这些信息用于调试连接，验证和配置问题。   </li>
+<li>-c cipher  以cipher将数据传输进行加密，这个选项将直接传递给ssh。   </li>
+<li>-F ssh_config  指定一个替代的ssh配置文件，此参数直接传递给ssh。  </li>
+<li>-i identity_file  从指定文件中读取传输时使用的密钥文件，此参数直接传递给ssh。    </li>
+<li>-l limit  限定用户所能使用的带宽，以Kbit/s为单位。     </li>
+<li>-o ssh_option  如果习惯于使用ssh_config(5)中的参数传递方式，  </li>
+<li>-P port  注意是大写的P, port是指定数据传输用到的端口号   </li>
+<li>-S program  指定加密传输时所使用的程序。此程序必须能够理解ssh(1)的选项。 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>实例</p>
+<ul>
+<li><p>从本地服务器复制到远程服务器</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">scp local_file remote_username@remote_ip:remote_folder/file</div><div class="line">scp local_file remote_ip:remote_folder/file</div></pre></td></tr></table></figure>
+</li>
+<li><p>从远程服务器复制到本地服务器</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp root@192.168.120.204:/opt/soft/nginx-0.5.38.tar.gz /opt/soft/</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="route-traceroute-netstat-ss"><a href="#route-traceroute-netstat-ss" class="headerlink" title="route/traceroute/netstat/ss"></a>route/traceroute/netstat/ss</h3><h1 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h1><h3 id="diff"><a href="#diff" class="headerlink" title="diff"></a>diff</h3><ul>
+<li>diff命令能比较单个文件或者目录内容。如果指定比较的是文件，则只有当输入为文本文件时才有效。以逐行的方式，比较文本文件的异同处。如果指定比较的是目录的的时候，diff 命令会比较两个目录下名字相同的文本文件。列出不同的二进制文件、公共子目录和只在一个目录出现的文件。</li>
+<li><p>实例</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">diff a.txt b.txt</div><div class="line">diff a/ b/</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="cal"><a href="#cal" class="headerlink" title="cal"></a>cal</h3><ul>
+<li>命令参数<ul>
+<li>-1 显示一个月的月历</li>
+<li>-3 显示系统前一个月，当前月，下一个月的月历</li>
+<li>-s  显示星期天为一个星期的第一天，默认的格式</li>
+<li>-m 显示星期一为一个星期的第一天</li>
+<li>-j  显示在当年中的第几天（一年日期按天算，从1月1号算起，默认显示当前月在一年中的天数）</li>
+<li>-y  显示当前年份的日历  </li>
+</ul>
+</li>
+<li><p>实例</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cal 9 2012</div><div class="line">cal -y 2013</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h3><ul>
+<li>相关文件<ul>
+<li>/var/spool/cron/ 所有用户crontab文件存放的目录,以用户名命名</li>
+<li>/etc/cron.deny 该文件中所列用户不允许使用crontab命令</li>
+<li>/etc/cron.allow 该文件中所列用户允许使用crontab命令</li>
+</ul>
+</li>
+</ul>
+<h3 id="watch-at"><a href="#watch-at" class="headerlink" title="watch/at"></a>watch/at</h3>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Computer-system/">Computer_system</a>►<a class="article-category-link" href="/categories/Computer-system/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux/">Linux</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/Linux/Linux命令进阶/" data-title="Linux命令进阶 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/02/Articles/Algorithm/Recursion/整数划分问题/" title="整数划分问题">
+  <strong>上一篇：</strong><br/>
+  <span>
+  整数划分问题</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/02/Articles/C++/十五分钟了解C++11新特性/"  title="十五分钟了解C++11新特性">
+ <strong>下一篇：</strong><br/> 
+ <span>十五分钟了解C++11新特性
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/02/Articles/Computer_system/Linux/Linux命令进阶/" data-title="Linux命令进阶" data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/Linux/Linux命令进阶/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置文件"><span class="toc-number"></span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#系统管理员对用户和用户组管理文件"><span class="toc-number"></span> <span class="toc-text">系统管理员对用户和用户组管理文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件目录操作"><span class="toc-number"></span> <span class="toc-text">文件目录操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cat"><span class="toc-number">1.</span> <span class="toc-text">cat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head-tail"><span class="toc-number">2.</span> <span class="toc-text">head/tail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#more-less"><span class="toc-number">3.</span> <span class="toc-text">more / less</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mv"><span class="toc-number">4.</span> <span class="toc-text">mv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nl"><span class="toc-number">5.</span> <span class="toc-text">nl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm"><span class="toc-number">6.</span> <span class="toc-text">rm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#touch"><span class="toc-number">7.</span> <span class="toc-text">touch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#od"><span class="toc-number">8.</span> <span class="toc-text">od</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看文件类型-file"><span class="toc-number">9.</span> <span class="toc-text">查看文件类型: file</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件权限设置"><span class="toc-number"></span> <span class="toc-text">文件权限设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chgrp"><span class="toc-number">1.</span> <span class="toc-text">chgrp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chown命令"><span class="toc-number">2.</span> <span class="toc-text">chown命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件默认权限-umask"><span class="toc-number">3.</span> <span class="toc-text">文件默认权限: umask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件隐藏属性-chattr-lsattr"><span class="toc-number">4.</span> <span class="toc-text">文件隐藏属性: chattr,lsattr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件特殊权限-SUID-SGID-SBIT"><span class="toc-number">5.</span> <span class="toc-text">文件特殊权限: SUID,SGID,SBIT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件查找"><span class="toc-number"></span> <span class="toc-text">文件查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#which"><span class="toc-number">1.</span> <span class="toc-text">which</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locate"><span class="toc-number">2.</span> <span class="toc-text">locate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#whereis"><span class="toc-number">3.</span> <span class="toc-text">whereis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find"><span class="toc-number">4.</span> <span class="toc-text">find</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件与文件系统的压缩与打包"><span class="toc-number"></span> <span class="toc-text">文件与文件系统的压缩与打包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用SecureCRT来上传和下载文件"><span class="toc-number">1.</span> <span class="toc-text">用SecureCRT来上传和下载文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tar"><span class="toc-number">2.</span> <span class="toc-text">tar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进阶命令"><span class="toc-number">3.</span> <span class="toc-text">进阶命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件系统和磁盘"><span class="toc-number"></span> <span class="toc-text">文件系统和磁盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#df"><span class="toc-number">1.</span> <span class="toc-text">df</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#du"><span class="toc-number">2.</span> <span class="toc-text">du</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ln"><span class="toc-number">3.</span> <span class="toc-text">ln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进阶命令-1"><span class="toc-number">4.</span> <span class="toc-text">进阶命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#性能监控与优化"><span class="toc-number"></span> <span class="toc-text">性能监控与优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#top"><span class="toc-number">1.</span> <span class="toc-text">top</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#free"><span class="toc-number">2.</span> <span class="toc-text">free</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vmstat-iostat命令-lsof命令"><span class="toc-number">3.</span> <span class="toc-text">vmstat/iostat命令/lsof命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网络命令"><span class="toc-number"></span> <span class="toc-text">网络命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ifconfig"><span class="toc-number">1.</span> <span class="toc-text">ifconfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rcp-remote-file-copy"><span class="toc-number">2.</span> <span class="toc-text">rcp(remote file copy)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scp-secure-copy"><span class="toc-number">3.</span> <span class="toc-text">scp(secure copy)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#route-traceroute-netstat-ss"><span class="toc-number">4.</span> <span class="toc-text">route/traceroute/netstat/ss</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他常用命令"><span class="toc-number"></span> <span class="toc-text">其他常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#diff"><span class="toc-number">1.</span> <span class="toc-text">diff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cal"><span class="toc-number">2.</span> <span class="toc-text">cal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#crontab"><span class="toc-number">3.</span> <span class="toc-text">crontab</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#watch-at"><span class="toc-number">4.</span> <span class="toc-text">watch/at</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="su526664687" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/recursion/" title="recursion">recursion<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php-email/" title="php email">php email<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/go/" title="go">go<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/segment-tree/" title="segment_tree">segment_tree<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sort/" title="sort">sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/neuoj/" title="neuoj">neuoj<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flash/" title="flash">flash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/determinant/" title="determinant">determinant<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/template/" title="template">template<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WEB-security/" title="WEB security">WEB security<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/union-set/" title="union_set">union_set<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/stack/" title="stack">stack<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/heap/" title="heap">heap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/priority-queure/" title="priority_queure">priority_queure<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/binary-index-tree/" title="binary_index_tree">binary_index_tree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/deep-learning/" title="deep_learning">deep_learning<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u014451076/" target="_blank" title="My CSDN">My CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Sjming in NEU. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/su526664687" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/sjming" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:sujinming0125@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Sjming">Sjming</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"su526664687"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

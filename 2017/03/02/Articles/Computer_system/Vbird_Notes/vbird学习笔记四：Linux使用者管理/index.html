@@ -1,0 +1,987 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>vbird学习笔记四：Linux使用者管理 | Sjming&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Sjming">
+    
+
+    
+    <meta name="description" content="《鸟哥的Linux私房菜》学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vbird学习笔记四：Linux使用者管理">
+<meta property="og:url" content="http://www.sjming.net/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记四：Linux使用者管理/index.html">
+<meta property="og:site_name" content="Sjming's Blog">
+<meta property="og:description" content="《鸟哥的Linux私房菜》学习笔记">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/21037747/38312de4-be0b-11e6-8a24-3ee31e1893e2.png">
+<meta property="og:updated_time" content="2017-03-01T19:19:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vbird学习笔记四：Linux使用者管理">
+<meta name="twitter:description" content="《鸟哥的Linux私房菜》学习笔记">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/16068384/21037747/38312de4-be0b-11e6-8a24-3ee31e1893e2.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Sjming&#39;s Blog">Sjming&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Try doing and try to do</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.sjming.net">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记四：Linux使用者管理/" title="vbird学习笔记四：Linux使用者管理" itemprop="url">vbird学习笔记四：Linux使用者管理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-01T16:01:01.000Z" itemprop="datePublished"> 发表于 2017-03-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unit-14-Linux账号管理与ACL权限设置"><span class="toc-number">1.</span> <span class="toc-text">Unit 14 Linux账号管理与ACL权限设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unit-15-磁盘配额与高级文件系统管理"><span class="toc-number">2.</span> <span class="toc-text">Unit 15 磁盘配额与高级文件系统管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unit-16-例行性工作-crontab"><span class="toc-number">3.</span> <span class="toc-text">Unit 16 例行性工作(crontab)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序管理与SELinux初探"><span class="toc-number">4.</span> <span class="toc-text">程序管理与SELinux初探</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unit-18-认识系统服务-daemons"><span class="toc-number">5.</span> <span class="toc-text">Unit 18 认识系统服务(daemons)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unit-19-日志文件"><span class="toc-number">6.</span> <span class="toc-text">Unit 19 日志文件</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="Unit-14-Linux账号管理与ACL权限设置"><a href="#Unit-14-Linux账号管理与ACL权限设置" class="headerlink" title="Unit 14 Linux账号管理与ACL权限设置"></a>Unit 14 Linux账号管理与ACL权限设置</h3><ul>
+<li>用户标识符: UID与GID<ul>
+<li>Linux主机并不会直接认识“账号”，仅认识一组号码ID，之后通过<code>/etc/passwd</code>进行对应.</li>
+<li>在<code>/etc/passwd</code>文件中，UID列是用户标识符，UID对应的数值有分三个段:<ul>
+<li>0(系统管理员)，当UID是0时，表示系统管理员.</li>
+<li>1-499(系统账号)，白留给系统使用的ID.由于系统上面启动的服务希望使用较小的权限去运行，因此不希望使用root的身份去执行这些服务，所以提供这些运行中程序的所有者账户.这些系统账户通常是不可登录的，所有才有/sbin/nologin这个特殊的shell存在.通常1-99由linux发行版自行系统账号，100-499用户可使用.</li>
+<li>500之后(可登录账户)，给一般用户使用.</li>
+</ul>
+</li>
+<li><code>/etc/shadow</code>字段的意义<ul>
+<li>账户</li>
+<li>密码</li>
+<li>最近更改密码的日期(从1970.1.1算起)</li>
+<li>密码不可被更改的天数</li>
+<li>密码需要重新更改的天数</li>
+<li>密码需要更改期限前的警告天数</li>
+<li>密码过期后的账号宽限天数</li>
+<li>账号失效日期</li>
+<li>保留</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>有效与初始用户组: groups，newgrp<ul>
+<li>初始用户组: 在<code>/etc/passwd</code>中每个用户对应的GID就是他的初始用户组，当用户登陆系统的时候，就立即拥有这个用户组的相关权限.</li>
+<li>在<code>/etc/group</code>中记录了每个组的相关信息，和这个组包含的账号.一个用户可能包含在多个组中，当新建一个文件的时候要给出GID，这个就需要检查当前的有效用户组了.</li>
+<li>有效与支持用户组的查看: groups<ul>
+<li><code>groups</code>: 查看当前用户支持的用户组，输出的第一个用户组为有效用户组.通常有效用户组的作用是新建文件.</li>
+<li><code>newgrp xxx</code>: 有效用户组的切换.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>账号管理<ul>
+<li>新增与删除用户<ul>
+<li><code>useradd [-u UID] [-g 初始用户组] [-G 次用户组] [-mM] [-c 说明栏] [-d 主文件夹绝对路径] [-s shell] 用户账户名</code><ul>
+<li>-m：强制创建用户主文件夹(一般账号默认值)</li>
+<li>-M: 强制不要创建用户主文件夹(系统账号默认值)</li>
+<li><code>useradd -D</code>: 查看useradd的默认值</li>
+</ul>
+</li>
+<li><code>passwd username</code>: 设置密码，passwd还有许多别的参数</li>
+<li><code>chage</code>: 密码参数显示</li>
+<li><code>usermod</code>: 微调useradd中的用户参数</li>
+<li><code>userdel [-r] username</code><ul>
+<li>-r: 连同用户的主文件夹一起删除</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用户功能<ul>
+<li><code>finger</code>: 查阅很多用户相关信息.</li>
+<li><code>chfn</code>: change finger</li>
+<li><code>chsh</code>: change shell</li>
+<li><code>id</code>: 查询某人或自己的相关UID/GID等信息</li>
+</ul>
+</li>
+<li>新增与删除用户组<ul>
+<li><code>groupadd</code></li>
+<li><code>groupmod</code></li>
+<li><code>groupdel</code></li>
+<li><code>gpasswd</code>: 用户组管理员功能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>主机的具体权限规划：ACL(Access Control List)的使用</li>
+<li>用户身份切换<ul>
+<li><code>su [-lm] [-c 命令] [username]</code><ul>
+<li>su可进行任意身份的切换，但是需要对应身份的密码</li>
+<li>-/-l: 使用login-shell的变量文件读取方式登录系统</li>
+<li>-m/-p: 使用目前的环境变量</li>
+<li>-c: 仅进行一次命令</li>
+<li>单纯使用su，则切换到root身份，读取变量的设置方式为non-login shell方式，这种方式下很多原本的变量不会被改变.</li>
+</ul>
+</li>
+<li><code>sudo [-b] [-u 新用户账号]</code><ul>
+<li>只有在/etc/sudoers中的用户可执行sudo命令，仅需要输入自己的密码即可.</li>
+<li>-b: 将后续的命令让系统自行执行，而不与目前的shell产生影响.</li>
+<li>-u: 后面可接欲切换的用户</li>
+</ul>
+</li>
+<li><code>visudo</code><ul>
+<li>如果需要设置其他用户执行root权限命令，需要去修改/etc/sudoers文件，但是此文件的修改需要按照一定的语法因此无法直接修改，需要使用visudo命令.</li>
+<li>可以通过添加用户和用户组的形式授予权限.也可以设置免密码输入.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用户的特殊shell和PAM模块<ul>
+<li>特殊的shell–/sbin/nologin<ul>
+<li>系统账户的shell使用/etc/nologin.</li>
+<li>系统账户是无法登录的，指的是这个用户无法使用某种shell登录系统，并不是说这个用户无法使用其他的系统资源.</li>
+</ul>
+</li>
+<li>PAM模块<ul>
+<li>Pluggage Authentication Modules，嵌入式验证模块</li>
+<li>PAM可以说是一套应用程序编程接口.它提供一连串的验证机制，只要用户验证阶段的需求告知PAM后，PAM就能够汇报用户验证的结果(成功或者失败).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Linux主机上的用户信息传递<ul>
+<li>主要用户同一主机上，不同用户的信息传递</li>
+<li>查询用户: w, who, last, lastlog<ul>
+<li>w: 显示目前登录系统的用户信息</li>
+<li>who: 类似w</li>
+<li>last：列出当月登录这信息</li>
+<li>lastlog: 输出/var/log/lastlog文件，每个账户的最近登录时间</li>
+</ul>
+</li>
+<li>用户对谈: write, mesg, wall</li>
+<li>用户邮件信箱: mail</li>
+</ul>
+</li>
+</ul>
+<h3 id="Unit-15-磁盘配额与高级文件系统管理"><a href="#Unit-15-磁盘配额与高级文件系统管理" class="headerlink" title="Unit 15 磁盘配额与高级文件系统管理"></a>Unit 15 磁盘配额与高级文件系统管理</h3><ul>
+<li>磁盘配额Quota</li>
+<li>软件磁盘陈列(Software RAID)<ul>
+<li>RAID(Redundant Array of Inexpensive Disks), 廉价磁盘冗余阵列: 通过软件或者硬件的技术把多个较小的磁盘整合成一个较大的磁盘设备；而这个较大的磁盘不仅具有存储能力，还具有数据保护的功能.RAID由于选择的等级不同，是的整合后的磁盘具有不同的功能.<ul>
+<li>RAID 0(等量模式，stripe)，性能最佳: 将磁盘切成等量的区块，并在不同的磁盘上交错存放数据.</li>
+<li>RAID 1(影像模式，mirror)，完整备份: 同一数据保存两份到不同的磁盘.</li>
+<li>RAID 0+1, RAND 1+0</li>
+<li>RAID 5， 性能与数据备份的均衡考虑: 使用三块以上的磁盘，写入类似RAID-0方法，每个循环中一次在某块磁盘加入一个同位检出数据，当有一块磁盘损毁时，可修复.</li>
+<li>Spare Disk，预备磁盘</li>
+</ul>
+</li>
+<li>software RAID<ul>
+<li>利用mdadm实现软件磁盘阵列</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>逻辑卷管理器(LVM)<ul>
+<li>作用: 可以弹性调整文件系统的容量.具体说，LVM将几个物理的分区或磁盘通过软件组合成为一块看起来是独立的大磁盘(VG)，然后将这块大磁盘在经过分成为可使用分区(LV)，最终就能挂载使用了.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Unit-16-例行性工作-crontab"><a href="#Unit-16-例行性工作-crontab" class="headerlink" title="Unit 16 例行性工作(crontab)"></a>Unit 16 例行性工作(crontab)</h3><ul>
+<li>关于例行性工作<ul>
+<li>工作调度种类<ul>
+<li>突发性的的at: at是个可以处理仅执行一次就结束调度的命令，需要atd服务的支持.</li>
+<li>例行性的crontab: crontab这个命令所执行的工作会循环进行下去.除了使用命令执行外，也可以编辑/etc/crontaba来支持.</li>
+</ul>
+</li>
+<li>Linux上常见的例行性工作<ul>
+<li>进行日志文件的轮替(log rotate):定期挪动日志文件，把旧的和新的分开存放.</li>
+<li>日志文件分析logwatch</li>
+<li>新建locate的数据库</li>
+<li>新建whatis数据库，这个食欲man page有关的查询命令</li>
+<li>新建RPM软件日志文件</li>
+<li>删除临时文件</li>
+<li>与网络服务有关的分析行为</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>仅执行一次的工作调度<ul>
+<li>首先需要启动atd服务<code>/etc/init.d/atd restart</code></li>
+<li>at的工作方式: 使用at命令来生成所要运行的工作，并将这个工作以文本文件的方式写入/var/spool/at目录内，给工作便能等待atd服务的取用和执行.</li>
+<li>at的使用限制:<ul>
+<li>先寻找/etc/at.allow，写入这个文件的用户允许使用at，未写入的不允许.</li>
+<li>如果/etc/at.allow不存在，就查看/etc/at.deny，写入的不允许，未写入的允许.</li>
+<li>如果两个文件都不存在，则只有root允许使用at命令.</li>
+</ul>
+</li>
+<li><code>at [-mldv time]</code>或<code>at -c 工作号码</code><ul>
+<li>-m: 当at完成后，以email通知用户完成</li>
+<li>-l: 相当于atq，列出当前系统上的所有该用户的at调度</li>
+<li>-d: 相当于atrm，可以取消一个在at调度中的工作</li>
+<li>-v: 可以使用较明显的时间格式列出at调度中的任务列表</li>
+<li>-c: 可以列出后面接的该项工作的实际命令内容</li>
+</ul>
+</li>
+<li><code>atrm 工作号码</code><ul>
+<li>删除一项任务</li>
+</ul>
+</li>
+<li>batch命令控制系统有空时才进行后台任务</li>
+</ul>
+</li>
+<li>循环执行的例行性工作调度<ul>
+<li>crontab的使用限制<ul>
+<li>使用/etc/cron.allow和/erc/cron.deny，工作被记录在/var/spool/cron里面，cron执行的每一项工作会被记录在/var/log/cron这个日志文件中.</li>
+</ul>
+</li>
+<li><code>crontab [-u username] [-l|-e|-r]</code><ul>
+<li>-u: 只有root可以使用这个参数，帮助其他用户新建/删除crontab工作调度.</li>
+<li>-e: 编辑crontab的工作内容</li>
+<li>-l: 查阅crontab的工作内容</li>
+<li>-r: 删除所有的crontab的工作内容，如果要仅删除一项，需要-e去b编辑.</li>
+</ul>
+</li>
+<li>系统的配置文件: /etc/crontab<ul>
+<li>crontab -e是针对用户的cron来设计的，如果执行系统的例行性任务，可以直接通过编辑/etc/crontab即可.cron会每分钟读取一次/etc/crontab和/var/spool/cron里的数据内容.</li>
+<li>crontab的完整路径是/usr/bin/crontab</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可唤醒停机期间的工作任务<ul>
+<li>anacron和/etc/anacrontab</li>
+</ul>
+</li>
+</ul>
+<h3 id="程序管理与SELinux初探"><a href="#程序管理与SELinux初探" class="headerlink" title="程序管理与SELinux初探"></a>程序管理与SELinux初探</h3><ul>
+<li>进程<ul>
+<li>执行一个命令或程序可以出发一个时间二取得一个PID，产生一个进程.</li>
+<li>常驻进程被成为服务(daemon)或守护进程</li>
+<li>多用户环境是因为每个人登录后取得的shell的PID不同，多任务行为是因为CPU调度.</li>
+</ul>
+</li>
+<li>工作管理<ul>
+<li>直接将命令丢到后台中执行: <code>&amp;</code></li>
+<li>将目前的工作丢到后台中暂停: <code>ctrl-z</code></li>
+<li>查看目前的后台工作状态: <code>jobs [-lrs]</code><ul>
+<li>-l: 除了列出job number与命令串之外，同事列出PID的号码</li>
+<li>-r: 仅列出正在后台run的工作</li>
+<li>-s: 仅列出正在后台当中暂停的工作</li>
+</ul>
+</li>
+<li>将后台工作拿到前台来处理: <code>fg</code></li>
+<li>让工作在后台下的状态变成运行中: <code>bg</code></li>
+<li>管理后台当中的工作: <code>kill -signal %jobnumber</code>或<code>kill -l</code><ul>
+<li>-l： 列出目前kill能够使用的信号(signal)</li>
+<li>signal可取值<ul>
+<li>-1: 重新读取一次参数的配置文件(reload)</li>
+<li>-2: 同ctrl-c</li>
+<li>-9: 立即强制删除一个工作</li>
+<li>-15: 以正常的程序方式终止一项任务.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><font color="red">在工作管理中提出的后台指的是在终端机模式下可以避免ctrl-c终端的一个情景，并不是放到系统的后台去.如果关闭终端，工作不会继续.</font></li>
+<li>脱机管理<ul>
+<li>使用<code>nohup</code>命令保证在脱机或注销系统后继续执行工作，<code>nohup cmd</code>在终端机前台工作，<code>nohup cmd &amp;</code>在终端机后台工作.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>进程管理<ul>
+<li>进程查看(利用静态的ps或者动态的top，还能以pstree来查阅程序树之间的关系)<ul>
+<li>ps: 将某个时间点的进程运行情况选取下来<ul>
+<li><code>ps aux</code>: 查看系统所有的进程数据</li>
+<li><code>ps -lA</code>: 查看所有系统的数据</li>
+<li><code>ps axjf</code>: 连同部分进程树状态</li>
+<li>-A: 所有进程均显示，同-e</li>
+<li>-a: 不与terminal有关的所有进程</li>
+<li>-u: 有效用户相关的进程</li>
+<li>x: 通常与a一起使用列出完成信息</li>
+<li>输出格式规划:<ul>
+<li>l: 较长较详细列出每个PID的信息</li>
+<li>j: 工作的格式(job format)</li>
+<li>-f: 更为完整的输出</li>
+</ul>
+</li>
+<li><b>主要记住两个命令<code>ps -l</code>(只查看自己bash相关进程)和<code>ps aux</code></b></li>
+</ul>
+</li>
+<li>动态查看进程的变化<code>top [-d 数字]</code>或<code>top [-bnp]</code><ul>
+<li>-d: 接秒数，表示整个进程界面更新的秒数，默认5s</li>
+<li>-b: 以批次的方式执行top</li>
+<li>-n: 与-b搭配，表示需要进行几次top的结果输出</li>
+<li>-p: 制定某些PID来进行查看检测</li>
+</ul>
+</li>
+<li><code>pstree [-A|U] [-up]</code><ul>
+<li>-A: 各进程树之间的连接以ascii字符连接</li>
+<li>-U: 各进程树之间的连接以utf8来连接</li>
+<li>-p: 同时列出每个进程的PID</li>
+<li>-u: 同时列出每个进程的所属账号名称.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>进程管理<ul>
+<li>通过给予进程一个信号(signal)去告知该进程需要做什么.</li>
+<li>通过<code>kill -l</code>查看所有的signal<br><img src="https://cloud.githubusercontent.com/assets/16068384/21037747/38312de4-be0b-11e6-8a24-3ee31e1893e2.png" alt="1"> </li>
+<li><code>kill - signalname PID/%jobnumber</code>: 将某个signal传送给某个工作或进程</li>
+<li><code>killall -signal 命令名称</code></li>
+</ul>
+</li>
+<li>进程执行顺序<ul>
+<li>PRI: 优先执行序</li>
+<li><code>PRI(new) = PRI(old) + nice</code></li>
+<li>可以调节nice值<ul>
+<li><code>nice [-n 数字] cmd</code>: 新执行的命令给予新的nice值</li>
+<li><code>renice [number] PID</code>: 调整nice值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>系统资源查看<ul>
+<li>free</li>
+<li>uname</li>
+<li>uptime</li>
+<li><code>netstat -[atunlp]</code><ul>
+<li>-a: 将目前系统所有的连接、监听、socket数据都列出来</li>
+<li>-t: 列出tcp网络数据包的数据</li>
+<li>-u: udp</li>
+<li>-n: 不列出进程的服务名称，以端口号显示</li>
+<li>-l: 列出目前正在网络监听的服务</li>
+<li>-p: 列出该网络服务的进程PID</li>
+</ul>
+</li>
+<li>dmesg</li>
+<li>vmstat</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>特殊文件与程序<ul>
+<li><code>/proc/*</code><ul>
+<li>内存当中的数据都写入到<code>/proc/*</code>这个目录下，可以通过<code>ll /proc</code>进行查看</li>
+</ul>
+</li>
+<li>与使用中的文件相关的<ul>
+<li><code>fuser</code>: 通过文件找到正在使用该文件的程序</li>
+<li><code>lsog</code>: 列出被进程所打开的文件名</li>
+<li><code>pidof</code>: 找出某个正在执行的进程的PID </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Unit-18-认识系统服务-daemons"><a href="#Unit-18-认识系统服务-daemons" class="headerlink" title="Unit 18 认识系统服务(daemons)"></a>Unit 18 认识系统服务(daemons)</h3><ul>
+<li>概念<ul>
+<li>deamon的主要分类<ul>
+<li>可以自行单独启动的stand_alone<ul>
+<li>stand_alone的deamon响应速度较快</li>
+<li>常见的有www的deamon(httpd)、FTP的daemon(vsftpd)</li>
+</ul>
+</li>
+<li>通过一个super daemon来统一管理的服务<ul>
+<li>这个super daemon是inetd或者xinetd</li>
+<li>常见的super daemon所管理的服务如telnet</li>
+<li>针对super daemon的处理模式有两种<ul>
+<li>多线程</li>
+<li>单线程</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>deamon根据提供服务的工作状态类分类<ul>
+<li>signal-control，例如打印机服务(cupsd)</li>
+<li>interval-control，例如atd与crond</li>
+</ul>
+</li>
+<li>服务与端口的对应<ul>
+<li><code>/etc/services</code></li>
+</ul>
+</li>
+<li>deamon的启动脚本与启动方式<ul>
+<li><code>/etc/init.d/*</code>: 各服务启动脚本放置处</li>
+<li><code>/etc/sysconfig/*</code>: 各服务的初始化环境配置文件</li>
+<li><code>/etc/xinetd.conf, /etc/xinetd.d/*</code>: super daemon配置文件</li>
+<li><code>/etc/*</code>: 各服务各自的配置文件</li>
+<li><code>/var/lib/*</code>: 各服务产生的数据库</li>
+<li><code>/var/run/*</code>: 各服务的程序的PID记录处</li>
+<li>stand alone的启动<ul>
+<li><code>/etc/init.d/xxx restart</code></li>
+<li><code>service xxx restart</code>: 实质还是第一种方法，service的路径为/sbin/service</li>
+</ul>
+</li>
+<li>super daemon的启动<ul>
+<li>super daemon本身是一个stand alone</li>
+<li><code>/etc/xinet.d/xxx restart</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>服务的防火墙管理xinetd, TCP wrappers<ul>
+<li>任何以xinetd管理的服务都可以通过/etc/hosts.allo, /etc/hosts.deny来设置防火墙.关于防火墙，可以理解为针对源IP进行允许或拒绝的设置，以决定该连接能否成功实现连接的一种方式.</li>
+<li>其实/etc/hosts.allow和/etc/hosts.deny也是/usr/sbin/tcpd的配置文件，而/usr/sbin/tcpd则是用来分析进入系统的tcp数据包的一个软件.TCP数据包的头部主要记录来源与目的主机的IP和port，因此通过分析TCP数据包并结合/etc/hosts.{allow, deny}的规则比较，就可以决定该连接是否能够进入我们的主机.</li>
+<li>TCP Wrappers</li>
+</ul>
+</li>
+<li>设置开机立即启动的服务<ul>
+<li><code>chkconfig</code>: 管理系统服务默认开机启动与否<ul>
+<li><code>chkconfig --list</code>: 将目前的各项服务状态栏显示出来</li>
+<li><code>chkconfig [--level [0123456]] [服务名称] [on|off]</code>: 设置某个服务在该level下启动或关闭</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Unit-19-日志文件"><a href="#Unit-19-日志文件" class="headerlink" title="Unit 19 日志文件"></a>Unit 19 日志文件</h3><ul>
+<li>Linux常用的日志文件<ul>
+<li><code>/vat/log/cron</code>: 例行性工作调度日志</li>
+<li><code>/var/log/dmesg</code>: 记录系统在开机的时候内核检测过程所产生的各项信息</li>
+<li><code>/var/log/lastlog</code>: 记录系统上所有的账号最近一次登录系统是的相关信息，对应于lastlog命令</li>
+<li><code>/var/log/maillog</code>或<code>/var/log/mail/*</code>: 记录邮件往来信息</li>
+<li><code>/var/log/messages</code>: 记录系统发生的错误信息</li>
+<li><code>/var/log/secure</code>: 只要牵涉到需要输入帐密的软件，登录信息都会被记录在这里</li>
+<li><code>/var/log/wtmp, /var/log/faillog</code>: 记录正确和错误登录系统者的账户</li>
+<li><code>/var/log/httpd/*, /var/log/news/*, /varlog/samba/*</code>: 记录网络服务产生的各项信息</li>
+</ul>
+</li>
+<li>syslogd: 记录日志文件的服务<ul>
+<li>syslog的配置文件: /etc/syslog.conf</li>
+</ul>
+</li>
+<li>logrotate: 日志文件的轮替</li>
+<li>分析日志文件</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Computer-system/">Computer_system</a>►<a class="article-category-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux/">Linux</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记四：Linux使用者管理/" data-title="vbird学习笔记四：Linux使用者管理 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记五：Linux系统管理员/" title="vbird学习笔记五：Linux系统管理员">
+  <strong>上一篇：</strong><br/>
+  <span>
+  vbird学习笔记五：Linux系统管理员</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/02/Articles/Algorithm/Data_Structure/堆和优先队列/"  title="堆和优先队列">
+ <strong>下一篇：</strong><br/> 
+ <span>堆和优先队列
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记四：Linux使用者管理/" data-title="vbird学习笔记四：Linux使用者管理" data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记四：Linux使用者管理/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unit-14-Linux账号管理与ACL权限设置"><span class="toc-number">1.</span> <span class="toc-text">Unit 14 Linux账号管理与ACL权限设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unit-15-磁盘配额与高级文件系统管理"><span class="toc-number">2.</span> <span class="toc-text">Unit 15 磁盘配额与高级文件系统管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unit-16-例行性工作-crontab"><span class="toc-number">3.</span> <span class="toc-text">Unit 16 例行性工作(crontab)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序管理与SELinux初探"><span class="toc-number">4.</span> <span class="toc-text">程序管理与SELinux初探</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unit-18-认识系统服务-daemons"><span class="toc-number">5.</span> <span class="toc-text">Unit 18 认识系统服务(daemons)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unit-19-日志文件"><span class="toc-number">6.</span> <span class="toc-text">Unit 19 日志文件</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="su526664687" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/recursion/" title="recursion">recursion<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php-email/" title="php email">php email<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/go/" title="go">go<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/segment-tree/" title="segment_tree">segment_tree<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sort/" title="sort">sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/neuoj/" title="neuoj">neuoj<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flash/" title="flash">flash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/determinant/" title="determinant">determinant<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/template/" title="template">template<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WEB-security/" title="WEB security">WEB security<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/union-set/" title="union_set">union_set<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/stack/" title="stack">stack<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/heap/" title="heap">heap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/priority-queure/" title="priority_queure">priority_queure<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/binary-index-tree/" title="binary_index_tree">binary_index_tree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/deep-learning/" title="deep_learning">deep_learning<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u014451076/" target="_blank" title="My CSDN">My CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Sjming in NEU. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/su526664687" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/sjming" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:sujinming0125@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Sjming">Sjming</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"su526664687"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

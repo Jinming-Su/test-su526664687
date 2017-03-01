@@ -1,0 +1,696 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>html5特性解读 | Sjming&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Sjming">
+    
+
+    
+    <meta name="description" content="...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html5特性解读">
+<meta property="og:url" content="http://www.sjming.net/2017/03/02/Articles/WEB/HCJ/html5特性解读/index.html">
+<meta property="og:site_name" content="Sjming's Blog">
+<meta property="og:description" content="...">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20095424/64a4c57c-a5e0-11e6-9d84-e63374c23b6b.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20095422/64a3122c-a5e0-11e6-97bb-c5cb0643814a.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20095421/64a12714-a5e0-11e6-993b-eeee4d2b123c.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20095419/64a017d4-a5e0-11e6-99f5-d348e913bb56.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20095420/64a0800c-a5e0-11e6-8d0e-dddf5b7c4c43.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20095423/64a4626c-a5e0-11e6-8046-4f2bc86b65e7.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20095426/6526876a-a5e0-11e6-8292-94acef750fd0.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20095425/64d87e44-a5e0-11e6-9274-618eea5d5260.png">
+<meta property="og:updated_time" content="2017-03-01T19:31:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="html5特性解读">
+<meta name="twitter:description" content="...">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/16068384/20095424/64a4c57c-a5e0-11e6-9d84-e63374c23b6b.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Sjming&#39;s Blog">Sjming&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Try doing and try to do</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.sjming.net">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/02/Articles/WEB/HCJ/html5特性解读/" title="html5特性解读" itemprop="url">html5特性解读</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-01T16:03:01.000Z" itemprop="datePublished"> 发表于 2017-03-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#结构化元素"><span class="toc-number">1.</span> <span class="toc-text">结构化元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容标记方法"><span class="toc-number">2.</span> <span class="toc-text">内容标记方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多媒体应用"><span class="toc-number">3.</span> <span class="toc-text">多媒体应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web应用程序"><span class="toc-number">4.</span> <span class="toc-text">Web应用程序</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>最近闲着没事，手痒看了一本html5的书，为了加强记忆，就准备总结一下html5的新增加的特性.</p>
+</blockquote>
+<h2 id="结构化元素"><a href="#结构化元素" class="headerlink" title="结构化元素"></a>结构化元素</h2><ul>
+<li>结构化元素严格地讲是标记给浏览器以及搜索引擎解析用的标签.在html4的编程过程中，包括我在内，都特别喜欢使用<code>&lt;div&gt;</code>，很早以前,那时候准备写一些前端，就去请教了weidiao学长，学长告诉我”其实前端很容易，一个div和一个span就够了”，学长的话影响我了很长的时间，我在之后的学习中一直按照这种方法进行布局和代码编写(学长对我的帮助是很大的).后来慢慢的代码写多了，开始有自己的感悟了，自己开始用类header,content,footer等去进行语义化布局.再后来，接触了html5.</li>
+<li><p>html5的结构化元素(以下几个含义过于简单，就不解释了)</p>
+<p>  |#|标签|<br>  |—-|—-|<br>  |1|<code>&lt;nav&gt;</code>|<br>  |2|<code>&lt;header&gt;</code>|<br>  |3|<code>&lt;article&gt;</code>|<br>  |4|<code>&lt;section&gt;</code>|<br>  |5|<code>&lt;aside&gt;</code>|<br>  |6|<code>&lt;footer&gt;</code>|</p>
+</li>
+</ul>
+<h2 id="内容标记方法"><a href="#内容标记方法" class="headerlink" title="内容标记方法"></a>内容标记方法</h2><ul>
+<li>html5新增加的内容标记方法，为了有效地处理日趋复杂的图文版本.</li>
+<li><p>绘图元素</p>
+<p>  |#|标签|作用|<br>  |—-|—-|—-|<br>  |1|<code>&lt;canvas&gt;</code>|参见下文说明.|</p>
+<ul>
+<li>说明： 在我原来的blog中有详细的介绍，如果近期有空，我会重新整理一份.</li>
+</ul>
+</li>
+<li><p>分组元素</p>
+<p>  |#|标签|作用|<br>  |—-|—-|—-|<br>  |1|<code>&lt;figure&gt;</code>|这个标签可以声明一组包含图片标题、信息的分组.浏览器会把<code>&lt;figure&gt;</code>内的所有元素（包括文字和图像）视为一个对象.|<br>  |2|<code>&lt;figcaption&gt;</code>|是<code>&lt;figure&gt;</code>的子标签，内部的文字代表图片的标题.</p>
+</li>
+<li><p>文字层级元素</p>
+<p>  |#|标签|作用|<br>  |—-|—-|—-|<br>  |1|<code>&lt;bdi&gt;</code>|防止在此标签中内的文字，可以具有独立的方向格式，适合用来标记方向不明的文字.比如拉丁文.|<br>  |2|<code>&lt;dialog&gt;</code>|使用此标签可以在画面中启动文字提示框.在chrome中测试有效，firefox暂时无效.<img src="https://cloud.githubusercontent.com/assets/16068384/20095424/64a4c57c-a5e0-11e6-9d84-e63374c23b6b.png" alt="screenshot from 2016-11-08 16-41-52">|<br>  |3|<code>&lt;mark&gt;</code>|将部分文字加上荧光标记.<img src="https://cloud.githubusercontent.com/assets/16068384/20095422/64a3122c-a5e0-11e6-97bb-c5cb0643814a.png" alt="screenshot from 2016-11-08 16-41-37">|<br>  |4|<code>&lt;ruby&gt;与&lt;rt&gt;/&lt;rp&gt;</code>|<code>&lt;rt&gt;/&lt;rp&gt;</code>都是<code>&lt;ruby&gt;</code>下的子标签，主要用于排版“注释”和“发音”，可将补充信息排版在主题的上方<img src="https://cloud.githubusercontent.com/assets/16068384/20095421/64a12714-a5e0-11e6-993b-eeee4d2b123c.png" alt="screenshot from 2016-11-08 16-43-47">.<code>&lt;rp&gt;</code>排版到右方.|<br>  |5|<code>&lt;time&gt;</code>|加注在此标签中的文字信息会被浏览器视为“时间格式”进行解析。若是使用datetime属性，代表在html中为此文字加上时间标志.|<br>  |6|<code>&lt;wbr&gt;</code>|代表可能发生的换行时机.|</p>
+</li>
+<li><p>交互式元素</p>
+<ul>
+<li><p><code>&lt;details&gt;与&lt;summary&gt;</code></p>
+<ul>
+<li>details与summary是一起使用的标签，配合可以设计出信息隐藏和展开的互动效果.</li>
+<li><p>举例</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;details&gt;  </div><div class="line">    &lt;summary&gt;NEU&lt;/summary&gt;  </div><div class="line">    &lt;p&gt;  </div><div class="line">      CS is the best major.  </div><div class="line">    &lt;/p&gt;  </div><div class="line">&lt;/details&gt;</div></pre></td></tr></table></figure>
+<p>  <img src="https://cloud.githubusercontent.com/assets/16068384/20095419/64a017d4-a5e0-11e6-99f5-d348e913bb56.png" alt="screenshot from 2016-11-08 16-56-07"></p>
+</li>
+</ul>
+</li>
+<li><p><code>&lt;menu&gt;与&lt;command&gt;</code></p>
+<ul>
+<li>放在command标签中的文字具有“按钮”功能，配合command的属性可以制定点击事件等.</li>
+<li><p>实例</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;menu&gt;  </div><div class="line">    &lt;command onclick=&quot;alert(456)&quot;&gt;123&lt;/command&gt;  </div><div class="line">&lt;/menu&gt;</div></pre></td></tr></table></figure>
+<p>  <img src="https://cloud.githubusercontent.com/assets/16068384/20095420/64a0800c-a5e0-11e6-8d0e-dddf5b7c4c43.png" alt="screenshot from 2016-11-08 17-00-56"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="多媒体应用"><a href="#多媒体应用" class="headerlink" title="多媒体应用"></a>多媒体应用</h2><ul>
+<li>html5增加的多媒体标签，让浏览器在播放影音时不需要安装额外的播放插件.</li>
+<li><code>&lt;audio&gt;</code><ul>
+<li>用法<br><code>&lt;audio controls autoplay loop&gt;not support&lt;/audio&gt;</code><br>其中controls属性代表用户可用音乐播放器的面板控制音频文件的播放，其他参数按字面意思理解.<br>图片6    </li>
+</ul>
+</li>
+<li><code>&lt;video&gt;</code><ul>
+<li>用法类似audio，增加参数post(预留字母的位置),height/width制定播放器的高度和宽度(单位：像素).</li>
+</ul>
+</li>
+<li><code>&lt;source&gt;</code><ul>
+<li>由于当今浏览器支持的视频格式不同，但是src属性只能指定一个视频格式，所以使用source标签，用来一次指派多种格式.</li>
+</ul>
+</li>
+<li><code>&lt;track&gt;</code><ul>
+<li>在video中加入track，可以为视频加载WebVTT字幕文件，播放器也会增加”cc”字幕选项.</li>
+<li>kind属性定义文字内容的类型，常用subtitles（对白的翻译）/captions（无声时所补充的信息）,src,srclang,label识别字幕文件的语言，会出现在字幕选择器的选单中,default制定优先加载的字幕文件，用于具有多种语言的字幕时.</li>
+</ul>
+</li>
+<li><code>&lt;embed&gt;</code><ul>
+<li>使用外部的播放程序嵌入网页来播放音频.浏览器会自动选择播放器.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Web应用程序"><a href="#Web应用程序" class="headerlink" title="Web应用程序"></a>Web应用程序</h2><ul>
+<li><p><code>&lt;datalist&gt;</code></p>
+<ul>
+<li>简单的说，就是为input添加下拉菜单</li>
+<li><p>实例</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">  &lt;input list=&quot;movie&quot;&gt;</div><div class="line">&lt;datalist id=&quot;movie&quot;&gt;</div><div class="line">  &lt;option value=&quot;123&quot;/&gt;</div><div class="line">  &lt;option value=&quot;456&quot;/&gt;</div><div class="line">  &lt;option value=&quot;789&quot;/&gt;</div><div class="line">&lt;/datalist&gt;</div></pre></td></tr></table></figure>
+<p><img src="https://cloud.githubusercontent.com/assets/16068384/20095423/64a4626c-a5e0-11e6-8046-4f2bc86b65e7.png" alt="screenshot from 2016-11-08 17-31-35"><br><img src="https://cloud.githubusercontent.com/assets/16068384/20095426/6526876a-a5e0-11e6-8292-94acef750fd0.png" alt="screenshot from 2016-11-08 17-31-49"></p>
+</li>
+</ul>
+</li>
+<li><code>&lt;keygen&gt;</code><ul>
+<li>在送出form数据时会产生一组验证秘钥，私钥会保存在客户端，公钥则会传输到服务端，可在需要验证身份时使用.</li>
+<li>属性<ul>
+<li>autofocus: 在网页加载时，自动获得focus</li>
+<li>disabled: 无法被选择</li>
+<li>form: 指定所属的formID</li>
+<li>id: 指定对象所属的ID</li>
+<li>keytype: 指定密钥的算法，有RSA,DSA,EC可选</li>
+<li>name: 数据字段名称</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>&lt;output&gt;</code><ul>
+<li>使用js输出计算后的结果，感觉用处一般，没遇到过这种场景</li>
+</ul>
+</li>
+<li><code>&lt;meter&gt;</code><ul>
+<li>显示统计表中的直方图</li>
+<li>用法<br>  <code>&lt;meter value=&quot;9&quot; min=&quot;0&quot; max=&quot;10&quot;&gt;9/10&lt;/meter&gt;</code><br>  <img src="https://cloud.githubusercontent.com/assets/16068384/20095425/64d87e44-a5e0-11e6-9274-618eea5d5260.png" alt="screenshot from 2016-11-08 18-19-32"></li>
+<li>属性<ul>
+<li>max/min/value</li>
+<li>当直方图无法显示时，会以文字代替</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>&lt;progress&gt;</code><ul>
+<li>和meter类似</li>
+</ul>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/WEB/">WEB</a>►<a class="article-category-link" href="/categories/WEB/HCJ/">HCJ</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/html5/">html5</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.sjming.net/2017/03/02/Articles/WEB/HCJ/html5特性解读/" data-title="html5特性解读 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/02/Articles/README/" title="">
+  <strong>上一篇：</strong><br/>
+  <span>
+  (no title)</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/02/Articles/WEB/web应用十大安全攻击/"  title="web应用十大安全攻击">
+ <strong>下一篇：</strong><br/> 
+ <span>web应用十大安全攻击
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/02/Articles/WEB/HCJ/html5特性解读/" data-title="html5特性解读" data-url="http://www.sjming.net/2017/03/02/Articles/WEB/HCJ/html5特性解读/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#结构化元素"><span class="toc-number">1.</span> <span class="toc-text">结构化元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容标记方法"><span class="toc-number">2.</span> <span class="toc-text">内容标记方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多媒体应用"><span class="toc-number">3.</span> <span class="toc-text">多媒体应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web应用程序"><span class="toc-number">4.</span> <span class="toc-text">Web应用程序</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="su526664687" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/recursion/" title="recursion">recursion<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php-email/" title="php email">php email<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/go/" title="go">go<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/segment-tree/" title="segment_tree">segment_tree<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sort/" title="sort">sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/neuoj/" title="neuoj">neuoj<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flash/" title="flash">flash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/determinant/" title="determinant">determinant<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/template/" title="template">template<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WEB-security/" title="WEB security">WEB security<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/union-set/" title="union_set">union_set<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/stack/" title="stack">stack<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/heap/" title="heap">heap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/priority-queure/" title="priority_queure">priority_queure<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/binary-index-tree/" title="binary_index_tree">binary_index_tree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/deep-learning/" title="deep_learning">deep_learning<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u014451076/" target="_blank" title="My CSDN">My CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Sjming in NEU. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/su526664687" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/sjming" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:sujinming0125@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Sjming">Sjming</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"su526664687"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

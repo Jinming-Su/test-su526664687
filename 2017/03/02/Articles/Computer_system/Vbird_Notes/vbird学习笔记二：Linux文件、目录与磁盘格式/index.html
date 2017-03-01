@@ -1,0 +1,684 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>vbird学习笔记二：Linux文件、目录与磁盘格式 | Sjming&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Sjming">
+    
+
+    
+    <meta name="description" content="《鸟哥的Linux私房菜》学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vbird学习笔记二：Linux文件、目录与磁盘格式">
+<meta property="og:url" content="http://www.sjming.net/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记二：Linux文件、目录与磁盘格式/index.html">
+<meta property="og:site_name" content="Sjming's Blog">
+<meta property="og:description" content="《鸟哥的Linux私房菜》学习笔记">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20964394/4ee17d74-bcac-11e6-9214-4708c47e774c.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20966421/26a35e32-bcb5-11e6-936d-df4bc3d523eb.png">
+<meta property="og:updated_time" content="2017-03-01T19:19:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vbird学习笔记二：Linux文件、目录与磁盘格式">
+<meta name="twitter:description" content="《鸟哥的Linux私房菜》学习笔记">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/16068384/20964394/4ee17d74-bcac-11e6-9214-4708c47e774c.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Sjming&#39;s Blog">Sjming&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Try doing and try to do</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.sjming.net">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记二：Linux文件、目录与磁盘格式/" title="vbird学习笔记二：Linux文件、目录与磁盘格式" itemprop="url">vbird学习笔记二：Linux文件、目录与磁盘格式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-01T16:01:01.000Z" itemprop="datePublished"> 发表于 2017-03-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-6-Linux的文件权限与目录配置"><span class="toc-number">1.</span> <span class="toc-text">Unit 6 Linux的文件权限与目录配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-8-Linux磁盘与文件系统管理"><span class="toc-number">2.</span> <span class="toc-text">Unit 8 Linux磁盘与文件系统管理</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>本部分内容牵涉到大量的命令，命令详解参见另一篇文章<a href="http://sjming.net/?p=164" target="_blank" rel="external">Linux命令进阶</a>.</p>
+</blockquote>
+<h2 id="Unit-6-Linux的文件权限与目录配置"><a href="#Unit-6-Linux的文件权限与目录配置" class="headerlink" title="Unit 6 Linux的文件权限与目录配置"></a>Unit 6 Linux的文件权限与目录配置</h2><ul>
+<li>用户与用户组<ul>
+<li>所有用户的账户信息记录在<code>/etc/passwd</code>, 个人密码记录在<code>/etc/shadow</code>.</li>
+<li>所有的组名记录在<code>/etc/group</code>，用户组管理密码记录在 <code>/ect/gshadow</code>.</li>
+</ul>
+</li>
+<li>Linux 文件权限<ul>
+<li>使用<code>ll</code>命令查看文件信息时<ul>
+<li>第一列是文件的类型与权限，第一个字符表示这个文件是目录、文件或链接文件等.d表示目录，-表示文件，l表示连接文件，b表示设备文件里面的可供存储的接口设备，c表示设备文件里面的串行端口设备例如键盘鼠标.</li>
+<li>第二列表示有多少文件名连接到此节点(i-node)</li>
+</ul>
+</li>
+<li>改变权限<ul>
+<li>chgrp/chown/chmod，参见<font color="blue"><a href="http://blog.csdn.net/u014451076/article/details/52965325" target="_blank" rel="external">http://blog.csdn.net/u014451076/article/details/52965325</a></font></li>
+</ul>
+</li>
+<li>文件与目录权限的意义<ul>
+<li>文件的w权限具有写入、编辑、新增、修改文件内容的权限，但是并不具有删除该文件本身的权限.</li>
+<li>目录的w权限表示具有更改目录结构列表的权限</li>
+<li>目录的x权限代表用户能否进入该目录成为工作目录,cd命令实质是change directory.这也是为什么赋予权限时通常使用755.</li>
+</ul>
+</li>
+<li>文件类型<ul>
+<li>普通文件-，分为纯文本文件(ASCII)、二进制文件(binary)、数据格式文件(data,通常需要用last打开).</li>
+<li>目录d</li>
+<li>连接文件l</li>
+<li>设备与设备文件，分为块设备文件(block)、字符(character).</li>
+<li>套接字(sockets)s，通常在<code>/var/run</code>这个目录中可以看到这种文件类型.</li>
+<li>管道(FIFO,pipo)p</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Linux目录配置<ul>
+<li><strong>FHS标准(Filesystem Hierarchy Stanard)</strong>: 目的是希望让用户可以了解到已安装软件通常放置于哪个目录下.</li>
+<li>根目录与开机有关，开机过程中只有根目录会被挂载，其他分区则在开机完成之后才会持续进行挂载.</li>
+<li><code>uname -r</code>　查看内核版本</li>
+<li><code>lsb_release -a</code>　查看distribution版本信息</li>
+</ul>
+</li>
+</ul>
+<h2 id="Unit-8-Linux磁盘与文件系统管理"><a href="#Unit-8-Linux磁盘与文件系统管理" class="headerlink" title="Unit 8 Linux磁盘与文件系统管理"></a>Unit 8 Linux磁盘与文件系统管理</h2><ul>
+<li>EXT2文件系统<ul>
+<li>磁盘分区复习，原文参考<a href="http://sjming.net/?p=161" target="_blank" rel="external">Linux规则与安装</a><ul>
+<li>扇区是最小的物理存储单位，每个扇区为512B；扇区组成柱面，柱面是分区的最小单位.</li>
+<li>第一个扇区十分重要，包括了硬盘主引导记录MBR和分区表.</li>
+<li>磁盘分区意即指定分区的起始位置与结束位置</li>
+<li>在Linux系统中，IDE硬盘最多有59个逻辑分区，SATA硬盘最多有11个逻辑分区.</li>
+</ul>
+</li>
+<li>文件系统<ul>
+<li><strong>物理块</strong>大小是最接近扇区的整数倍大小，在EXT2中，物理块的大小是可变化的.Ext2的物理块占一个或几个连续的扇区.物理块是数据在磁盘上的存取单位，也就是每进行一次I/O操作，最小传输的数据大小.</li>
+<li><strong>逻辑块</strong>是文件系统操作的基本单位.逻辑块是从0开始连续编号的，逻辑块与物理块相对.</li>
+<li>文件系统通常把文件的权限和属性放置到inode中，而把实际数据放置到datablock中.</li>
+<li>每个inode和block都有编号<ul>
+<li>super block: 记录此文件系统的整体信息，包括inode/block的总量、使用量、剩余量，以及文件系统的格式和相关信息等.</li>
+<li>inode: 记录文件的属性，一个文件占用一个inode，同时记录此文件的数据所在的block号码.</li>
+<li>block: 实际记录文件的内容，一个文件可能占用多个block.</li>
+</ul>
+</li>
+<li>在inode中记录block号码的文件系统，由于可以通过索引一次性找到所有的block，通常称为<strong>索引式文件系统</strong>；但是例如U盘采用FAT文件系统，没有inode的存在，只能通过链表指针的形式进行读取.</li>
+</ul>
+</li>
+<li>EXT2文件系统<ul>
+<li>文件系统一开始就将inode与block规划好了，除非重新格式化，否则inode与block固定后就不在变动.但是所有的inode和block放在一起管理数量太大，EXT2文件系统就划分出了<b>块组(block group)</b>进行管理.</li>
+<li>文件系统最前面有一个启动扇区(boot sector)，这个启动扇区可以安装引导装载程序.这正迎合了之前一篇文章中所说的，在每个分区中都可以有自己的引导加载程序，不过在现在的计算机系统中，一个分区不完全等价于一个文件系统，每个文件系统中都可以有自己的引导加载程序.</li>
+<li>EXT2文件系统示意图<br><img src="https://cloud.githubusercontent.com/assets/16068384/20964394/4ee17d74-bcac-11e6-9214-4708c47e774c.png" alt="1"><ul>
+<li>除第一个blockgroup外，其他blockgroup如果含有superblock，也只是第一个的备份.superblcok中还有一个validbit数值，用于记录该文件系统是(0)否(1)被挂载.</li>
+<li>inode节点通过多级级联方式，12个直接、1个间接、1个二间接、1个三间接来记录block的索引，能够容纳的最大的文件为16GB.</li>
+<li>EXT2文件系统支持的block大小有1KB,2KB,4KB三种.</li>
+<li>文件系统描述: 描述每个blockgroup的开始和结束的block号，以及说明每个区段(superblock,bitmap,inodemap,datablock)分别介于哪些block号之间.</li>
+<li>块对照表(block bitmap): 维护未用的块(回忆之前学过的成组链接法)</li>
+<li>inode对照表(inode bitmap)</li>
+<li>通常称superblock、*map为元数据，inodetable和datablock为数据存放区.</li>
+</ul>
+</li>
+<li>做个实践，使用dumpe2fs查看superblock的信息<code>sudo dumpe2fs -h /dev/sda5</code></li>
+</ul>
+</li>
+<li>日志文件系统<ul>
+<li>如果文件系统在运行的过程中，发生故障意外关闭等，导致实际属于与元数据不一致，则需要在开机时通过元数据和实际数据比对搜索整个文件系统进行修复.修复时间会很长.为了避免上述情况，产生了日志文件系统.</li>
+<li>日志文件系统会在文件系统中规划处一个块，专门记录写入或修订文件时的步骤.文件写入步骤变为：<ul>
+<li>预备: 当系统要写入一个文件时，先在日志文件记录块中记录某个文件准备要写入的信息.</li>
+<li>实际写入: 开始写入文件的权限与数据，开始更新metadata的数据.</li>
+<li>结束: 完成数据与metadata的更新后，在日志记录块单重完成该文件的记录.</li>
+</ul>
+</li>
+<li>在dumpe2fs的输出信息中，Journal部分就是日志部分的信息</li>
+<li>EXT2是标准文件系统，EXT3增加了日志功能.</li>
+</ul>
+</li>
+<li>VFS(虚拟文件系统)<ul>
+<li>Linux系统通过VFS这个内核功能去管理文件系统.<br><img src="https://cloud.githubusercontent.com/assets/16068384/20966421/26a35e32-bcb5-11e6-936d-df4bc3d523eb.png" alt="1"> </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>内存交换空间(swap)<ul>
+<li>CPU所读取的数据都来自内存，当内存不足的时候，为了后续程序的顺利运行，内存中暂时不使用的程序与数据就会被挪到SWAP中.</li>
+<li>使用物理分区/文件构建swap</li>
+</ul>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Computer-system/">Computer_system</a>►<a class="article-category-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux/">Linux</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记二：Linux文件、目录与磁盘格式/" data-title="vbird学习笔记二：Linux文件、目录与磁盘格式 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记三：学习shell和shell/" title="vbird学习笔记三：学习shell和shell">
+  <strong>上一篇：</strong><br/>
+  <span>
+  vbird学习笔记三：学习shell和shell</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记五：Linux系统管理员/"  title="vbird学习笔记五：Linux系统管理员">
+ <strong>下一篇：</strong><br/> 
+ <span>vbird学习笔记五：Linux系统管理员
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记二：Linux文件、目录与磁盘格式/" data-title="vbird学习笔记二：Linux文件、目录与磁盘格式" data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记二：Linux文件、目录与磁盘格式/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-6-Linux的文件权限与目录配置"><span class="toc-number">1.</span> <span class="toc-text">Unit 6 Linux的文件权限与目录配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-8-Linux磁盘与文件系统管理"><span class="toc-number">2.</span> <span class="toc-text">Unit 8 Linux磁盘与文件系统管理</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="su526664687" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/recursion/" title="recursion">recursion<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php-email/" title="php email">php email<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/go/" title="go">go<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/segment-tree/" title="segment_tree">segment_tree<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sort/" title="sort">sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/neuoj/" title="neuoj">neuoj<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flash/" title="flash">flash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/determinant/" title="determinant">determinant<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/template/" title="template">template<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WEB-security/" title="WEB security">WEB security<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/union-set/" title="union_set">union_set<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/stack/" title="stack">stack<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/heap/" title="heap">heap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/priority-queure/" title="priority_queure">priority_queure<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/binary-index-tree/" title="binary_index_tree">binary_index_tree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/deep-learning/" title="deep_learning">deep_learning<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u014451076/" target="_blank" title="My CSDN">My CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Sjming in NEU. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/su526664687" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/sjming" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:sujinming0125@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Sjming">Sjming</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"su526664687"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

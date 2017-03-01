@@ -1,0 +1,729 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>vbird学习笔记一：Linux规则与安装 | Sjming&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Sjming">
+    
+
+    
+    <meta name="description" content="《鸟哥的Linux私房菜》学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vbird学习笔记一：Linux规则与安装">
+<meta property="og:url" content="http://www.sjming.net/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记一：Linux规则与安装/index.html">
+<meta property="og:site_name" content="Sjming's Blog">
+<meta property="og:description" content="《鸟哥的Linux私房菜》学习笔记">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20914907/9d93edb6-bbbd-11e6-804f-fc4124d5ba86.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20918313/5a8cb174-bbd1-11e6-831d-47a56c40e604.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20932648/51dea944-bc10-11e6-9dc5-3533910628ab.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20932783/cb1b88e0-bc10-11e6-9588-fced1e2291b9.png">
+<meta property="og:updated_time" content="2017-03-01T19:19:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vbird学习笔记一：Linux规则与安装">
+<meta name="twitter:description" content="《鸟哥的Linux私房菜》学习笔记">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/16068384/20914907/9d93edb6-bbbd-11e6-804f-fc4124d5ba86.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Sjming&#39;s Blog">Sjming&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Try doing and try to do</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.sjming.net">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记一：Linux规则与安装/" title="vbird学习笔记一：Linux规则与安装" itemprop="url">vbird学习笔记一：Linux规则与安装</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-01T16:01:01.000Z" itemprop="datePublished"> 发表于 2017-03-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#名词解析"><span class="toc-number">1.</span> <span class="toc-text">名词解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-0-计算机概述"><span class="toc-number">2.</span> <span class="toc-text">Unit 0 计算机概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-1-Linux是什么"><span class="toc-number">3.</span> <span class="toc-text">Unit 1 Linux是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-3-主机规划与磁盘分区"><span class="toc-number">4.</span> <span class="toc-text">Unit 3 主机规划与磁盘分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-5-首次登录与在线求助man-page"><span class="toc-number">5.</span> <span class="toc-text">Unit 5 首次登录与在线求助man page</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="名词解析"><a href="#名词解析" class="headerlink" title="名词解析"></a>名词解析</h2><ul>
+<li><strong>SELinux</strong>: Security-Enhanced Linux.一种访问控制体系，在这种访问控制体系的限制下，进程只能访问那些在他的任务中所需要文件SELinux 默认安装在 Fedora 和 Red Hat Enterprise Linux 上，也可以作为其他发行版上容易安装的包得到.</li>
+<li>昆山科技大学: 位于台南市永康区大湾里即古称“鲫鱼潭”故址，鸟哥现在教学的地方.</li>
+<li>寄存器的物理成分是D触发器，cache的物理成分是SRAM，主存的物理成分是DRAM；SRAM的物理成分是CMOS, DRAM的物理成分是晶体管加电容；CMOS是场效应管的一种；场效应管属于晶体管.</li>
+<li><strong>PIN</strong>: 外接电源中, PIN其实就是针脚，6PIN那就是6个针脚的</li>
+</ul>
+<h2 id="Unit-0-计算机概述"><a href="#Unit-0-计算机概述" class="headerlink" title="Unit 0 计算机概述"></a>Unit 0 计算机概述</h2><ul>
+<li>综述<ul>
+<li><strong>计算机硬件的五大单元</strong>：运算器、控制器、存储器、输入设备、输出设备</li>
+<li><strong>控制存储器</strong>: 一条机器指令往往分成几步执行，将每一步操作所需的若干位命令以代码形式编写在一条微指令中，若干条微指令组成一段微程序，对应一条机器指令。在设计CPU时，根据指令系统的需要，事先编制好各段微程序，且将它们存入一个专用存储器（称为控制存储器）中.</li>
+<li><strong>指令</strong>: 汇编语言的每条语句即汇编指令(助记符)都和机器指令(机器码)一一对应<br>微程序: 每条机器指令(汇编指令) 都由一个微程序组成，这个微程序包含多条微指令，实质是若干位信号的编码<br>可参考《东北大学计算机组成原理课程设计》<font color="blue"><a href="http://wenku.baidu.com/link?url=2zK-TRbQzCLJhfaZp9MiA6tgiEJE2p7b8q5_eph7lYbdTe9wJkNzLtOB7hEL7UkoJf8_KJfudf9GGxQKXXqY4JKqfPbzJwOiH1KAQOKAm5S" target="_blank" rel="external">http://wenku.baidu.com/link?url=2zK-TRbQzCLJhfaZp9MiA6tgiEJE2p7b8q5_eph7lYbdTe9wJkNzLtOB7hEL7UkoJf8_KJfudf9GGxQKXXqY4JKqfPbzJwOiH1KAQOKAm5S</a></font></li>
+</ul>
+</li>
+<li>计算机架构和接口设备<ul>
+<li><strong>不同的x86架构cpu的区别</strong>: 主要在于微指令集的不同，新的x86的cpu大多包含许多先进的微指令集</li>
+<li><strong>Intel主板架构</strong>: 整个主板上面最重要的就是芯片组了!而芯片组通常又分为两个网桥来控制各组件的沟通, 分别是: (1)北桥: 负责链接速度较快的CPU、 主存储器与显示适配器等组件（CPU/RAM/VGA）;(2)南桥:负责连接速度较慢的周边接口, 包括硬盘、USB、网络卡等等（PCI 接口与速度较慢的 I/O 装置）</li>
+<li><strong>AMD主板架构</strong>: Intel不同的地方在于主存储器是直接与CPU沟通而不透过北桥，AMD 为了加速这两者的沟通,所以将内存控制组件整合到 CPU 当中, 理论上这样可以加速 CPU 不主存储器的传输速（关于AMD和intel的cpu在架构上的主要差异点也正是这样）</li>
+<li><strong>频率、外频、倍频</strong>: 频率是指CPU每秒钟可以进行的工作次数；外频指的是 CPU 与外部组件进行数据传输时的速度,倍频则是 CPU 内部用来加速工作效能的一个倍数, 两者相乘才是 CPU 的频率速度</li>
+<li><strong>32位和64位</strong>: 一般主板芯片组有分北桥与南桥, 北桥癿总线称为系统总线,因为是内存传输癿主要信道,所以速度较快；南桥就是所谓的输入输出(I/O)总线,主要在联系硬盘、USB、网络卡等接口设备。北桥每次传送的位数就是总线宽度。现在所称的计算机是 32 或 64 位主要是依据CPU 解析的字组大小而来的，即通用寄存器的位宽.</li>
+<li><strong>CPU等级</strong>: i386，i586，i686是根据不同时代对CPU的规范等级，目前的64位CPU统称为x86_64等级.</li>
+<li><strong>DDR内存</strong>: 双倍数据传送速度(Double Data Rate), 它可以在一次工作周期中进行两次数据的传送,感觉上就好像是 CPU 的倍频.</li>
+<li><strong>双通道</strong>: 传统的总线宽度一般大约仅达 64 位,为了要加大这个宽度,因此芯片组厂商就将两个主存储器汇整在一起, 如果一支内存可达 64 位,两支内存就可以达到 128 位了,这就是双通道的设计理念.</li>
+<li><strong>BIOS</strong>: BIOS(Basic Input Output System)是一套程序,这套程序是写死到主板上面的一个内存芯片中, 这个内存芯片在没有通电时也能够将数据记录下来,那就是只读存储器(Read Only Memory, ROM)，通常使用CMOS.BIOS是一种韧体(韧体就是写入到硬件中的软件程序).BIOS是开机时计算机系统会主动执行的第一个程序.</li>
+<li><strong>显存、GPU</strong>: 显示适配器又称为 VGA(Video Graphics Array),他对亍图形影像的显示扮演关键的角色.一般对于图形影像的显示重点在y于分辨率与颜色深度,因为每个图像显示的颜色会占用掉内存，所以具有了”显存”，由于3D动画等对运算能力的要求，就出现了”GPU”.</li>
+<li><strong>磁盘缓冲存储器</strong>：主要可以将硬盘内常使用的数据快取起来,以加速系统的读取效能，目前主流的产品可达 16MB 左史的内存大小.</li>
+<li>主板功能<pre><code>* 芯片组功能
+* 设备I/O地址和IRQ中断信道  
+    每个计算机组件都有唯一的一个I/O地址，各装置可以透过 IRQ 中断信道来告知 CPU 该装置的工作情况.
+* CMOS和BIOS
+</code></pre>　        CMOS 主要癿功能为记录主板上面的重要参数, 包括系统时间、CPU 电压与频率、各项设备的 I/O 地址与 IRQ 等,由于这些数据的记录要花费电力,因此主板上面才有电池。BIOS 为写入到主板上某一块 flash 或 EEPROM癿程序,他可以在开机的时候执行,以加载CMOS 当中的参数, 并尝试调用存储设备中的开机程序,进进入操作统当中.<pre><code>* 连接设备
+</code></pre>比如PS/2(过时的键盘鼠标接口), USB，声音输入输入与麦克风，RU-45接口等</li>
+</ul>
+</li>
+<li>文字编码系统<ul>
+<li>这篇文章讲的特别好和全面<font color="blue"><a href="https://www.zhihu.com/question/23374078" target="_blank" rel="external">https://www.zhihu.com/question/23374078</a></font></li>
+</ul>
+</li>
+<li>操作系统<ul>
+<li>内核程序所防止到内存当中的区块是受保护的，并且开机后就一直常驻在内存当中.</li>
+<li>计算机系统主要由硬件构成，内核程序主要用于管理硬件，提供合理的计算机系统资源分配，包括CPU资源和内存使用等，因此<b>只要硬件不同，内核就要进行修改才行</b>.(可以想象arm架构几乎不可能安装windows)<img src="https://cloud.githubusercontent.com/assets/16068384/20914907/9d93edb6-bbbd-11e6-804f-fc4124d5ba86.png" alt="1"></li>
+<li>通常操作系统除了内核程序以外，还会提供一整组开发接口，那就是系统调用层.</li>
+<li>内核至少功能<pre><code>* 系统调用接口
+* 进程管理
+* 内存管理
+* 文件系统管理
+* 设备驱动接口(驱动程序是由厂商提供的，操作系统只需要提供开发接口)
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="Unit-1-Linux是什么"><a href="#Unit-1-Linux是什么" class="headerlink" title="Unit 1 Linux是什么"></a>Unit 1 Linux是什么</h2><ul>
+<li>Linux是什么<ul>
+<li>早起的Linux是针对386来开发的</li>
+<li>纯种的Unix: System V和BSD</li>
+<li><strong>GNU</strong>: (GNU’s Not Unix)目的是创建一个自由、开放的UNIX操作系统</li>
+<li><strong>FSF</strong>: 自由软件基金会，目的是更多的工程师与志愿者来开发UNIX软件</li>
+<li><strong>GPL</strong>: 通用公共许可证, 目的是避免GNU所开发的自由软件被其他人所利用成为专利软件</li>
+<li><strong>Free Software</strong>: 自由并不是指价格的免费，而是指对软件的自由度，使用者可以自由癿执行、复制、再发行、学习、修改与强化自由软件</li>
+</ul>
+</li>
+<li>Tirvakds的Linux开发<ul>
+<li>POSIX(Portable Operating System Interface),重点在于规范内核与应用程序之间的接口，由IEEE发布</li>
+<li>一张图看懂主流开源协议，传送门<font color="blue"><a href="http://www.ruanyifeng.com/blog/2011/05/how_to_choose_free_software_licenses.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2011/05/how_to_choose_free_software_licenses.html</a></font></li>
+</ul>
+</li>
+</ul>
+<h2 id="Unit-3-主机规划与磁盘分区"><a href="#Unit-3-主机规划与磁盘分区" class="headerlink" title="Unit 3 主机规划与磁盘分区"></a>Unit 3 主机规划与磁盘分区</h2><ul>
+<li>Linux与硬件的搭配<ul>
+<li>在linux系统中，几乎所有的设备文件都在/dev这个目录内.</li>
+<li>各硬件设备在linux中的文件名<img src="https://cloud.githubusercontent.com/assets/16068384/20918313/5a8cb174-bbd1-11e6-831d-47a56c40e604.png" alt="1"> </li>
+<li>IDE接口设备的命名是事先定好的，SATA接口设备要根据Linux内核检测到的顺序命名.</li>
+</ul>
+</li>
+<li>磁盘分区<ul>
+<li>磁盘的第一个扇区记录了两个重要的信息:<pre><code>* 主引导分区(Master Boot Record, MBR) 可以安装引导加载程序的地方，有446bytes.
+* 分区表(partition table): 记录整块磁盘分区的状态，64bytes.
+</code></pre></li>
+<li>磁盘分区表<pre><code>* 在磁盘分区表的64bytes区域中,又分为四组记录区（对应磁盘的四个主分区或逻辑分区P + E &lt;= 4），每组记录区记录了该区段的起始与结束的柱面号,因此柱面是分区的最小单位.四个分区的文件名为/dev/hda1, /dev/hda2, /dev/hda3, /dev/hda4
+* 为了实现更多的分区(多于4个)，需要使用扩展分区，&lt;b&gt;扩展分区的目的是使用额外的扇区来记录分区信息，扩展分区无法被格式化.&lt;/b&gt;有扩展分区分出来的区称为逻辑分区.逻辑分区编号从/dev/hd5开始.
+* 扩展分区只能有一个(操作系统的限制)
+</code></pre></li>
+<li>开机流程<pre><code>* BIOS: 开机主动执行的韧体，会认识第一个可开机的设备.
+* MBR: 第一个可开机设备的第一个扇区内的主引导分区块，内包含引导加载程序.
+* 引导加载程序(Boot Loader): 一支可读取内核文件来执行的软件,例如grub.
+* 内核文件: 开始操作系统的功能.
+</code></pre></li>
+<li>Boot Loader是操作系统安装在MBR上的一套软件.主要功能:<pre><code>* 提供开机选项菜单
+* 载入内核文件
+* 转交其他loader,loader只会认识自己的系统分区内的可开机内核文件和其他分区的loader
+</code></pre></li>
+<li>为什么通常在装双系统时，先win后ub则引导加载存在，而先ub后win就直接进入windows?<pre><code>* 原因是windows会自动覆盖掉MBR，以及自己所在分区的启动扇区(loader)，而linux可以手动设置和添加启动选项.
+</code></pre></li>
+</ul>
+</li>
+<li>Linux企业级用途<ul>
+<li>NAT(Network Address Translation)<pre><code>* 当在专用网内部的一些主机本来已经分配到了本地IP地址（即仅在本专用网内使用的专用地址），但现在又想和因特网上的主机通信（并不需要加密）时，可使用NAT方法.所有使用本地地址的主机在和外界通信时，都要在NAT路由器上将其本地地址转换成全球IP地址，才能和因特网连接.
+</code></pre></li>
+<li>SAMBA<pre><code>* 是实现一种在局域网上共享文件和打印机的一种通信协议的免费软件，相当于windows网上邻居的增强版
+</code></pre></li>
+<li>Mail(邮箱服务器)</li>
+<li>Web(WWW服务器)</li>
+<li>DHCP(Dynamic Host Configuration Protocol，动态主机配置协议)<pre><code>* 提供客户端自动获取IP的功能
+</code></pre></li>
+<li>Proxy(代理服务器)<pre><code>* &lt;font color=&quot;blue&quot;&gt;http://www.open-open.com/lib/view/open1438605096114.html&lt;/font&gt;自己尝试在腾讯云服务器上搭建了一个VPN服务器，安卓可以连接.
+</code></pre></li>
+<li>FTP</li>
+</ul>
+</li>
+</ul>
+<h2 id="Unit-5-首次登录与在线求助man-page"><a href="#Unit-5-首次登录与在线求助man-page" class="headerlink" title="Unit 5 首次登录与在线求助man page"></a>Unit 5 首次登录与在线求助man page</h2><ul>
+<li>命令行模式<ul>
+<li>命令行模式又称为终端界面(termial)</li>
+<li>Linux默认提供6个terminal(tty1-tty6)让用户登录，如果安装了x window，则增加一个tty7图形用户界面,通过<code>ctrl + alt + Fx</code>进行切换.</li>
+<li>运行等级: Linux默认提供7个run level，tty1-tty6运行等级为3, tty7运行等级是5.</li>
+<li><code>cat /etc/issue</code> 查看当前发行版版本</li>
+</ul>
+</li>
+<li>在命令行模式下执行命令<ul>
+<li>date</li>
+<li>cal</li>
+<li>bc</li>
+<li>ctrl+d === exit</li>
+</ul>
+</li>
+<li>Linux系统的在线求助man page和info page<ul>
+<li>man cmd<br><img src="https://cloud.githubusercontent.com/assets/16068384/20932648/51dea944-bc10-11e6-9dc5-3533910628ab.png" alt="1"><br>可以通过<code>man {1-9} man</code>获得更详细的说明</li>
+<li>man page内容包括以下部分<br><img src="https://cloud.githubusercontent.com/assets/16068384/20932783/cb1b88e0-bc10-11e6-9588-fced1e2291b9.png" alt="1"></li>
+<li>通常mann page中的数据保存在/usr/share/man下</li>
+<li>man -f cmd 和 man -k cmd<pre><code>* -f 根据关键字在联机帮助中搜索完全匹配的条目
+* -k 根据关键字搜索联机帮助
+</code></pre></li>
+<li>info命令的作用和用法与man类似，添加了超链接功能，不过感觉比较难用，原因是man用法和vim相似，而info完全不同，数据保存在/usr/share/info下.</li>
+</ul>
+</li>
+<li>其他文档<ul>
+<li>一些帮助文件放在/usr/share/doc下</li>
+</ul>
+</li>
+<li>“超简单”的文本编辑器nano</li>
+<li>关机相关命令<ul>
+<li>who(查看在线)/netstat -a(查看网络的联机状态)/ps -aux(查看后台执行程序)</li>
+<li>sync</li>
+<li>shut [-t 秒] [参数] 时间 [警告信息]</li>
+<li>reboot/halt/poweroff</li>
+<li>init (切换运行等级)<pre><code>* 补充两个运行等级run level 0(关机)、run level 6(重启)，用法例如`init 0`就进行了关机.
+</code></pre></li>
+</ul>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Computer-system/">Computer_system</a>►<a class="article-category-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux/">Linux</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记一：Linux规则与安装/" data-title="vbird学习笔记一：Linux规则与安装 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/02/Articles/Computer_system/在bochs上使用freedos运行.com文件/" title="在bochs上使用freedos运行.com文件">
+  <strong>上一篇：</strong><br/>
+  <span>
+  在bochs上使用freedos运行.com文件</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记三：学习shell和shell/"  title="vbird学习笔记三：学习shell和shell">
+ <strong>下一篇：</strong><br/> 
+ <span>vbird学习笔记三：学习shell和shell
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记一：Linux规则与安装/" data-title="vbird学习笔记一：Linux规则与安装" data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记一：Linux规则与安装/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#名词解析"><span class="toc-number">1.</span> <span class="toc-text">名词解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-0-计算机概述"><span class="toc-number">2.</span> <span class="toc-text">Unit 0 计算机概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-1-Linux是什么"><span class="toc-number">3.</span> <span class="toc-text">Unit 1 Linux是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-3-主机规划与磁盘分区"><span class="toc-number">4.</span> <span class="toc-text">Unit 3 主机规划与磁盘分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-5-首次登录与在线求助man-page"><span class="toc-number">5.</span> <span class="toc-text">Unit 5 首次登录与在线求助man page</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="su526664687" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/recursion/" title="recursion">recursion<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php-email/" title="php email">php email<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/go/" title="go">go<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/segment-tree/" title="segment_tree">segment_tree<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sort/" title="sort">sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/neuoj/" title="neuoj">neuoj<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flash/" title="flash">flash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/determinant/" title="determinant">determinant<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/template/" title="template">template<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WEB-security/" title="WEB security">WEB security<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/union-set/" title="union_set">union_set<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/stack/" title="stack">stack<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/heap/" title="heap">heap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/priority-queure/" title="priority_queure">priority_queure<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/binary-index-tree/" title="binary_index_tree">binary_index_tree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/deep-learning/" title="deep_learning">deep_learning<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u014451076/" target="_blank" title="My CSDN">My CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Sjming in NEU. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/su526664687" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/sjming" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:sujinming0125@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Sjming">Sjming</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"su526664687"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

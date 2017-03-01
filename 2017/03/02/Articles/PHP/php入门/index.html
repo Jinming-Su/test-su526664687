@@ -1,0 +1,816 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>php入门 | Sjming&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Sjming">
+    
+
+    
+    <meta name="description" content="...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php入门">
+<meta property="og:url" content="http://www.sjming.net/2017/03/02/Articles/PHP/php入门/index.html">
+<meta property="og:site_name" content="Sjming's Blog">
+<meta property="og:description" content="...">
+<meta property="og:updated_time" content="2017-03-01T19:31:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php入门">
+<meta name="twitter:description" content="...">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Sjming&#39;s Blog">Sjming&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Try doing and try to do</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.sjming.net">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/02/Articles/PHP/php入门/" title="php入门" itemprop="url">php入门</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-01T16:02:01.000Z" itemprop="datePublished"> 发表于 2017-03-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP"><span class="toc-number">1.</span> <span class="toc-text">PHP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一个程序"><span class="toc-number">1.2.</span> <span class="toc-text">第一个程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础知识"><span class="toc-number">1.3.</span> <span class="toc-text">基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">1.4.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量"><span class="toc-number">1.5.</span> <span class="toc-text">常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串"><span class="toc-number">1.6.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-number">1.7.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符"><span class="toc-number">1.8.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构语句"><span class="toc-number">1.9.</span> <span class="toc-text">结构语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-number">1.10.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命名空间"><span class="toc-number">1.11.</span> <span class="toc-text">命名空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面向对象"><span class="toc-number">1.12.</span> <span class="toc-text">面向对象</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1><h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><ul>
+<li>xampp</li>
+<li>phpstorm</li>
+<li>ubuntu 14.04</li>
+</ul>
+<h2 id="第一个程序"><a href="#第一个程序" class="headerlink" title="第一个程序"></a>第一个程序</h2><blockquote>
+<p>注意一个比较坑的地方，开始的时候，我把自己的工程放在/opt/lampp/apache2/htdocs（这个地方也是大家在使用apache2服务器时常用的地方），试了好久都不能执行，开始的时候还以为是权限的问题，试了一下也没有解决.最后发现应该把项目放在/opt/lanmpp/htdocs.</p>
+</blockquote>
+<ul>
+<li><p>第一个php程序</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;?php</div><div class="line">        echo &quot;Hello sjming&quot;;</div><div class="line">    ?&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul>
+<li>php脚本在服务器上执行，把纯html结果发回给浏览器</li>
+<li>变量是用来存储数据的容器</li>
+<li>”var_dump”函数可以打印变量的数据类型和值,本身具有换行，可以输出数组，注意和print_r及echo的区别：var_dump() 能打印出类型和值,print_r() 只能打出值，echo不能打印数组，前两个可以</li>
+<li>PHP_EOL 为换行符</li>
+</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ul>
+<li><p>变量</p>
+<ul>
+<li>命名规则<ul>
+<li>变量必须首字母为$,以字母或下划线 “_”开头</li>
+<li>只能由字母、数字、以及“_”组成，还能包含汉字</li>
+<li>区分大小写</li>
+</ul>
+</li>
+<li>作用域<ul>
+<li>local和global</li>
+<li>static</li>
+<li>parameter</li>
+</ul>
+</li>
+<li><p>测试local和global</p>
+<blockquote>
+<p>注意的一点:在所有函数外部定义的变量，拥有全局作用域。除了函数外，全局变量可以被脚本中的任何部分访问，要在一个函数中访问一个全局变量，需要使用 global 关键字.</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$x=5; // 全局变量</div><div class="line"></div><div class="line">function myTest()</div><div class="line">&#123;</div><div class="line">    $y=10; // 局部变量</div><div class="line">    echo &quot;&lt;p&gt;测试函数内变量:&lt;p&gt;&quot;;</div><div class="line">    echo &quot;变量 x 为: $x&quot;;</div><div class="line">    global $x;</div><div class="line">    echo &quot;变量 x(+global) 为: $x&quot;;</div><div class="line">    echo &quot;&lt;br&gt;&quot;;</div><div class="line">    echo &quot;变量 y 为: $y&quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">myTest();</div><div class="line"></div><div class="line">echo &quot;&lt;p&gt;测试函数外变量:&lt;p&gt;&quot;;</div><div class="line">echo &quot;变量 x 为: $x&quot;;</div><div class="line">echo &quot;&lt;br&gt;&quot;;</div><div class="line">echo &quot;变量 y 为: $y&quot;;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//测试结果</div><div class="line">测试函数内变量:</div><div class="line">    </div><div class="line">Notice: Undefined variable: x in /opt/lampp/htdocs/test-php/index.php on line 8</div><div class="line">变量 x 为: 变量 x(+global) 为: 5</div><div class="line">变量 y 为: 10</div><div class="line"></div><div class="line">测试函数外变量:</div><div class="line"></div><div class="line">变量 x 为: 5</div><div class="line"></div><div class="line">Notice: Undefined variable: y in /opt/lampp/htdocs/test-php/index.php on line 20</div><div class="line">变量 y 为:</div></pre></td></tr></table></figure>
+
+&gt; 还有一种global变量的使用方法:PHP 将所有全局变量存储在一个名为 $GLOBALS[index] 的数组中，可以直接使用.
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$x=5;</div><div class="line">$y=10;</div><div class="line"></div><div class="line">function myTest()</div><div class="line">&#123;</div><div class="line">    $GLOBALS[&apos;y&apos;]=$GLOBALS[&apos;x&apos;]+$GLOBALS[&apos;y&apos;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">myTest();</div><div class="line">echo $y;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+
+* 测试static
+&gt; 想象一种场景:当一个函数完成时，它的所有变量通常都会被删除。然而，有时候您希望某个局部变量不要被删除。这种情况下就可以借助static关键字,在变量的第一次声明时使用static.
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    </div><div class="line">function myTest()</div><div class="line">&#123;</div><div class="line">static $x=0;</div><div class="line">echo $x;</div><div class="line">$x++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">myTest();</div><div class="line">myTest();</div><div class="line">myTest();</div><div class="line"></div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//测试结果</div><div class="line">012</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li>超级全局变量<ul>
+<li>列表<ul>
+<li>$GLOBALS</li>
+<li>$_SERVER</li>
+<li>$_REQUEST</li>
+<li>$_POST</li>
+<li>$_GET</li>
+<li>$_FILES</li>
+<li>$_ENV</li>
+<li>$_COOKIE</li>
+<li>$_SESSION</li>
+</ul>
+</li>
+<li>$_SERVER 是一个包含了诸如头信息(header)、路径(path)、以及脚本位置(script locations)等等信息的数组。这个数组中的项目由 Web 服务器创建.具体查阅<a href="http://www.runoob.com/php/php-superglobals.html" target="_blank" rel="external">http://www.runoob.com/php/php-superglobals.html</a></li>
+<li>$_REQUEST 用于收集HTML表单提交的数据</li>
+<li>$_POST 被广泛应用于收集表单数据，在HTML form标签的指定该属性：”method=”post”</li>
+<li>剩余的在后文介绍</li>
+</ul>
+</li>
+<li><p>数据类型</p>
+<ul>
+<li>分类<ul>
+<li>String</li>
+<li>Integer</li>
+<li>Float</li>
+<li>Boolean</li>
+<li>Array</li>
+<li>Object</li>
+<li>NULL<blockquote>
+<p>注意：Boolean：当我们用”echo”指令输出布尔类型时，如果是“true”则输出的是“1”，“false”则什么也不输出</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>测试Array</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    $cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);</div><div class="line">    echo &apos;var_dump:&lt;br&gt;&apos;;</div><div class="line">    var_dump($cars);</div><div class="line">    echo &apos;&lt;br&gt;print_r:&lt;br&gt;&apos;;</div><div class="line">    print_r($cars);</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//测试结果</div><div class="line">var_dump:</div><div class="line">array(3) &#123; [0]=&gt; string(5) &quot;Volvo&quot; [1]=&gt; string(3) &quot;BMW&quot; [2]=&gt; string(6) &quot;Toyota&quot; &#125;</div><div class="line">print_r:</div><div class="line">Array ( [0] =&gt; Volvo [1] =&gt; BMW [2] =&gt; Toyota )</div></pre></td></tr></table></figure>
+</li>
+<li><p>php对象就是php面向对象编程中的类的实例</p>
+</li>
+</ul>
+</li>
+<li><p>输出方式:echo和print语句</p>
+<ul>
+<li>区别<br>  echo - 可以输出一个或多个字符串,print - 只允许输出一个字符串，返回值总为1.echo 输出的速度比 print 快， echo 没有返回值.</li>
+<li>echo<ul>
+<li>echo 是一个语言结构,可以说不是一个函数</li>
+<li>由于上一条，所以格式: echo 或 echo()</li>
+<li>echo可以直接输出html标签，多个参数用逗号隔开</li>
+</ul>
+</li>
+<li><p>测试echo</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    echo &quot;&lt;h2&gt;PHP is fun!&lt;/h2&gt;&quot;;</div><div class="line">    echo &quot;This&quot;, &quot; string&quot;, &quot; was&quot;, &quot; made&quot;, &quot; with multiple parameters.&quot;;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>print同样是一个语言结构，也有两种输出格式.除了上边所述区别外，完全相同.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><blockquote>
+<p>注意：常量名不需要加 $ 修饰符;常量在定义后，默认是全局变量</p>
+</blockquote>
+<ul>
+<li>语法（必须使用define定义）<br>  <code>bool define ( string $name , mixed $value [, bool $case_insensitive = false ] )</code></li>
+<li><p>测试区分默认区分大小写</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    // 区分大小写的常量名</div><div class="line">    define(&quot;GREETING&quot;, &quot;欢迎访问 Runoob.com&quot;);</div><div class="line">    echo GREETING;    // 输出 &quot;欢迎访问 Runoob.com&quot;</div><div class="line">    echo &apos;&lt;br&gt;&apos;;</div><div class="line">    echo greeting;   // 输出 &quot;greeting&quot;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>魔术常量(也有叫’魔术变量’的)</p>
+<ul>
+<li>有八个魔术常量它们的值随着它们在代码中的位置改变而改变</li>
+<li><p>使用例子学习</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    namespace MyProject;</div><div class="line">    //__LINE__</div><div class="line">    echo &apos;这是第 “ &apos;  . __LINE__ . &apos; ” 行&lt;br&gt;&apos;;</div><div class="line">    //__FILE__</div><div class="line">    echo &apos;该文件位于 “ &apos;  . __FILE__ . &apos; ”&lt;br&gt;&apos;;</div><div class="line">    //__DIR__</div><div class="line">    echo &apos;该文件位于 “ &apos;  . __DIR__ . &apos; ” &lt;br&gt;&apos;; //相当于dirname(__FILE__)</div><div class="line">    //__FUNCTION__</div><div class="line">    function test() &#123;</div><div class="line">        echo  &apos;函数名为：&apos; . __FUNCTION__ . &apos;&lt;br&gt;&apos;;</div><div class="line">    &#125;</div><div class="line">    test();</div><div class="line">    //__CLASS__</div><div class="line">    class test &#123;</div><div class="line">        function _print() &#123;</div><div class="line">            echo &apos;类名为：&apos;  . __CLASS__ . &quot;&lt;br&gt;&quot;;</div><div class="line">            echo  &apos;函数名为：&apos; . __FUNCTION__ .&apos;&lt;br&gt;&apos;;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    $t = new test();</div><div class="line">    $t-&gt;_print();</div><div class="line">    //__TRAIT__</div><div class="line">    class Base &#123;</div><div class="line">        public function sayHello() &#123;</div><div class="line">            echo &apos;Hello &apos;;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    trait SayWorld &#123;</div><div class="line">        public function sayHello() &#123;</div><div class="line">            parent::sayHello();</div><div class="line">            echo &apos;World!&apos;;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    class MyHelloWorld extends Base &#123;</div><div class="line">        use SayWorld;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    $o = new MyHelloWorld();</div><div class="line">    $o-&gt;sayHello();</div><div class="line">    //__METHOD__ 类似__FUNCTION__</div><div class="line">    //__NAMESPACE__</div><div class="line"></div><div class="line">    echo &apos;命名空间为：&quot;&apos;, __NAMESPACE__, &apos;&quot;&apos;;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//***测试结果***</div><div class="line">这是第 “ 4 ” 行</div><div class="line">该文件位于 “ /opt/lampp/htdocs/test-php/index.php ”</div><div class="line">该文件位于 “ /opt/lampp/htdocs/test-php ”</div><div class="line">函数名为：MyProject\test</div><div class="line">类名为：MyProject\test</div><div class="line">函数名为：_print</div><div class="line">Hello World!命名空间为：&quot;MyProject&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>说明：Traits 是一种为类似 PHP 的单继承语言而准备的代码复用机制</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2></li>
+</ul>
+</li>
+<li>并置运算符<br>  并置运算符 (.) 用于把两个字符串值连接起来</li>
+<li>strlen() 函数</li>
+<li>strpos() 函数<br>  用于在字符串内查找一个字符或一段指定的文本。如果在字符串中找到匹配，该函数会返回第一个匹配的字符位置。如果未找到匹配，则返回 FALSE。</li>
+<li><p>测试strpos()函数</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    echo strpos(&quot;Hello world!&quot;,&quot;world&quot;);</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>与字符串相关函数的还有很多，可以查阅<a href="http://www.runoob.com/php/php-ref-string.html" target="_blank" rel="external">PhpString参考手册</a>.其中比较常用的例如：</p>
+<ul>
+<li>bin2hex()/hex2bin()</li>
+<li>convert_uuencode()/convert_uudecode()</li>
+<li>crc32()</li>
+<li>crypt()</li>
+<li>md5()/md5_file()</li>
+</ul>
+</li>
+</ul>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ul>
+<li>分类<ul>
+<li>索引数组</li>
+<li>关联数组</li>
+</ul>
+</li>
+<li><p>赋值方式</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    //索引数组1</div><div class="line">    $cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);</div><div class="line">    //索引数组2</div><div class="line">    $arr[0]=&apos;苹果&apos;;</div><div class="line">    $arr[1]=&apos;橘子&apos;;</div><div class="line">    //关联数组1</div><div class="line">    $age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);</div><div class="line">    //关联数组2</div><div class="line">    $age[&apos;Peter&apos;]=&quot;35&quot;;</div><div class="line">    $age[&apos;Ben&apos;]=&quot;37&quot;;</div><div class="line">    $age[&apos;Joe&apos;]=&quot;43&quot;;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>遍历</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//遍历数值数组</div><div class="line">&lt;?php</div><div class="line">    $cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);</div><div class="line">    $arrlength=count($cars);</div><div class="line">    </div><div class="line">    for($x=0;$x&lt;$arrlength;$x++)</div><div class="line">    &#123;</div><div class="line">    echo $cars[$x];</div><div class="line">    echo &quot;&lt;br&gt;&quot;;</div><div class="line">    &#125;</div><div class="line">?&gt; </div><div class="line">//遍历关联数组</div><div class="line">&lt;?php</div><div class="line">$age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);</div><div class="line"></div><div class="line">foreach($age as $x=&gt;$x_value)</div><div class="line">&#123;</div><div class="line">    echo &quot;Key=&quot; . $x . &quot;, Value=&quot; . $x_value;</div><div class="line">    echo &quot;&lt;br&gt;&quot;;</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>排序</p>
+<ul>
+<li>sort() - 对数组进行升序排列</li>
+<li>rsort() - 对数组进行降序排列</li>
+<li>asort() - 根据关联数组的值，对数组进行升序排列</li>
+<li>ksort() - 根据关联数组的键，对数组进行升序排列</li>
+<li>arsort() - 根据关联数组的值，对数组进行降序排列</li>
+<li>krsort() - 根据关联数组的键，对数组进行降序排列</li>
+</ul>
+</li>
+</ul>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><ul>
+<li>算术运算符<br>  php7新增整除运算符intdiv()，例如<code>intdiv(10, 3)</code></li>
+<li>赋值运算符</li>
+<li>比较运算符</li>
+<li>逻辑运算符<ul>
+<li>and, &amp;&amp;</li>
+<li>or, ||</li>
+<li>xor</li>
+<li>!x</li>
+</ul>
+</li>
+<li><p>数组运算符(举例说明)</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    $x = array(&quot;a&quot; =&gt; &quot;red&quot;, &quot;b&quot; =&gt; &quot;green&quot;);</div><div class="line">    $y = array(&quot;c&quot; =&gt; &quot;blue&quot;, &quot;d&quot; =&gt; &quot;yellow&quot;);</div><div class="line">    $z = $x + $y; //数组合并</div><div class="line">    var_dump($z);</div><div class="line">    var_dump($x == $y); //相等</div><div class="line">    var_dump($x === $y); //恒等</div><div class="line">    var_dump($x != $y); //不等</div><div class="line">    var_dump($x &lt;&gt; $y); //不等</div><div class="line">    var_dump($x !== $y); //不恒等</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>三元运算符</p>
+</li>
+<li><p>组合运算符(php7+)</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    // 整型</div><div class="line">    echo 1 &lt;=&gt; 1; // 0</div><div class="line">    echo 1 &lt;=&gt; 2; // -1</div><div class="line">    echo 2 &lt;=&gt; 1; // 1</div><div class="line">    </div><div class="line">    // 浮点型</div><div class="line">    echo 1.5 &lt;=&gt; 1.5; // 0</div><div class="line">    echo 1.5 &lt;=&gt; 2.5; // -1</div><div class="line">    echo 2.5 &lt;=&gt; 1.5; // 1</div><div class="line">     </div><div class="line">    // 字符串</div><div class="line">    echo &quot;a&quot; &lt;=&gt; &quot;a&quot;; // 0</div><div class="line">    echo &quot;a&quot; &lt;=&gt; &quot;b&quot;; // -1</div><div class="line">    echo &quot;b&quot; &lt;=&gt; &quot;a&quot;; // 1</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="结构语句"><a href="#结构语句" class="headerlink" title="结构语句"></a>结构语句</h2><ul>
+<li>if…else </li>
+<li>switch</li>
+<li>while/do…while</li>
+<li>for/foreach</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><blockquote>
+<p>PHP 的真正威力源自于它的函数。在 PHP 中，提供了超过 1000 个内建的函数。</p>
+</blockquote>
+<ul>
+<li><p>语法：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function functionName()</div><div class="line">&#123;</div><div class="line">    要执行的代码;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h2><ul>
+<li><p>在声明命名空间之前唯一合法的代码是用于定义源文件编码方式的 declare 语句。所有非 PHP 代码包括空白符都不能出现在命名空间的声明之前.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    declare(encoding=&apos;UTF-8&apos;); //定义多个命名空间和不包含在命名空间中的代码</div><div class="line">    namespace MyProject &#123;</div><div class="line">    </div><div class="line">        const CONNECT_OK = 1;</div><div class="line">        class Connection &#123; /* ... */ &#125;</div><div class="line">        function connect() &#123; /* ... */  &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    namespace &#123; // 全局代码</div><div class="line">        session_start();</div><div class="line">        $a = MyProject\connect();</div><div class="line">    &#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>子命名空间<br>  <code>namespace MyProject\Sub\Level;  //声明分层次的单个命名空间</code></p>
+</li>
+<li>命名空间使用<ul>
+<li>非限定名称，或不包含前缀的类名称<code>foo();</code></li>
+<li>限定名称,或包含前缀的名称<code>subnamespace\foo();</code></li>
+<li>完全限定名称，或包含了全局前缀操作符的名称<code>\Foo\Bar\foo();</code></li>
+</ul>
+</li>
+<li>使用命名空间：别名/导入 <ul>
+<li>注意PHP不支持导入函数或常量</li>
+<li>使用use操作符导入/使用别名</li>
+<li>一行中包含多个use语句 </li>
+<li>导入和动态名称</li>
+<li>导入和完全限定名称 </li>
+</ul>
+</li>
+</ul>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><ul>
+<li><p>语法</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    class phpClass &#123;</div><div class="line">      var $var1;</div><div class="line">      var $var2 = &quot;constant string&quot;;</div><div class="line">      </div><div class="line">      function myfunc ($arg1, $arg2) &#123;</div><div class="line">         [..]</div><div class="line">      &#125;</div><div class="line">      [..]</div><div class="line">    &#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>类的变量使用 var 来声明, 变量也可以初始化值</li>
+</ul>
+</li>
+<li>php对象调用函数只能使用<code>-&gt;</code>, 例如<code>$runoob-&gt;getTitle();</code></li>
+<li>构造函数<br>  <code>void __construct ([ mixed $args [, $... ]] )</code></li>
+<li>析构函数<br>  <code>void __destruct ( void ){}</code></li>
+<li>继承<br>  PHP 不支持多继承</li>
+<li>调用父类构造函数<br>  PHP 不会在子类的构造方法中自动的调用父类的构造方法。要执行父类的构造方法，需要在子类的构造方法中调用 parent::__construct().</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/PHP/">PHP</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/php/">php</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.sjming.net/2017/03/02/Articles/PHP/php入门/" data-title="php入门 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/02/Articles/Linear_Algebra/奇异值分解/" title="奇异值分解">
+  <strong>上一篇：</strong><br/>
+  <span>
+  奇异值分解</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/02/Articles/PHP/phpmailer/"  title="使用phpmailer发邮件">
+ <strong>下一篇：</strong><br/> 
+ <span>使用phpmailer发邮件
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/02/Articles/PHP/php入门/" data-title="php入门" data-url="http://www.sjming.net/2017/03/02/Articles/PHP/php入门/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP"><span class="toc-number">1.</span> <span class="toc-text">PHP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一个程序"><span class="toc-number">1.2.</span> <span class="toc-text">第一个程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础知识"><span class="toc-number">1.3.</span> <span class="toc-text">基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">1.4.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量"><span class="toc-number">1.5.</span> <span class="toc-text">常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串"><span class="toc-number">1.6.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-number">1.7.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符"><span class="toc-number">1.8.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构语句"><span class="toc-number">1.9.</span> <span class="toc-text">结构语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-number">1.10.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命名空间"><span class="toc-number">1.11.</span> <span class="toc-text">命名空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面向对象"><span class="toc-number">1.12.</span> <span class="toc-text">面向对象</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="su526664687" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/recursion/" title="recursion">recursion<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php-email/" title="php email">php email<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/go/" title="go">go<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/segment-tree/" title="segment_tree">segment_tree<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sort/" title="sort">sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/neuoj/" title="neuoj">neuoj<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flash/" title="flash">flash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/determinant/" title="determinant">determinant<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/template/" title="template">template<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WEB-security/" title="WEB security">WEB security<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/union-set/" title="union_set">union_set<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/stack/" title="stack">stack<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/heap/" title="heap">heap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/priority-queure/" title="priority_queure">priority_queure<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/binary-index-tree/" title="binary_index_tree">binary_index_tree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/deep-learning/" title="deep_learning">deep_learning<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u014451076/" target="_blank" title="My CSDN">My CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Sjming in NEU. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/su526664687" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/sjming" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:sujinming0125@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Sjming">Sjming</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"su526664687"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
