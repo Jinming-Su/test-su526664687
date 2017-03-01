@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20918313/5a8cb174-bbd1-11e6-831d-47a56c40e604.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20932648/51dea944-bc10-11e6-9dc5-3533910628ab.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/20932783/cb1b88e0-bc10-11e6-9588-fced1e2291b9.png">
-<meta property="og:updated_time" content="2017-03-01T19:19:26.000Z">
+<meta property="og:updated_time" content="2017-03-01T20:40:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vbird学习笔记一：Linux规则与安装">
 <meta name="twitter:description" content="《鸟哥的Linux私房菜》学习笔记">
@@ -286,18 +286,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/03/02/Articles/Computer_system/计算机的一些基本概念/" title="计算机的一些基本概念">
+ <a href="/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记二：Linux文件、目录与磁盘格式/" title="vbird学习笔记二：Linux文件、目录与磁盘格式">
   <strong>上一篇：</strong><br/>
   <span>
-  计算机的一些基本概念</span>
+  vbird学习笔记二：Linux文件、目录与磁盘格式</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/03/02/Articles/Computer_system/【课程笔记】微处理器技术/"  title="【课程笔记】微处理器技术">
+<a href="/2017/03/02/Articles/Computer_system/Vbird_Notes/vbird学习笔记三：学习shell和shell/"  title="vbird学习笔记三：学习shell和shell">
  <strong>下一篇：</strong><br/> 
- <span>【课程笔记】微处理器技术
+ <span>vbird学习笔记三：学习shell和shell
 </span>
 </a>
 </div>
@@ -334,13 +334,18 @@
 
 
 
-  
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+  <% if (site.categories.length){ %>
+<div class="categorieslist">
+	<p class="asidetitle"><%= __('categories') %></p>
+		<ul>
+		<% site.categories.sort('name').each(function(item){ %>
+		  <% if(item.posts.length){ %>
+			<li><a href="<%- config.root %><%- item.path %>" title="<%= item.name %>"><%= item.name %><sup><%= item.posts.length %></sup></a></li>
+		  <% } %>
+		<% }); %>
+		</ul>
 </div>
- 
-
+<% } %>
 
   
 <div class="tagslist">

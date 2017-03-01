@@ -114,26 +114,6 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/03/02/Articles/Programming_Lang/世界七大编程语言的前世今生/" title="世界七大编程语言的前世今生" itemprop="url">
-  
-    <h1 itemprop="name">世界七大编程语言的前世今生</h1>
-    
-     
-      <p itemprop="description" >...</p>
-      
-    
-    <time datetime="2017-03-01T16:02:01.000Z" itemprop="datePublished">2017-03-02</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
     <a href="/2017/03/02/Articles/我的深度学习入门过程/" title="我的深度学习入门过程" itemprop="url">
   
     <h1 itemprop="name">我的深度学习入门过程</h1>
@@ -271,6 +251,26 @@
 
 
 
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/03/02/Articles/Daily_Record/blog迁移：从csdn到emlog/" title="blog迁移：从csdn到emlog" itemprop="url">
+  
+    <h1 itemprop="name">blog迁移：从csdn到emlog</h1>
+    
+     
+      <p itemprop="description" >博客迁移声明</p>
+      
+    
+    <time datetime="2017-03-01T16:02:01.000Z" itemprop="datePublished">2017-03-02</time>
+  </a>
+</section>
+
+
+
+
+
+
 
   <nav id="page-nav" class="clearfix unexpand">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -293,13 +293,18 @@
 
 
 
-  
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+  <% if (site.categories.length){ %>
+<div class="categorieslist">
+	<p class="asidetitle"><%= __('categories') %></p>
+		<ul>
+		<% site.categories.sort('name').each(function(item){ %>
+		  <% if(item.posts.length){ %>
+			<li><a href="<%- config.root %><%- item.path %>" title="<%= item.name %>"><%= item.name %><sup><%= item.posts.length %></sup></a></li>
+		  <% } %>
+		<% }); %>
+		</ul>
 </div>
- 
-
+<% } %>
 
   
 <div class="tagslist">
