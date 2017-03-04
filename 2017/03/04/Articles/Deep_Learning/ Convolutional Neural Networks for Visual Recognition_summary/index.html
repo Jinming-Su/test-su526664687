@@ -1,0 +1,780 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Convolutional Neural Networks for Visual Recognition_summary | Sjming&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Sjming">
+    
+
+    
+    <meta name="description" content="This is the notes for stanford cs 231n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Convolutional Neural Networks for Visual Recognition_summary">
+<meta property="og:url" content="http://www.sjming.net/2017/03/04/Articles/Deep_Learning/ Convolutional Neural Networks for Visual Recognition_summary/index.html">
+<meta property="og:site_name" content="Sjming's Blog">
+<meta property="og:description" content="This is the notes for stanford cs 231n">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/23091672/523b698e-f5f6-11e6-86ae-9c63172255f0.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/23093337/4a7eab82-f61b-11e6-8a03-7086c5fc6771.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/23098737/27c5b768-f691-11e6-9838-e3dc58261c70.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/23103275/c8a03ca0-f6f3-11e6-8d2e-060db225ad0f.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/23113918/7e31572a-f776-11e6-86f1-1dbf45b4fb44.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/23114655/49e54f76-f77b-11e6-80b5-bc40b1f2cff5.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/23129169/95ee4e04-f7bc-11e6-94b4-1ed3a1371ea0.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/16068384/23131155/009353d8-f7c4-11e6-828d-36072b7b90f6.png">
+<meta property="og:updated_time" content="2017-03-04T05:45:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Convolutional Neural Networks for Visual Recognition_summary">
+<meta name="twitter:description" content="This is the notes for stanford cs 231n">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/16068384/23091672/523b698e-f5f6-11e6-86ae-9c63172255f0.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Sjming&#39;s Blog">Sjming&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Try doing and try to do</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">AboutMe</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.sjming.net">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/04/Articles/Deep_Learning/ Convolutional Neural Networks for Visual Recognition_summary/" title="Convolutional Neural Networks for Visual Recognition_summary" itemprop="url">Convolutional Neural Networks for Visual Recognition_summary</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-04T04:51:00.000Z" itemprop="datePublished"> 发表于 2017-03-04</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#cs231n-notes"><span class="toc-number">1.</span> <span class="toc-text">cs231n notes</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>This is the notes for stanford cs 231n</p>
+</blockquote>
+<h3 id="cs231n-notes"><a href="#cs231n-notes" class="headerlink" title="cs231n notes"></a>cs231n notes</h3><ul>
+<li>lecture 1 介绍计算机视觉<ul>
+<li>生物视觉的起源从5.4亿年前的物种大爆发开始–眼睛的出现是物种多样性迅速增多的一个重要因素.</li>
+<li>早期计算机视觉研究的两大结论：视觉的前期功能是识别边缘和简单的形状；视觉功能是分层的（影响了后来包括深度学习分层在内的很多研究）</li>
+<li>计算机视觉的两大研究领域：3D建模；图像识别（主流）</li>
+<li>计算机视觉当前的两大愿景：看图写作；视觉智能（视觉理解，涵盖文化范畴）</li>
+</ul>
+</li>
+<li>Lecture 2 线性分类<ul>
+<li>曼哈顿距离：又称L1距离，对应坐标的差的绝对值之和</li>
+<li>KNN(k-NearestNeighbor)，见<a href="https://github.com/su526664687/Articles/blob/master/deep_learning/knn.md" target="_blank" rel="external">https://github.com/su526664687/Articles/blob/master/deep_learning/knn.md</a></li>
+<li>SVM</li>
+<li>softmax分类（一般化的logistic回归）,参考<a href="http://blog.csdn.net/xbinworld/article/details/45291009" target="_blank" rel="external">http://blog.csdn.net/xbinworld/article/details/45291009</a> </li>
+</ul>
+</li>
+<li>Lecture 3 误差比较和优化<ul>
+<li>梯度下降法</li>
+<li>学习率问题：通常开始使用大的学习率，之后对学习率慢慢减小</li>
+</ul>
+</li>
+<li>Lecture 4 反向传播和简单神经网络<ul>
+<li>反向传播常用模式<ul>
+<li>add gate: 梯度分配器——两边梯度相等</li>
+<li>max gate: 梯度路由——最大值梯度看做1，小值梯度看做0</li>
+</ul>
+</li>
+<li>常用激活函数<ul>
+<li>在机器学习历史上，最早使用tanh函数</li>
+<li>2012年，ReLU(修正线性单元) max(0,x)开始流行【当今的默认选择】</li>
+<li>最近，leaky ReLU, Maxout ELU</li>
+</ul>
+</li>
+<li>计数神经网络层数是计算有权值的层数， 输入层并不计算在内</li>
+<li><a href="http://cs.stanford.edu/people/karpathy/convnetjs/demo/classify2d.html" target="_blank" rel="external">http://cs.stanford.edu/people/karpathy/convnetjs/demo/classify2d.html</a> 在线二分类二层神经网络测试</li>
+<li>加入适当的正则化参数，可以防止过拟合问题</li>
+</ul>
+</li>
+<li>Lecture 5 训练神经网络细节<ul>
+<li>使用CNN进行迁移学习<ul>
+<li>首先，在大数据集上进行预训练（如ImageNet），这个已经有许多人做好了，可以利用pre training好的模型，比如Caffe Model Zoo的。CNN当做一个特征提取器进行对待</li>
+<li>其次，finetune自己的own data.如果数据量比较小，只需要训练分类器就可以了；如果数据量比较大，可以训练部分网络或者整个网络。</li>
+</ul>
+</li>
+<li>激活函数<ul>
+<li>上一节已经提到了很多的激活函数</li>
+<li>历史上最常使用的激活函数是sigmoid函数，存在许多问题<ul>
+<li><ol>
+<li>[梯度弥散或者梯度消失]：sigmoid处理的神经元会成为一个饱和神经元（输出存在极限），输出要么为0，要么为1，导致反向传播中出现梯度趋向于0</li>
+</ol>
+</li>
+<li><ol>
+<li>sigmoid输出值不是中心对称的</li>
+</ol>
+</li>
+<li><ol>
+<li>exp()计算耗时</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>tanh()为了改进sigmoid而提出来的，解决了中心对称问题</li>
+<li>ReLU在2012年被提出，成为一种默认使用的激活函数，在x&gt;0区域解决了sigmoid的饱和问题，但是存在问题<ul>
+<li><ol>
+<li>不是中心对称</li>
+</ol>
+</li>
+<li><ol>
+<li>x&lt;0区域存在梯度弥散(dead ReLU)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Leaky ReLU(max(ax, x))/ELU/Maxout<br><img src="https://cloud.githubusercontent.com/assets/16068384/23091672/523b698e-f5f6-11e6-86ae-9c63172255f0.png" alt="1"></li>
+</ul>
+</li>
+<li>数据预处理<ul>
+<li>图像处理的数据预处理<br><img src="https://cloud.githubusercontent.com/assets/16068384/23093337/4a7eab82-f61b-11e6-8a03-7086c5fc6771.png" alt="1"></li>
+</ul>
+</li>
+<li>权重初始化<ul>
+<li>根据对称性，初始化的时候如果weight不随机那训练出来的weight就都一毛一样了</li>
+<li>随机化常采用的是N(0,0.01)，关于不同的激活函数，tanh和ReLU等初始化形式不同</li>
+</ul>
+</li>
+<li>批处理正则化（这种方法可以省去考虑权重初始值问题）</li>
+<li>学习过程<ul>
+<li>交叉验证</li>
+</ul>
+</li>
+<li>超参数优化</li>
+</ul>
+</li>
+<li>Lecture 6 训练神经网络细节<ul>
+<li>参数更新<ul>
+<li>SGD最慢</li>
+<li>momentum(v = mu <em> v - lr </em> dx; x += v)</li>
+<li>Nesterov Momentum(先用更新后的位置的梯度)<br><img src="https://cloud.githubusercontent.com/assets/16068384/23098737/27c5b768-f691-11e6-9838-e3dc58261c70.png" alt="1"></li>
+<li>adaGrad 梯度大的抑制一下步长, RMSProp优化adaGrad</li>
+<li>Adam： momentum + RMSProp[默认比较好的选择]</li>
+</ul>
+</li>
+<li>regularization: dropout<ul>
+<li>前向传播的时候，随机把一些神经元置0，反向传播同样进行</li>
+<li>作用：防止过拟合</li>
+<li>test的时候可以多次dropout采样求平均,但是效率比较低（Monte Carlo approximation）。另一种方法就是，不进行dropout（神经元失活），而是在输出过程中对输出值乘以一个概率P（P的值与神经网络的结构有关）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Lecture 7 CNN细节<ul>
+<li>CNN例图<br><img src="https://cloud.githubusercontent.com/assets/16068384/23103275/c8a03ca0-f6f3-11e6-8d2e-060db225ad0f.png" alt="1"></li>
+<li>CNN特点：局部感知；参数共享（全图同一个卷积核）；</li>
+<li>卷积层 <a href="http://blog.csdn.net/real_myth/article/details/51824193" target="_blank" rel="external">http://blog.csdn.net/real_myth/article/details/51824193</a><ul>
+<li>滤波器就是卷积核</li>
+<li>步长stripe, 填充padding</li>
+</ul>
+</li>
+<li>pool层 下采样（down sampling）<ul>
+<li>conv层通常不会在空间上减小数据的size，而是保持数据的size,通常是在下采样层减小数据的尺寸</li>
+<li>常见方式： max pooling（在一个滤波器范围内取最大值）; average pooling</li>
+</ul>
+</li>
+<li>fc全连接层</li>
+<li><a href="http://cs.stanford.edu/people/karpathy/convnetjs/demo/cifar10.html" target="_blank" rel="external">http://cs.stanford.edu/people/karpathy/convnetjs/demo/cifar10.html</a> 在线CNNjs训练</li>
+</ul>
+</li>
+<li>Lecture 8 迁移学习之物体定位和检测<ul>
+<li>定位一般是一个对象，而检测通常是多个对象</li>
+<li>引用csdn上的一段话：  <ul>
+<li>1.对于分类而言，就是对于给定的图片把其划分到给定的几种类别中某一种。很显然，图像中只能存在一种给定类别中的对象。 </li>
+<li>2.而定位就是找到对应的对象的位置区域，把它框选出来（即Bounding Box），这个选框除了位置信息（x，y）外还要包含其大小信息（w，h）。同样的，这里的图像只包含单个对象。 </li>
+<li>3.检测就可以看作是定位的拓展，即给定一张图像或者视频帧，找出其中所有目标的位置，并给出每个目标的具体类别。与定位的不同就是图像中包含的对象数不确定。 </li>
+<li>4.实例分割（Instance Segmentation），就是在检测的基础上，把每个对象的轮廓勾勒出来，随之而来的就是语义分割（Semantic segmentation）</li>
+</ul>
+</li>
+<li>定位分为不定类和定类定位两种<ul>
+<li>一种方法是使用全连接训练一个回归网络，进行定位</li>
+<li>另一种方法通常采用一种sliding windows: overfeat的方法，最后进行聚类的方法进行合并, 高效的滑动窗口overfeat会把fc层转化为conv</li>
+</ul>
+</li>
+<li>检测(参考资料：<a href="http://blog.csdn.net/qq_30159351/article/details/52440058" target="_blank" rel="external">http://blog.csdn.net/qq_30159351/article/details/52440058</a>)<ul>
+<li>Region Proposals： 选取比较可能包含图像的部分进行检测<ul>
+<li>比较出名的方法是：Selective Search： 首先将图片打散，然后按照超像素的原理（superpixel），根据人为定义的距离进行聚合。<br><img src="https://cloud.githubusercontent.com/assets/16068384/23113918/7e31572a-f776-11e6-86f1-1dbf45b4fb44.png" alt="1"></li>
+<li>R-CNN<ul>
+<li>1 训练一个分类模型</li>
+<li>2 微调模型用于检测问题</li>
+<li>3 利用selective search算法在图像中提取2000个左右的region proposal, 将每个region proposal缩放（warp）成227x227的大小并输入到CNN，将CNN的fc7层的输出作为特征。 </li>
+<li>4 将每个region proposal提取到的CNN特征输入到SVM进行分类。 </li>
+<li>5 对于SVM分好类的region proposal做边框回归（bounding-box regression)，边框回归是对region proposal进行纠正的线性回归算法。</li>
+<li>存在问题: 1.运行速度慢 2.训练分为多个阶段，步骤繁琐 3.支持向量机和回归是事后训练的：CNN特征没有根据支持向量机和回归来更新 <ul>
+<li>fast-RCNN<br><img src="https://cloud.githubusercontent.com/assets/16068384/23114655/49e54f76-f77b-11e6-80b5-bc40b1f2cff5.png" alt="1"></li>
+<li>faster-RCNN</li>
+</ul>
+</li>
+<li>采用RPN(Region Proposal Networks).RPN的核心思想是使用卷积神经网络直接产生region proposal，使用的方法本质上就是滑动窗口。RPN的设计比较巧妙，RPN只需在最后的卷积层上滑动一遍，因为anchor机制和边框回归可以得到多尺度多长宽比的region proposal。 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>目前，最好的水平是ResNet101 + R-CNN + some extras</li>
+<li>YOLO</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Lecture 9 CNN可视化<ul>
+<li>t-SNE 一个数据可视化工具</li>
+<li>deep dream</li>
+<li>fool CNN</li>
+</ul>
+</li>
+<li>Lecture 10 RNN <ul>
+<li>LSTM(Long short Term Memory) <a href="http://www.jianshu.com/p/9dc9f41f0b29" target="_blank" rel="external">http://www.jianshu.com/p/9dc9f41f0b29</a></li>
+</ul>
+</li>
+<li>Lecture 11 <ul>
+<li>CNN训练过程中主要问题<br><img src="https://cloud.githubusercontent.com/assets/16068384/23129169/95ee4e04-f7bc-11e6-94b4-1ed3a1371ea0.png" alt="1"></li>
+<li>Data Augmentation(目的是为了防止过拟合，dropout和dropconnect也可以达到这样的效果[训练时添加噪声，测试时弱化噪声])<ul>
+<li>1 最简单的方法是: 对图片横向翻转</li>
+<li>2 随机截图（大小和位置随机).这种方法常采用的一种形式是左上、右上、左下、右下、中间截图5张，然后进行翻转，一共10张图</li>
+<li>3 颜色变动：　常用的是PCA</li>
+<li>4 任意的方法的组合：　移动、旋转、伸缩、放射等</li>
+</ul>
+</li>
+<li>Transfer Learning(目的：有时候新的领域没有太多的数据用于训练CNN，可以把在其他领域训练好的CNN模型拿来使用)<br><img src="https://cloud.githubusercontent.com/assets/16068384/23131155/009353d8-f7c4-11e6-828d-36072b7b90f6.png" alt="1"></li>
+<li>How to stack conv<ul>
+<li>把大的conv分解成多个小的conv表现更好, 可以减少很多参数,减少计算量.</li>
+<li>注意： 把卷积层分解成不对称的卷积层现在用的还不多.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Deep-Learning/">Deep_Learning</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/cs231n/">cs231n</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.sjming.net/2017/03/04/Articles/Deep_Learning/ Convolutional Neural Networks for Visual Recognition_summary/" data-title="Convolutional Neural Networks for Visual Recognition_summary | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/04/Articles/Deep_Learning/Paper/README/" title="Paper模块说明">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Paper模块说明</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/02/Articles/WEB/HCJ/html5特性解读/"  title="html5特性解读">
+ <strong>下一篇：</strong><br/> 
+ <span>html5特性解读
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/04/Articles/Deep_Learning/ Convolutional Neural Networks for Visual Recognition_summary/" data-title="Convolutional Neural Networks for Visual Recognition_summary" data-url="http://www.sjming.net/2017/03/04/Articles/Deep_Learning/ Convolutional Neural Networks for Visual Recognition_summary/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#cs231n-notes"><span class="toc-number">1.</span> <span class="toc-text">cs231n notes</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="su526664687" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep_Learning</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/Paper/">Paper</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/recursion/" title="recursion">recursion<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/deep-learning/" title="deep_learning">deep_learning<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/go/" title="go">go<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php-email/" title="php email">php email<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/segment-tree/" title="segment_tree">segment_tree<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sort/" title="sort">sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/template/" title="template">template<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flash/" title="flash">flash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/determinant/" title="determinant">determinant<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cs231n/" title="cs231n">cs231n<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/heap/" title="heap">heap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/priority-queure/" title="priority_queure">priority_queure<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/stack/" title="stack">stack<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/binary-index-tree/" title="binary_index_tree">binary_index_tree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u014451076/" target="_blank" title="My CSDN">My CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Sjming in NEU. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/su526664687" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/sjming" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:sujinming0125@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Sjming">Sjming</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"su526664687"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
