@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>行列式定义与性质 | Sjming&#39;s Blog</title>
+    <title>ParseNet:Looking wider to see better翻译 | Sjming&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Sjming">
     
 
     
-    <meta name="description" content="...">
+    <meta name="description" content="《ParseNet:Looking wider to see better》 ICLR 2016 submission">
 <meta property="og:type" content="article">
-<meta property="og:title" content="行列式定义与性质">
-<meta property="og:url" content="http://www.sjming.net/2017/03/02/Articles/Linear_Algebra/行列式定义与性质/index.html">
+<meta property="og:title" content="ParseNet:Looking wider to see better翻译">
+<meta property="og:url" content="http://www.sjming.net/2017/03/04/Articles/Deep_Learning/Paper/ParseNet: Looking wider to see better翻译/index.html">
 <meta property="og:site_name" content="Sjming's Blog">
-<meta property="og:description" content="...">
-<meta property="og:updated_time" content="2017-03-01T20:40:20.000Z">
+<meta property="og:description" content="《ParseNet:Looking wider to see better》 ICLR 2016 submission">
+<meta property="og:updated_time" content="2017-03-04T05:53:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="行列式定义与性质">
-<meta name="twitter:description" content="...">
+<meta name="twitter:title" content="ParseNet:Looking wider to see better翻译">
+<meta name="twitter:description" content="《ParseNet:Looking wider to see better》 ICLR 2016 submission">
 
     
     <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
@@ -76,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/03/02/Articles/Linear_Algebra/行列式定义与性质/" title="行列式定义与性质" itemprop="url">行列式定义与性质</a>
+      <a href="/2017/03/04/Articles/Deep_Learning/Paper/ParseNet: Looking wider to see better翻译/" title="ParseNet:Looking wider to see better翻译" itemprop="url">ParseNet:Looking wider to see better翻译</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
 		
   <p class="article-time">
-    <time datetime="2017-03-01T16:02:01.000Z" itemprop="datePublished"> 发表于 2017-03-02</time>
+    <time datetime="2017-03-04T04:51:00.000Z" itemprop="datePublished"> 发表于 2017-03-04</time>
     
   </p>
 </header>
@@ -92,37 +92,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#预备知识"><span class="toc-number">1.</span> <span class="toc-text">预备知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行列式"><span class="toc-number">2.</span> <span class="toc-text">行列式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ParseNet-Looking-wider-to-see-better翻译"><span class="toc-number">1.</span> <span class="toc-text">ParseNet: Looking wider to see better翻译</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Abstract"><span class="toc-number">1.1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Introduction"><span class="toc-number">1.2.</span> <span class="toc-text">Introduction</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">2.</span> <span class="toc-text">Conclusion</span></a></li></ol>
 		
 		</div>
 		
-		<h3 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h3><ul>
-<li>排列: n个自然数1,2,…,n按一定的次序排成的一个无重复数字的有序数组称为一个n级排列.</li>
-<li>逆序与逆序数: 在一个级排列$i<em>{1}i</em>{2}…i<em>{n}$中，若一个较大的数排在一个较小数的前面，则称这两个数构成一个逆序.一个排列中逆序的总数，称为这个排列的逆序数，记为$\tau(i</em>{1}i<em>{2}…i</em>{n})$.</li>
-<li>奇排列和偶排列: 逆序数是奇数的排列，称为奇排列；逆序数是偶数的排列，称为偶排列.</li>
-<li>定理：一个排列中的任意两个元素对换，排列改变奇偶性.</li>
-<li>推论：n&gt;=2时，n个数的所有排列中，奇偶排列各占一半，各为n!/2个</li>
-</ul>
-<h3 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h3><ul>
-<li>定义<br>$$<br>\left| \begin{array}{ccc}<br>a<em>{11} &amp; a</em>{12} &amp; … &amp; a<em>{13} \<br>a</em>{21} &amp; a<em>{22} &amp; … &amp; a</em>{2n} \<br>… &amp; … &amp; … &amp; … \<br>a<em>{n1} &amp; a</em>{n2} &amp; … &amp; a<em>{nn} \<br>\end{array}\right| \<br>= \sum(-1)^{\tau(j</em>{1}j<em>{2}…j</em>{n})}a<em>{1j</em>{1}}a<em>{2j</em>{2}}…a<em>{nj</em>{n}}  \<br>= \sum(-1)^{\tau(i<em>{1}i</em>{2}…i<em>{n})}a</em>{i<em>{1}1}a</em>{i<em>{2}2}…a</em>{i<em>{n}n} \<br>其中排列j</em>{1}j<em>{2}…j</em>{n}要取遍历所有n级排列<br>$$</li>
-<li>n阶行列式共有n!项，正负项各占一半</li>
-<li>举例：可以推导出对于上三角形行列式或者下三角形行列式，行列式的值只能是对角线元素的乘积</li>
-<li>性质<ul>
-<li>性质1: 行列式与它的转置行列式相等.根据定义即可证明.</li>
-<li>性质2: 行列式的两行（列）互换，行列式的值变号.根据【预备知识】中定理可以进行证明.</li>
-<li>性质3: 将行列式的某一行（列）的所有元素同乘以数k后加到另一行（列）对应位置的元素上，行列式的值不变.</li>
-</ul>
-</li>
-<li>应用<ul>
-<li>利用以上性质，可以把一个行列式化为上三角行列式，再进行计算.</li>
-</ul>
-</li>
-</ul>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><ul>
-<li><p>C++实现行列式求值，利用代数余子式</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">#include&lt;iostream&gt;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">int det(int n, int map[10][10]);</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line"></div><div class="line">    int n;</div><div class="line">    cout&lt;&lt;&quot;input the det&apos;s rank&quot;&lt;&lt;endl;</div><div class="line">    cin&gt;&gt;n;</div><div class="line">    cout&lt;&lt;&quot;input the det&quot;&lt;&lt;endl;</div><div class="line">    int map[10][10];</div><div class="line">    for(int i=0;i&lt;n;i++)</div><div class="line">        for(int j=0;j&lt;n;j++) &#123;</div><div class="line">            cin&gt;&gt;map[i][j];</div><div class="line">        &#125;</div><div class="line">    cout&lt;&lt;det(n, map)&lt;&lt;endl;</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int det(int n, int map[10][10]) &#123;</div><div class="line">    int p=0;</div><div class="line">    int sum = 0;</div><div class="line">    int rest[10][10]; //代数余子式</div><div class="line">    if(n == 1) return map[0][0];</div><div class="line">    for(int i=0; i&lt;n; i++) &#123;</div><div class="line">        for(int r=0; r&lt;n-1; r++) &#123;</div><div class="line">            if(r&lt;i) p=0;</div><div class="line">            else p=1;</div><div class="line">            for(int j=0; j&lt;n-1; j++) &#123;</div><div class="line">                rest[r][j] = map[r+p][j+1];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        int q = 0;</div><div class="line">        if(i%2 == 0) q = 1;</div><div class="line">        else q = (-1);</div><div class="line">        sum = sum+map[i][0]*q*det(n-1, rest);</div><div class="line">    &#125;</div><div class="line">    return sum;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
+		<h3 id="ParseNet-Looking-wider-to-see-better翻译"><a href="#ParseNet-Looking-wider-to-see-better翻译" class="headerlink" title="ParseNet: Looking wider to see better翻译"></a>ParseNet: Looking wider to see better翻译</h3><h4 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h4><p>我们展示了一种技术，添加global context到全卷积神经网络，用于semantic sengmentation.方法很简单，使用每一层的average feature增强每个位置的features.另外，我们研究了多个训练的idiosyncrasy，显著提高了baseline networks的性能.当我们添加了我们提出的global feature，和一个学习正则化参数的技术，精度不断提高，甚至超过了改进版本的baseline.我们的方法，在SiftFlow和PASCAL-Context上相对于baseline增加少量的运算代价可以达到最先进性能，通过一个简单的方法，在PASCAL VOC 2012 semantic segmentation上可以解决最先进性能.参考代码：<a href="https://github.com/weiliu89/caffe/tree/fcn" target="_blank" rel="external">https://github.com/weiliu89/caffe/tree/fcn</a>.</p>
+<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>semantic segmentation，在过去十年中被广泛研究，它融合了image segmentation和object recogniton去生成图像内容中每个像素的标签.当今，用于semantic segmentation的最成功的技术是基于FCN的.FCN是从用于对整张图片进行分类的网络中提取出来的，已经被证明了优异的性能.FCN可以认为在输入图片上左右滑动一个的分类网络，并独立处理每一个滑动窗口区域.特别的是，FCN不理会图片的global information，因此忽略了潜在的有用的scene-level semantic context.为了集成更多的context，多个方法提出用graphical models中的技术，例如CRF，从而引入global context和结构化信息到FCN，尽管功能很强大，这些结构可能是复杂的，有微调一个深度神经网络和一个CRF的挑战，并且需要在管理训练方法和参数特性上有大量的经验.至少，这会导致耗时的训练和接口.<br><br><br>在这个文章中，我们提出了ParseNet，一种end-to-end的简单的并且有效的卷积神经网络(CNN)，用于semantic segmentation.我们的最主要的贡献之一是，用global context来帮助使模糊变清晰.从之前的工作可以看出，为semantci segmentation添加global context并不是一个新的idea，并且到目前为止已经被应用到patch-based框架中.patch-based方法已经被大量采用到检测和分割工作，甚至集成global context到图片分类区域或物体也取得了收益.我们的方法允许集成global context到一个end-to-end的用于semantic segmentationFCN（区别于patch-based方法），添加少量的计算量.在我们的设置中，图片不是被分割成区域或物体，而是网络会做一个关于所有像素值的联合预测.以前的关于FCN的工作不包括global features，并且在保证标签的保持某些一致性的时候会对像素距离存在限制.<br><br><br>添加global context到FCN很简单，但是这除了能提高FCN的精确度外，还有多个重要的结果.首先，这个完整的end-to-end过程是一个深度网络，它确保与深度网络加CRF比起来更加直截了当.另外，我们添加global context这种方法引入的计算量相对与训练和评估一个标准的FCN来说是很小的，然而性能提升很显著.在我们的方法中，对于一层的feature map被在整个图片池化，并生成一个context vector.这被追加到每个被发送到网络后续层的feature上.在实施上，这会通过unpooling这个context vector并添加resulting feature map到标准的feature map.这个技术可以被选择性得应用到一个网络的feature maps，也可以应用于结合多个feature map和信息，根据自己的需求而定.　注意来自不同层的特征可能是非常不同的，这导致直接结合feature map用于测试十分困难.我们找到了用于每一层的L2 正则化feature，并且使用一个从bp过程中学习到的一个scaling factor(缩放因子)，这两个技巧在解决潜在困难上表现很好.<br><br><br>在第4部分，我们验证了这种方法，添加从一个feature map中池化得到的global context并进行一个合适的缩放，它对于basic FCN有显著的性能提高，得到了和《Semantic image segmentation with deep convolutional nets and fully connected crfs》方法中同样的精度，后者在后处理中使用了详细的结构信息.即便如此，我们也不提倡忽略结构信息.相反，我们静定添加global feature是一种用于通过考虑contextual information来提高FCN表现的简单并鲁棒的方法.事实上，我们的网络可以与精确的结构输出预测，例如CRF，这可能进一步提高性能.<br><br><br>文章的剩余部分如下组织，Section 2 我们回顾了相关工作.在Section 3，我们对提出的方法进行了描述，Section　4是我们进行了广泛的实验验证.Section 5我们总结了工作，并描述了未来的工作方向.</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>在这个工作中，我们展示了ParseNet，一个简单的FCN架构，它允许直接把global context用于semantic segmentation课题.我们明确表明了，依托FCN网最大的感受野不提供足够的global context，最大的经验感受野是不足以捕捉global context–建模global context被需要.在PASCAL VOC2012测试机上，ParseNet的分割结果是在DeepLab-LargeFOV-CRF的标准偏差中，这暗示添加global feature和带有图模型的FCN后处理预测有相似的效果.开发和分析这个方法的时候，我们提出了许多结构选择分析，讨论了最好的训练实践，说明了正则化和在网络中多层组合特征时学习权重的重要性.我们的训练显著提高了我们用的baseline的性能.我们在三个benchmark数据集展示的结果，是目前在SiftFlow和PASCAL-Context的最好的水平，在PASCAL VOC2012上接近最好的水平.最低朴素的和简单的训练，我们发现结果很令人鼓舞.在我们未来的工作，我们正探究把我们的网络与结构化的训练/接口结合.</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -130,13 +106,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Linear-Algebra/">Linear_Algebra</a>
+  <a class="article-category-link" href="/categories/Deep-Learning/">Deep_Learning</a>►<a class="article-category-link" href="/categories/Deep-Learning/Paper/">Paper</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/determinant/">determinant</a>
+  <span></span> <a href="/tags/ParseNet/">ParseNet</a>
   </div>
 
 </div>
@@ -145,7 +121,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://www.sjming.net/2017/03/02/Articles/Linear_Algebra/行列式定义与性质/" data-title="行列式定义与性质 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://www.sjming.net/2017/03/04/Articles/Deep_Learning/Paper/ParseNet: Looking wider to see better翻译/" data-title="ParseNet:Looking wider to see better翻译 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -159,18 +135,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/03/02/Articles/WEB/HCJ/html5特性解读/" title="html5特性解读">
+ <a href="/2017/03/04/Articles/Deep_Learning/Paper/README/" title="Paper模块说明">
   <strong>上一篇：</strong><br/>
   <span>
-  html5特性解读</span>
+  Paper模块说明</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/03/02/Articles/PHP/phpmailer/"  title="使用phpmailer发邮件">
+<a href="/2017/03/04/Articles/Deep_Learning/Computer Vision: Foundations and Applications_summary/"  title="computer Vision:Foundations and Applications_summary">
  <strong>下一篇：</strong><br/> 
- <span>使用phpmailer发邮件
+ <span>computer Vision:Foundations and Applications_summary
 </span>
 </a>
 </div>
@@ -179,7 +155,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/03/02/Articles/Linear_Algebra/行列式定义与性质/" data-title="行列式定义与性质" data-url="http://www.sjming.net/2017/03/02/Articles/Linear_Algebra/行列式定义与性质/"></div>
+	<div class="ds-thread" data-thread-key="2017/03/04/Articles/Deep_Learning/Paper/ParseNet: Looking wider to see better翻译/" data-title="ParseNet:Looking wider to see better翻译" data-url="http://www.sjming.net/2017/03/04/Articles/Deep_Learning/Paper/ParseNet: Looking wider to see better翻译/"></div>
 </section>
 
 
@@ -189,7 +165,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#预备知识"><span class="toc-number">1.</span> <span class="toc-text">预备知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行列式"><span class="toc-number">2.</span> <span class="toc-text">行列式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ParseNet-Looking-wider-to-see-better翻译"><span class="toc-number">1.</span> <span class="toc-text">ParseNet: Looking wider to see better翻译</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Abstract"><span class="toc-number">1.1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Introduction"><span class="toc-number">1.2.</span> <span class="toc-text">Introduction</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">2.</span> <span class="toc-text">Conclusion</span></a></li></ol>
  
   </div>
 
