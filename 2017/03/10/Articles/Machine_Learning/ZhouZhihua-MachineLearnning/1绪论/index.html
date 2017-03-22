@@ -1,0 +1,626 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>1绪论 | Sjming&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Sjming">
+    
+
+    
+    <meta name="description" content="关于周志华《机器学习》学习过程中的笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1绪论">
+<meta property="og:url" content="http://www.sjming.net/2017/03/10/Articles/Machine_Learning/ZhouZhihua-MachineLearnning/1绪论/index.html">
+<meta property="og:site_name" content="Sjming's Blog">
+<meta property="og:description" content="关于周志华《机器学习》学习过程中的笔记">
+<meta property="og:updated_time" content="2017-03-22T12:07:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1绪论">
+<meta name="twitter:description" content="关于周志华《机器学习》学习过程中的笔记">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Sjming&#39;s Blog">Sjming&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Try doing and try to do</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">AboutMe</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.sjming.net">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/10/Articles/Machine_Learning/ZhouZhihua-MachineLearnning/1绪论/" title="1绪论" itemprop="url">1绪论</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-09T16:00:01.000Z" itemprop="datePublished"> 发表于 2017-03-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关介绍"><span class="toc-number">2.</span> <span class="toc-text">相关介绍</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><strong>机器学习</strong>: [Mitchell, 1997]: 假设用P来评估计算机程序在某任务类T上的性能，若一个程序通过利用经验E在T中任务上获得了性能改善，则我们就说关于T和P，该程序对E进行了学习.<br><strong>独立同分布</strong>: ‘独立’指随机变量x1与x2互不影响，’同分布’指随机变量x1和x2具有相同的分布形状和相同的分布参数.<br><strong>归纳偏好</strong>: 指机器学习算法在学习过程中对某种类型假设的偏好.例如，有的算法偏好“尽可能特殊”模型，有的算法则偏好“尽可能一般”模型。注释，偏好对算法很重要，没有偏好可能导致一个算法被“等效”假设所迷惑.<br><strong>奥卡姆剃刀(Occam’s rezor)原则</strong>:若有多个假设与观察一致，则选择最简单的.<br><strong>没有免费午餐定理(No Free Lunch, NRL)</strong>: 由于对所有的可能的函数的相互补偿，最优化算法的性能是等价的.NFL的一个重要前提是: 所有“问题”出现的可能性相同、或所有问题同等重要.但是实际中，我们通常只关注正在解决的问题，对于这个解决方案在其他情况下的表现并不关注，所以这个定理对于我们暂时并没有实际意义.<font color="red"><b>NFL定理最重要的寓意，是让我们清楚的认识到，脱离具体问题空谈“什么学习算法最好”毫无意义，因为若考虑所有存在的问题，在所有算法一样好.</b></font><br>这个定理的简单证明可以参考《机器学习》的8-9页.对于其中一句’考虑二分类问题，且真实目标函数可以是任何函数X-&gt;{0, 1}, 函数空间为{0, 1}^|X|’这句话的理解:函数的映射f: X-&gt;{0, 1}, 样本空间大小为|X|，选择其中的样本进行训练，对于一个样本，可能选择也可能不选择，所以选择的样本情况数是 {0, 1}^|X|,也就是函数的可能性数目，也就是函数空间.<br><strong>丑小鸭定理</strong>: 丑小鸭和白天鹅之间的区别和两只白天鹅之间的区别一样大.实质是说: 世界上不存在分类的客观性，一切分类的标准都是主观的.</p>
+<h3 id="相关介绍"><a href="#相关介绍" class="headerlink" title="相关介绍"></a>相关介绍</h3><p><strong>Tom Mitchell</strong>: 曾写过一本著作《Machine Learning》,《Machine Learning》这本书是第一本机器学习的专门性教材，他现在是CMU的professor. CMU的Mitchell Home Page: <a href="http://www.cs.cmu.edu/~tom/" target="_blank" rel="external">http://www.cs.cmu.edu/~tom/</a>. </p>
+<p><strong>一些重要的会议</strong>  </p>
+<ul>
+<li>机器学习领域会议<ul>
+<li>国际机器学习会议ICML</li>
+<li>国际神经信息处理系统会议NIPS</li>
+<li>国际学习理论会议COLT</li>
+<li>欧洲机器学习会议ECML</li>
+<li>亚洲机器学习会议ACML</li>
+</ul>
+</li>
+<li>机器学习领域期刊<ul>
+<li><em>Journal of Machine Learning</em></li>
+<li><em>Machine Learning</em></li>
+</ul>
+</li>
+<li>人工智能领域会议<ul>
+<li>IJCAI</li>
+<li>AAAI</li>
+</ul>
+</li>
+<li>人工智能领域期刊<ul>
+<li><em>Artificial Intelligence</em></li>
+<li><em>Journal of Artificial Intelligence Research</em></li>
+</ul>
+</li>
+<li>数据挖掘领域会议<ul>
+<li>KDD</li>
+<li>ICDM</li>
+</ul>
+</li>
+<li>数据挖掘领域期刊<ul>
+<li><em>ACM Transactions on Knowledge Deiscovery from Data</em></li>
+<li><em>Data Mining and Knowledge Discovery</em></li>
+</ul>
+</li>
+<li>CV &amp; PR会议<ul>
+<li>CVPR, ICCV, ECCV</li>
+</ul>
+</li>
+<li>CV &amp; PR期刊<ul>
+<li><em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em></li>
+</ul>
+</li>
+<li>NN期刊<ul>
+<li><em>Neural Computation</em></li>
+<li><em>IEEE Transactions on Neural Networks and Learning Systems</em></li>
+</ul>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Machine-Learning/">Machine_Learning</a>►<a class="article-category-link" href="/categories/Machine-Learning/ZhouZhihua/">ZhouZhihua</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/machine-learning/">machine_learning</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.sjming.net/2017/03/10/Articles/Machine_Learning/ZhouZhihua-MachineLearnning/1绪论/" data-title="1绪论 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/13/Articles/Tools/一些翻墙软件/" title="翻墙后看什么">
+  <strong>上一篇：</strong><br/>
+  <span>
+  翻墙后看什么</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/08/Articles/Deep_Learning/深度学习有用的网络资源/"  title="深度学习有用的网络资源">
+ <strong>下一篇：</strong><br/> 
+ <span>深度学习有用的网络资源
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/10/Articles/Machine_Learning/ZhouZhihua-MachineLearnning/1绪论/" data-title="1绪论" data-url="http://www.sjming.net/2017/03/10/Articles/Machine_Learning/ZhouZhihua-MachineLearnning/1绪论/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关介绍"><span class="toc-number">2.</span> <span class="toc-text">相关介绍</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="su526664687" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep_Learning</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/Paper/">Paper</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/caffe/">caffe</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/">Machine_Learning</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/Machine-Learning-Pracitce/">Machine_Learning_Pracitce</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/Machine-Learning-Practice/">Machine_Learning_Practice</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/ZhouZhihua/">ZhouZhihua</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/recursion/" title="recursion">recursion<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/deep-learning/" title="deep_learning">deep_learning<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/go/" title="go">go<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php-email/" title="php email">php email<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/segment-tree/" title="segment_tree">segment_tree<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sort/" title="sort">sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/machinelearning/" title="machinelearning">machinelearning<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/neuoj/" title="neuoj">neuoj<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/flash/" title="flash">flash<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/determinant/" title="determinant">determinant<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WEB-security/" title="WEB security">WEB security<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/heap/" title="heap">heap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/stack/" title="stack">stack<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u014451076/" target="_blank" title="My CSDN">My CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Sjming in NEU. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/su526664687" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/sjming" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:sujinming0125@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Sjming">Sjming</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"su526664687"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
