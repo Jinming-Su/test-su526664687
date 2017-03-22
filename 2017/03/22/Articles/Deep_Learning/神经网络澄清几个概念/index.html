@@ -4,23 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>计算机的一些基本概念 | Sjming&#39;s Blog</title>
+    <title>Sjming&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Sjming">
     
 
     
-    <meta name="description" content="...">
+    <meta name="description" content="epoch: 1个epoch就是所有训练样例全部训练一次
+batch-size(mini-batch): 由于把所有的样例进行一次训练，然后求偏导数计算量太大，所以采用随机梯度下降算法SGD.SGD每次采样batch-size个样例进行训练，然后进行一次Forward和BP操作.
+iterations: 每一次迭代就是一次权重更新，也就是一个mini-batch训练完成.
+因此，有总的训练样本数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机的一些基本概念">
-<meta property="og:url" content="http://www.sjming.net/2017/03/02/Articles/Computer_system/计算机的一些基本概念/index.html">
+<meta property="og:title" content="Sjming's Blog">
+<meta property="og:url" content="http://www.sjming.net/2017/03/22/Articles/Deep_Learning/神经网络澄清几个概念/index.html">
 <meta property="og:site_name" content="Sjming's Blog">
-<meta property="og:description" content="...">
-<meta property="og:updated_time" content="2017-03-01T20:40:20.000Z">
+<meta property="og:description" content="epoch: 1个epoch就是所有训练样例全部训练一次
+batch-size(mini-batch): 由于把所有的样例进行一次训练，然后求偏导数计算量太大，所以采用随机梯度下降算法SGD.SGD每次采样batch-size个样例进行训练，然后进行一次Forward和BP操作.
+iterations: 每一次迭代就是一次权重更新，也就是一个mini-batch训练完成.
+因此，有总的训练样本数">
+<meta property="og:updated_time" content="2017-03-22T12:02:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算机的一些基本概念">
-<meta name="twitter:description" content="...">
+<meta name="twitter:title" content="Sjming's Blog">
+<meta name="twitter:description" content="epoch: 1个epoch就是所有训练样例全部训练一次
+batch-size(mini-batch): 由于把所有的样例进行一次训练，然后求偏导数计算量太大，所以采用随机梯度下降算法SGD.SGD每次采样batch-size个样例进行训练，然后进行一次Forward和BP操作.
+iterations: 每一次迭代就是一次权重更新，也就是一个mini-batch训练完成.
+因此，有总的训练样本数">
 
     
     <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
@@ -76,14 +85,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/03/02/Articles/Computer_system/计算机的一些基本概念/" title="计算机的一些基本概念" itemprop="url">计算机的一些基本概念</a>
+      <a href="/2017/03/22/Articles/Deep_Learning/神经网络澄清几个概念/" title="" itemprop="url"></a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
 		
   <p class="article-time">
-    <time datetime="2017-03-01T16:01:01.000Z" itemprop="datePublished"> 发表于 2017-03-02</time>
+    <time datetime="2017-03-22T12:02:56.957Z" itemprop="datePublished"> 发表于 2017-03-22</time>
     
   </p>
 </header>
@@ -97,31 +106,15 @@
 		</div>
 		
 		<ul>
-<li><strong>Intel主板架构</strong>：整个主板上面最重要癿就是芯片组了!而芯片组通常又分为两个网桥来控制各组件癿沟通, 分别是:(1)北桥:负责链接速度较快癿 CPU、主存储器与显示适配器等组件（CPU/RAM/VGA）;(2)南桥:负责连接速度较慢癿周边接口, 包括硬盘、USB、网络卡等等（PCI 接口与<br>速度较慢癿 I/O 装置）</li>
-<li><strong>AMD主板架构</strong>：Intel 丌同癿地方在亍主存储器是直接不 CPU 沟通而丌透过北桥，AMD 为了加速这两者癿沟通,所以将内存控制组件整合到 CPU 当中, 理论上这样可以加速 CPU 不主存储器癿传输速（关于AMD和intel的cpu在架构上的主要差异点也正式这样）</li>
-<li><strong>多核心</strong>：单核心 CPU 仅有一个运算单元,所谓癿多核心则是在一颗 CPU 封装当中嵌入了两个以上癿运算核心, 简单癿说,就是一个实体癿 CPU 外壳中,含有两个以上癿 CPU 单元</li>
-<li><strong>外频、倍频</strong>：外频指癿是 CPU 与外部组件迚行数据传输时癿速度,倍频则是 CPU 内部用来加速工作效能癿一个倍数, 两者相乘才是 CPU 癿频率速度</li>
-<li><strong>32位和64位</strong>：一般主板芯片组有分北桥与南桥, 北桥癿总线称为系统总线,因为是内存传输癿主要信道,所以速度较快。南桥就是所谓癿输入输出(I/O)总线,主要在联系硬盘、USB、网绚卡等接口设备。北桥每次传送的位数就是总线宽度。现在所称癿计算机是 32 或 64 位主要是依据CPU 解析癿字组大小而来癿。</li>
-<li><strong>CPU等级</strong>：i386，i586，i686是根据不同时代对CPU的规范等级，目前的64位CPU统称为x86_64等级。</li>
-<li><strong>DDR内存</strong>：DDR 是所谓癿双倍数据传送速度(Double Data Rate), 他可以在一次工作周期中进行两次数据癿传送,感觉上就好像是 CPU 癿倍频</li>
-<li><strong>双通道</strong>:传统癿总线宽度一般大约仅达 64 位,为了要加大这个宽度,因此芯片组厂商就将两个主存储器汇整在一起, 如果一支内存可达 64 位,两支内存就可以达到 128 位了,这就是双通道癿设计理念</li>
-<li><strong>BIOS</strong>：BIOS(Basic Input Output System)是一套程序,这套程序是写死到主板上面癿一个内存芯片中, 这个内存芯片在没有通电时也能够将数据记录下来,那就是只读存储器(Read Only Memory, ROM)</li>
-<li><strong>显存、GPU</strong>：显示适配器又称为 VGA(Video Graphics Array),他对亍图形影像癿显示扮演相弼关键癿角色。 一般对亍图形影像癿显示重点在亍分辨率与颜色深度,因为每个图像显示癿颜色会占用掉内存，所以具有了”显存”，由于3D动画等对运算能力的要求，就出现了”GPU”。</li>
-<li><strong>磁盘缓冲存储器</strong>：主要可以将硬盘内常使用癿数据快取起来,以加速系统癿读取效能，目前主流癿产品可达 16MB 左史癿内存大小。</li>
-<li><strong>设备 I/O 地址与 IRQ 中断信道</strong>：每个计算机组件都有唯一的一个I/O地址，各装置可以透过 IRQ 中断信道来告知 CPU 该装置癿工作情况</li>
-<li><strong>CMOS和BIOS</strong>：CMOS 主要癿功能为记录主板上面癿重要参数, 包括系统时间、CPU 电压与频率、各项设备癿 I/O 地址与 IRQ 等,由亍这<br>些数据癿记录要花费电力,因此主板上面才有电池。BIOS 为写入到主板上某一块 flash 戒 EEPROM癿程序,他可以在开机癿时候执行,以加载CMOS 当中癿参数, 幵尝试呼叨储存装置中癿开机程序,进一步进入操作系统当中</li>
-<li><strong>GPL(GNU General Public License）</strong></li>
-<li><strong>关于Free Software</strong>: 自由并不是指价格的免费，而是指对软件的自由度，使用者可以自由癿执行、复制、再发行、学习、修改与强化自由软件</li>
+<li>epoch: 1个epoch就是所有训练样例全部训练一次</li>
+<li>batch-size(mini-batch): 由于把所有的样例进行一次训练，然后求偏导数计算量太大，所以采用随机梯度下降算法SGD.SGD每次采样batch-size个样例进行训练，然后进行一次Forward和BP操作.</li>
+<li>iterations: 每一次迭代就是一次权重更新，也就是一个mini-batch训练完成.</li>
+<li>因此，有<strong>总的训练样本数是N,则一个epoch训练的样本数就是N,一个batch-size大小为n，则iterations = N/n</strong></li>
 </ul>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Computer-system/">Computer_system</a>
-</div>
 
 
 </div>
@@ -130,7 +123,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/计算机的一些基本概念/" data-title="计算机的一些基本概念 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://www.sjming.net/2017/03/22/Articles/Deep_Learning/神经网络澄清几个概念/" data-title="Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -143,19 +136,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/03/02/Articles/PHP/phpmailer/" title="使用phpmailer发邮件">
-  <strong>上一篇：</strong><br/>
-  <span>
-  使用phpmailer发邮件</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/03/02/Articles/Computer_system/在bochs上使用freedos运行.com文件/"  title="在bochs上使用freedos运行.com文件">
+<a href="/2017/03/13/Articles/Tools/一些翻墙软件/"  title="翻墙后看什么">
  <strong>下一篇：</strong><br/> 
- <span>在bochs上使用freedos运行.com文件
+ <span>翻墙后看什么
 </span>
 </a>
 </div>
@@ -164,7 +149,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/03/02/Articles/Computer_system/计算机的一些基本概念/" data-title="计算机的一些基本概念" data-url="http://www.sjming.net/2017/03/02/Articles/Computer_system/计算机的一些基本概念/"></div>
+	<div class="ds-thread" data-thread-key="2017/03/22/Articles/Deep_Learning/神经网络澄清几个概念/" data-title="" data-url="http://www.sjming.net/2017/03/22/Articles/Deep_Learning/神经网络澄清几个概念/"></div>
 </section>
 
 
