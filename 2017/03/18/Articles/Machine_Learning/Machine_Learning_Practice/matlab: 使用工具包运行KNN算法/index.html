@@ -4,41 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Sjming&#39;s Blog</title>
+    <title>matlab:使用工具包运行KNN算法 | Sjming&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Sjming">
     
 
     
-    <meta name="description" content="###说明
-
-cuda即compute unified device architecture.是NVIDIA推出的运算平台，所以amd不支持，不错据说2015年后开始，amd可能支持cuda.
-
-外部依赖库安装
-caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安装
-安装opencv(一个开源计算机视觉库)  sudo apt-get install libopencv-dev">
+    <meta name="description" content="...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sjming's Blog">
-<meta property="og:url" content="http://www.sjming.net/2017/03/22/Articles/Deep_Learning/caffe/ubuntu无cuda安装caffe/index.html">
+<meta property="og:title" content="matlab:使用工具包运行KNN算法">
+<meta property="og:url" content="http://www.sjming.net/2017/03/18/Articles/Machine_Learning/Machine_Learning_Practice/matlab: 使用工具包运行KNN算法/index.html">
 <meta property="og:site_name" content="Sjming's Blog">
-<meta property="og:description" content="###说明
-
-cuda即compute unified device architecture.是NVIDIA推出的运算平台，所以amd不支持，不错据说2015年后开始，amd可能支持cuda.
-
-外部依赖库安装
-caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安装
-安装opencv(一个开源计算机视觉库)  sudo apt-get install libopencv-dev">
-<meta property="og:updated_time" content="2017-03-22T12:07:31.000Z">
+<meta property="og:description" content="...">
+<meta property="og:updated_time" content="2017-03-22T12:56:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sjming's Blog">
-<meta name="twitter:description" content="###说明
-
-cuda即compute unified device architecture.是NVIDIA推出的运算平台，所以amd不支持，不错据说2015年后开始，amd可能支持cuda.
-
-外部依赖库安装
-caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安装
-安装opencv(一个开源计算机视觉库)  sudo apt-get install libopencv-dev">
+<meta name="twitter:title" content="matlab:使用工具包运行KNN算法">
+<meta name="twitter:description" content="...">
 
     
     <link rel="alternative" href="/atom.xml" title="Sjming&#39;s Blog" type="application/atom+xml">
@@ -94,14 +76,14 @@ caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/03/22/Articles/Deep_Learning/caffe/ubuntu无cuda安装caffe/" title="" itemprop="url"></a>
+      <a href="/2017/03/18/Articles/Machine_Learning/Machine_Learning_Practice/matlab: 使用工具包运行KNN算法/" title="matlab:使用工具包运行KNN算法" itemprop="url">matlab:使用工具包运行KNN算法</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Sjming" target="_blank" itemprop="author">Sjming</a>
 		
   <p class="article-time">
-    <time datetime="2017-03-22T12:07:36.970Z" itemprop="datePublished"> 发表于 2017-03-22</time>
+    <time datetime="2017-03-17T16:00:01.000Z" itemprop="datePublished"> 发表于 2017-03-18</time>
     
   </p>
 </header>
@@ -110,45 +92,36 @@ caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安�
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#外部依赖库安装"><span class="toc-number">1.</span> <span class="toc-text">外部依赖库安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装caffe"><span class="toc-number">2.</span> <span class="toc-text">安装caffe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试例程mnist"><span class="toc-number">3.</span> <span class="toc-text">测试例程mnist</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法流程"><span class="toc-number">1.</span> <span class="toc-text">算法流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#matlab测试"><span class="toc-number">2.</span> <span class="toc-text">matlab测试</span></a></li></ol>
 		
 		</div>
 		
-		<p>###说明</p>
-<ul>
-<li>cuda即compute unified device architecture.是NVIDIA推出的运算平台，所以amd不支持，不错据说2015年后开始，amd可能支持cuda.</li>
+		<blockquote>
+<p>k-NearestNeighbor,k近邻算法</p>
+</blockquote>
+<h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h3><ul>
+<li>1）计算测试数据与各个训练数据之间的距离；</li>
+<li>2）按照距离的递增关系进行排序；</li>
+<li>3）选取距离最小的K个点；</li>
+<li>4）确定前K个点所在类别的出现频率；</li>
+<li>5）返回前K个点中出现频率最高的类别作为测试数据的预测分类。</li>
 </ul>
-<h3 id="外部依赖库安装"><a href="#外部依赖库安装" class="headerlink" title="外部依赖库安装"></a>外部依赖库安装</h3><ul>
-<li>caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安装</li>
-<li>安装opencv(一个开源计算机视觉库)<br>  <code>sudo apt-get install libopencv-dev</code></li>
-<li><p>安装bootst(它是一个可移植、跨平台，提供源代码的C++库，作为标准库的后备)及依赖</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install libboost-all-dev</div><div class="line">sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev  </div><div class="line">sudo apt-get install libhdf5-serial-dev protobuf-compiler</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装blas(基础线性代数子程序库，里面拥有大量已经编写好的关于线性代数运算的程序)及依赖</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install libatlas-base-dev </div><div class="line">sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="安装caffe"><a href="#安装caffe" class="headerlink" title="安装caffe"></a>安装caffe</h3><ul>
-<li>下载caffe<br>  <code>git clone git://github.com/BVLC/caffe.git</code></li>
-<li>在该目录下拷贝makefile配置文件<br>  <code>cp Makefile.config.example Makefile.config</code></li>
-<li>由于没有cuda，修改makefile.config文件CPU_ONLY:= 1 前面的“#”去掉</li>
-<li><p>编译</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">make all</div><div class="line">make test</div><div class="line">make runtest</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="测试例程mnist"><a href="#测试例程mnist" class="headerlink" title="测试例程mnist"></a>测试例程mnist</h3><ul>
-<li><p>运行脚本程序获取MNIST数据集，并将其转换为lmdb格式</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./data/mnist/get_mnist.sh</div><div class="line">./examples/mnist/create_mnist.sh</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>因为不用GPU ，所以在训练前，要将caffe/examples/mnist/lenet_solver.prototxt中的solver_mode设置成solver_mode: CPU</code></p>
-</li>
-<li>训练网络<br>  <code>./examples/mnist/train_lenet.sh</code></li>
-</ul>
+<h3 id="matlab测试"><a href="#matlab测试" class="headerlink" title="matlab测试"></a>matlab测试</h3>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">%KNN.m</div><div class="line">%% KNN</div><div class="line">function relustLabel = KNN(inx,data,labels,k)</div><div class="line">    %% </div><div class="line">    %   inx 为 输入测试数据，data为样本数据，labels为样本标签</div><div class="line">    %%</div><div class="line">    [datarow , datacol] = size(data);</div><div class="line">    diffMat = repmat(inx,[datarow,1]) - data ;</div><div class="line">    distanceMat = sqrt(sum(diffMat.^2,2));</div><div class="line">    [B , IX] = sort(distanceMat,&apos;ascend&apos;);</div><div class="line">    len = min(k,length(B));</div><div class="line">    relustLabel = mode(labels(IX(1:len)));</div><div class="line">end</div><div class="line"></div><div class="line">%test.m</div><div class="line">clear all;</div><div class="line">clc;</div><div class="line"></div><div class="line">trainData = [1.0,2.0;1.2,0.1;0.1,1.4;0.3,3.5];</div><div class="line">trainClass = [1,1,2,2];</div><div class="line">testData = [0.5,2.3];</div><div class="line">k = 3;</div><div class="line"></div><div class="line">ans = KNN(testData, trainData, trainClass, k);</div><div class="line">disp(ans);</div><div class="line"></div><div class="line">%结果为2</div></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Machine-Learning/">Machine_Learning</a>►<a class="article-category-link" href="/categories/Machine-Learning/Machine-Learning-Practice/">Machine_Learning_Practice</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/matlab/">matlab</a><a href="/tags/knn/">knn</a>
+  </div>
 
 </div>
 
@@ -156,7 +129,7 @@ caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://www.sjming.net/2017/03/22/Articles/Deep_Learning/caffe/ubuntu无cuda安装caffe/" data-title="Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://www.sjming.net/2017/03/18/Articles/Machine_Learning/Machine_Learning_Practice/matlab: 使用工具包运行KNN算法/" data-title="matlab:使用工具包运行KNN算法 | Sjming&#39;s Blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -170,18 +143,18 @@ caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安�
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/03/22/Articles/Deep_Learning/caffe/【入门实例】用LeNet跑车牌识别数据/" title="">
+ <a href="/2017/03/18/Articles/Machine_Learning/Machine_Learning_Practice/python: 实现KNN算法/" title="python:实现KNN算法">
   <strong>上一篇：</strong><br/>
   <span>
-  (no title)</span>
+  python:实现KNN算法</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/03/22/Articles/Deep_Learning/caffe/testFcn/"  title="">
+<a href="/2017/03/16/Articles/Machine_Learning/ZhouZhihua-MachineLearnning/2模型评估/"  title="2模型评估与选择">
  <strong>下一篇：</strong><br/> 
- <span>(no title)
+ <span>2模型评估与选择
 </span>
 </a>
 </div>
@@ -190,7 +163,7 @@ caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安�
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/03/22/Articles/Deep_Learning/caffe/ubuntu无cuda安装caffe/" data-title="" data-url="http://www.sjming.net/2017/03/22/Articles/Deep_Learning/caffe/ubuntu无cuda安装caffe/"></div>
+	<div class="ds-thread" data-thread-key="2017/03/18/Articles/Machine_Learning/Machine_Learning_Practice/matlab: 使用工具包运行KNN算法/" data-title="matlab:使用工具包运行KNN算法" data-url="http://www.sjming.net/2017/03/18/Articles/Machine_Learning/Machine_Learning_Practice/matlab: 使用工具包运行KNN算法/"></div>
 </section>
 
 
@@ -200,7 +173,7 @@ caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安�
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#外部依赖库安装"><span class="toc-number">1.</span> <span class="toc-text">外部依赖库安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装caffe"><span class="toc-number">2.</span> <span class="toc-text">安装caffe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试例程mnist"><span class="toc-number">3.</span> <span class="toc-text">测试例程mnist</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法流程"><span class="toc-number">1.</span> <span class="toc-text">算法流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#matlab测试"><span class="toc-number">2.</span> <span class="toc-text">matlab测试</span></a></li></ol>
  
   </div>
 
@@ -221,7 +194,7 @@ caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安�
   
 <div class="widget tag">
   <h3 class="title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep_Learning</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/Paper/">Paper</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/caffe/">caffe</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/">Machine_Learning</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/Machine-Learning-Pracitce/">Machine_Learning_Pracitce</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/Machine-Learning-Practice/">Machine_Learning_Practice</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/ZhouZhihua/">ZhouZhihua</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Data-Structure/">Data_Structure</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Divide-And-Conquer/">Divide_And_Conquer</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/Recursion/">Recursion</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/">Computer_system</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-system/Vbird-Notes/">Vbird_Notes</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Record/">Daily_Record</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep_Learning</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/Paper/">Paper</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-learning/">Deep_learning</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Engineering-project/">Engineering_project</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GO/">GO</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graphic-Design/">Graphic_Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linear-Algebra/">Linear_Algebra</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/">Machine_Learning</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/Machine-Learning-Pracitce/">Machine_Learning_Pracitce</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/Machine-Learning-Practice/">Machine_Learning_Practice</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/ZhouZhihua/">ZhouZhihua</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/HCJ/">HCJ</a><span class="category-list-count">1</span></li></ul></li></ul> 
 </div>
  
 
@@ -240,6 +213,22 @@ caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安�
 			
 		
 			
+				<li><a href="/tags/matlab/" title="matlab">matlab<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sort/" title="sort">sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php-email/" title="php email">php email<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/segment-tree/" title="segment_tree">segment_tree<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
 			
 		
@@ -252,15 +241,7 @@ caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安�
 			
 		
 			
-				<li><a href="/tags/php-email/" title="php email">php email<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/segment-tree/" title="segment_tree">segment_tree<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/sort/" title="sort">sort<sup>2</sup></a></li>
+				<li><a href="/tags/knn/" title="knn">knn<sup>2</sup></a></li>
 			
 		
 			
@@ -269,14 +250,6 @@ caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安�
 		
 			
 				<li><a href="/tags/machinelearning/" title="machinelearning">machinelearning<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/neuoj/" title="neuoj">neuoj<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
 			
 		
 			
@@ -300,11 +273,11 @@ caffe有很多外部依赖库，这些库可以通过apt-get管理器进行安�
 			
 		
 			
-				<li><a href="/tags/heap/" title="heap">heap<sup>1</sup></a></li>
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+				<li><a href="/tags/priority-queure/" title="priority_queure">priority_queure<sup>1</sup></a></li>
 			
 		
 			
